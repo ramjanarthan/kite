@@ -1,0 +1,1263 @@
+              'Documentation': 'https://github.com/mozilla/DeepSpeech/tree/v{}#project-deepspeech'.format(project_version),
+              'Tracker': 'https://github.com/mozilla/DeepSpeech/issues',
+              'Repository': 'https://github.com/mozilla/DeepSpeech/tree/v{}'.format(project_version),
+              'Discussions': 'https://discourse.mozilla.org/c/deep-speech',
+          },
+          ext_modules=[ds_ext],
+          py_modules=['deepspeech', 'deepspeech.client', 'deepspeech.impl'],
+          entry_points={'console_scripts':['deepspeech=deepspeech.client:main']},
+          install_requires=['numpy%s' % numpy_min_ver],
+          include_package_data=True,
+          classifiers=[
+              'Development Status :: 3 - Alpha',
+              'Environment :: Console',
+              'Intended Audience :: Developers',
+              'Intended Audience :: Science/Research',
+              'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
+              'Programming Language :: Python :: 2.7',
+              'Programming Language :: Python :: 3.4',
+              'Programming Language :: Python :: 3.5',
+              'Programming Language :: Python :: 3.6',
+              'Topic :: Multimedia :: Sound/Audio :: Speech',
+              'Topic :: Scientific/Engineering :: Human Machine Interfaces',
+              'Topic :: Scientific/Engineering',
+              'Topic :: Utilities',
+          ])
+
+if __name__ == '__main__':
+    main()
+from setuptools import setup, Extension
+import glob
+import platform
+import os
+import sys
+import re
+
+#Does gcc compile with this header and library?
+def compile_test(header, library):
+    dummy_path = os.path.join(os.path.dirname(__file__), "dummy")
+    command = "bash -c \"g++ -include " + header + " -l" + library + " -x c++ - <<<'int main() {}' -o " + dummy_path + " >/dev/null 2>/dev/null && rm " + dummy_path + " 2>/dev/null\""
+    return os.system(command) == 0
+
+max_order = "6"
+is_max_order = [s for s in sys.argv if "--max_order" in s]
+for element in is_max_order:
+    max_order = re.split('[= ]',element)[1]
+    sys.argv.remove(element)
+
+FILES = glob.glob('util/*.cc') + glob.glob('lm/*.cc') + glob.glob('util/double-conversion/*.cc') + glob.glob('python/*.cc')
+FILES = [fn for fn in FILES if not (fn.endswith('main.cc') or fn.endswith('test.cc'))]
+
+if platform.system() == 'Linux':
+    LIBS = ['stdc++', 'rt']
+elif platform.system() == 'Darwin':
+    LIBS = ['c++']
+else:
+    LIBS = []
+
+#We don't need -std=c++11 but python seems to be compiled with it now.  https://github.com/kpu/kenlm/issues/86
+ARGS = ['-O3', '-DNDEBUG', '-DKENLM_MAX_ORDER='+max_order, '-std=c++11']
+
+#Attempted fix to https://github.com/kpu/kenlm/issues/186 and https://github.com/kpu/kenlm/issues/197
+if platform.system() == 'Darwin':
+    ARGS += ["-stdlib=libc++", "-mmacosx-version-min=10.7"]
+
+if compile_test('zlib.h', 'z'):
+    ARGS.append('-DHAVE_ZLIB')
+    LIBS.append('z')
+
+if compile_test('bzlib.h', 'bz2'):
+    ARGS.append('-DHAVE_BZLIB')
+    LIBS.append('bz2')
+
+if compile_test('lzma.h', 'lzma'):
+    ARGS.append('-DHAVE_XZLIB')
+    LIBS.append('lzma')
+
+ext_modules = [
+    Extension(name='kenlm',
+        sources=FILES + ['python/kenlm.cpp'],
+        language='C++', 
+        include_dirs=['.'],
+        libraries=LIBS, 
+        extra_compile_args=ARGS)
+]
+
+setup(
+    name='kenlm',
+    ext_modules=ext_modules,
+    include_package_data=True,
+)
+from __future__ import absolute_import, division, print_function
+
+from . import swigwrapper # pylint: disable=import-self
+
+# This module is built with SWIG_PYTHON_STRICT_BYTE_CHAR so we must handle
+# string encoding explicitly, here and throughout this file.
+__version__ = swigwrapper.__version__.decode('utf-8')
+
+# Hack: import error codes by matching on their names, as SWIG unfortunately
+# does not support binding enums to Python in a scoped manner yet.
+for symbol in dir(swigwrapper):
+    if symbol.startswith('DS_ERR_'):
+        globals()[symbol] = getattr(swigwrapper, symbol)
+
+class Scorer(swigwrapper.Scorer):
+    """Wrapper for Scorer.
+
+    :param alpha: Language model weight.
+    :type alpha: float
+    :param beta: Word insertion bonus.
+    :type beta: float
+    :scorer_path: Path to load scorer from.
+    :alphabet: Alphabet
+    :type scorer_path: basestring
+    """
+    def __init__(self, alpha=None, beta=None, scorer_path=None, alphabet=None):
+        super(Scorer, self).__init__()
+        # Allow bare initialization
+        if alphabet:
+            assert alpha is not None, 'alpha parameter is required'
+            assert beta is not None, 'beta parameter is required'
+            assert scorer_path, 'scorer_path parameter is required'
+
+            err = self.init(scorer_path.encode('utf-8'), alphabet)
+            if err != 0:
+                raise ValueError('Scorer initialization failed with error code 0x{:X}'.format(err))
+
+            self.reset_params(alpha, beta)
+
+
+class Alphabet(swigwrapper.Alphabet):
+    """Convenience wrapper for Alphabet which calls init in the constructor"""
+    def __init__(self, config_path):
+        super(Alphabet, self).__init__()
+        err = self.init(config_path.encode('utf-8'))
+        if err != 0:
+            raise ValueError('Alphabet initialization failed with error code 0x{:X}'.format(err))
+
+    def CanEncodeSingle(self, input):
+        '''
+        Returns true if the single character/output class has a corresponding label
+        in the alphabet.
+        '''
+        return super(Alphabet, self).CanEncodeSingle(input.encode('utf-8'))
+
+    def CanEncode(self, input):
+        '''
+        Returns true if the entire string can be encoded into labels in this
+        alphabet.
+        '''
+        return super(Alphabet, self).CanEncode(input.encode('utf-8'))
+
+    def EncodeSingle(self, input):
+        '''
+        Encode a single character/output class into a label. Character must be in
+        the alphabet, this method will assert that. Use `CanEncodeSingle` to test.
+        '''
+        return super(Alphabet, self).EncodeSingle(input.encode('utf-8'))
+
+    def Encode(self, input):
+        '''
+        Encode a sequence of character/output classes into a sequence of labels.
+        Characters are assumed to always take a single Unicode codepoint.
+        Characters must be in the alphabet, this method will assert that. Use
+        `CanEncode` and `CanEncodeSingle` to test.
+        '''
+        # Convert SWIG's UnsignedIntVec to a Python list
+        res = super(Alphabet, self).Encode(input.encode('utf-8'))
+        return [el for el in res]
+
+    def DecodeSingle(self, input):
+        res = super(Alphabet, self).DecodeSingle(input)
+        return res.decode('utf-8')
+
+    def Decode(self, input):
+        '''Decode a sequence of labels into a string.'''
+        res = super(Alphabet, self).Decode(input)
+        return res.decode('utf-8')
+
+
+class UTF8Alphabet(swigwrapper.UTF8Alphabet):
+    """Convenience wrapper for Alphabet which calls init in the constructor"""
+    def __init__(self):
+        super(UTF8Alphabet, self).__init__()
+        err = self.init(b'')
+        if err != 0:
+            raise ValueError('UTF8Alphabet initialization failed with error code 0x{:X}'.format(err))
+
+    def CanEncodeSingle(self, input):
+        '''
+        Returns true if the single character/output class has a corresponding label
+        in the alphabet.
+        '''
+        return super(UTF8Alphabet, self).CanEncodeSingle(input.encode('utf-8'))
+
+    def CanEncode(self, input):
+        '''
+        Returns true if the entire string can be encoded into labels in this
+        alphabet.
+        '''
+        return super(UTF8Alphabet, self).CanEncode(input.encode('utf-8'))
+
+    def EncodeSingle(self, input):
+        '''
+        Encode a single character/output class into a label. Character must be in
+        the alphabet, this method will assert that. Use `CanEncodeSingle` to test.
+        '''
+        return super(UTF8Alphabet, self).EncodeSingle(input.encode('utf-8'))
+
+    def Encode(self, input):
+        '''
+        Encode a sequence of character/output classes into a sequence of labels.
+        Characters are assumed to always take a single Unicode codepoint.
+        Characters must be in the alphabet, this method will assert that. Use
+        `CanEncode` and `CanEncodeSingle` to test.
+        '''
+        # Convert SWIG's UnsignedIntVec to a Python list
+        res = super(UTF8Alphabet, self).Encode(input.encode('utf-8'))
+        return [el for el in res]
+
+    def DecodeSingle(self, input):
+        res = super(UTF8Alphabet, self).DecodeSingle(input)
+        return res.decode('utf-8')
+
+    def Decode(self, input):
+        '''Decode a sequence of labels into a string.'''
+        res = super(UTF8Alphabet, self).Decode(input)
+        return res.decode('utf-8')
+
+
+
+def ctc_beam_search_decoder(probs_seq,
+                            alphabet,
+                            beam_size,
+                            cutoff_prob=1.0,
+                            cutoff_top_n=40,
+                            scorer=None,
+                            hot_words=dict(),
+                            num_results=1):
+    """Wrapper for the CTC Beam Search Decoder.
+
+    :param probs_seq: 2-D list of probability distributions over each time
+                      step, with each element being a list of normalized
+                      probabilities over alphabet and blank.
+    :type probs_seq: 2-D list
+    :param alphabet: Alphabet
+    :param beam_size: Width for beam search.
+    :type beam_size: int
+    :param cutoff_prob: Cutoff probability in pruning,
+                        default 1.0, no pruning.
+    :type cutoff_prob: float
+    :param cutoff_top_n: Cutoff number in pruning, only top cutoff_top_n
+                         characters with highest probs in alphabet will be
+                         used in beam search, default 40.
+    :type cutoff_top_n: int
+    :param scorer: External scorer for partially decoded sentence, e.g. word
+                   count or language model.
+    :type scorer: Scorer
+    :param hot_words: Map of words (keys) to their assigned boosts (values)
+    :type hot_words: map{string:float}
+    :param num_results: Number of beams to return.
+    :type num_results: int
+    :return: List of tuples of confidence and sentence as decoding
+             results, in descending order of the confidence.
+    :rtype: list
+    """
+    beam_results = swigwrapper.ctc_beam_search_decoder(
+        probs_seq, alphabet, beam_size, cutoff_prob, cutoff_top_n,
+        scorer, hot_words, num_results)
+    beam_results = [(res.confidence, alphabet.Decode(res.tokens)) for res in beam_results]
+    return beam_results
+
+
+def ctc_beam_search_decoder_batch(probs_seq,
+                                  seq_lengths,
+                                  alphabet,
+                                  beam_size,
+                                  num_processes,
+                                  cutoff_prob=1.0,
+                                  cutoff_top_n=40,
+                                  scorer=None,
+                                  hot_words=dict(),
+                                  num_results=1):
+    """Wrapper for the batched CTC beam search decoder.
+
+    :param probs_seq: 3-D list with each element as an instance of 2-D list
+                      of probabilities used by ctc_beam_search_decoder().
+    :type probs_seq: 3-D list
+    :param alphabet: alphabet list.
+    :alphabet: Alphabet
+    :param beam_size: Width for beam search.
+    :type beam_size: int
+    :param num_processes: Number of parallel processes.
+    :type num_processes: int
+    :param cutoff_prob: Cutoff probability in alphabet pruning,
+                        default 1.0, no pruning.
+    :type cutoff_prob: float
+    :param cutoff_top_n: Cutoff number in pruning, only top cutoff_top_n
+                         characters with highest probs in alphabet will be
+                         used in beam search, default 40.
+    :type cutoff_top_n: int
+    :param num_processes: Number of parallel processes.
+    :type num_processes: int
+    :param scorer: External scorer for partially decoded sentence, e.g. word
+                   count or language model.
+    :type scorer: Scorer
+    :param hot_words: Map of words (keys) to their assigned boosts (values)
+    :type hot_words: map{string:float}
+    :param num_results: Number of beams to return.
+    :type num_results: int
+    :return: List of tuples of confidence and sentence as decoding
+             results, in descending order of the confidence.
+    :rtype: list
+    """
+    batch_beam_results = swigwrapper.ctc_beam_search_decoder_batch(probs_seq, seq_lengths, alphabet, beam_size, num_processes, cutoff_prob, cutoff_top_n, scorer, hot_words, num_results)
+    batch_beam_results = [
+        [(res.confidence, alphabet.Decode(res.tokens)) for res in beam_results]
+        for beam_results in batch_beam_results
+    ]
+    return batch_beam_results
+#!/usr/bin/env python
+from __future__ import absolute_import, division, print_function
+
+from distutils.command.build import build
+from setuptools import setup, Extension, distutils
+
+import argparse
+import multiprocessing.pool
+import os
+import platform
+import sys
+
+from build_archive import *
+
+try:
+    import numpy
+    try:
+        numpy_include = numpy.get_include()
+    except AttributeError:
+        numpy_include = numpy.get_numpy_include()
+except ImportError:
+    numpy_include = ''
+    assert 'NUMPY_INCLUDE' in os.environ
+
+numpy_include = os.getenv('NUMPY_INCLUDE', numpy_include)
+numpy_min_ver = os.getenv('NUMPY_DEP_VERSION', '')
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument(
+    "--num_processes",
+    default=1,
+    type=int,
+    help="Number of cpu processes to build package. (default: %(default)d)")
+known_args, unknown_args = parser.parse_known_args()
+debug = '--debug' in unknown_args
+
+# reconstruct sys.argv to pass to setup below
+sys.argv = [sys.argv[0]] + unknown_args
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
+def maybe_rebuild(srcs, out_name, build_dir):
+    if not os.path.exists(out_name):
+        if not os.path.exists(build_dir):
+            os.makedirs(build_dir)
+
+        build_archive(srcs=srcs,
+                     out_name=out_name,
+                     build_dir=build_dir,
+                     num_parallel=known_args.num_processes,
+                     debug=debug)
+
+project_version = read('../../training/deepspeech_training/VERSION').strip()
+
+build_dir = 'temp_build/temp_build'
+
+if sys.platform.startswith('win'):
+    archive_ext = 'lib'
+else:
+    archive_ext = 'a'
+
+third_party_build = 'third_party.{}'.format(archive_ext)
+ctc_decoder_build = 'first_party.{}'.format(archive_ext)
+
+
+maybe_rebuild(KENLM_FILES, third_party_build, build_dir)
+maybe_rebuild(CTC_DECODER_FILES, ctc_decoder_build, build_dir)
+
+decoder_module = Extension(
+    name='ds_ctcdecoder._swigwrapper',
+    sources=['swigwrapper.i'],
+    swig_opts=['-c++', '-extranative'],
+    language='c++',
+    include_dirs=INCLUDES + [numpy_include],
+    extra_compile_args=ARGS + (DBG_ARGS if debug else OPT_ARGS),
+    extra_link_args=[ctc_decoder_build, third_party_build],
+)
+
+class BuildExtFirst(build):
+    sub_commands = [('build_ext', build.has_ext_modules),
+                    ('build_py', build.has_pure_modules),
+                    ('build_clib', build.has_c_libraries),
+                    ('build_scripts', build.has_scripts)]
+
+setup(
+    name='ds_ctcdecoder',
+    version=project_version,
+    description="""DS CTC decoder""",
+    cmdclass = {'build': BuildExtFirst},
+    ext_modules=[decoder_module],
+    package_dir = {'ds_ctcdecoder': '.'},
+    py_modules=['ds_ctcdecoder', 'ds_ctcdecoder.swigwrapper'],
+    install_requires = ['numpy%s' % numpy_min_ver],
+)
+#!/usr/bin/env python
+from __future__ import absolute_import, division, print_function
+
+import glob
+import os
+import shlex
+import subprocess
+import sys
+
+from multiprocessing.dummy import Pool
+
+if sys.platform.startswith('win'):
+    ARGS = ['/nologo', '/D KENLM_MAX_ORDER=6', '/EHsc', '/source-charset:utf-8']
+    OPT_ARGS = ['/O2', '/MT', '/D NDEBUG']
+    DBG_ARGS = ['/Od', '/MTd', '/Zi', '/U NDEBUG', '/D DEBUG']
+    OPENFST_DIR = 'third_party/openfst-1.6.9-win'
+else:
+    ARGS = ['-fPIC', '-DKENLM_MAX_ORDER=6', '-std=c++11', '-Wno-unused-local-typedefs', '-Wno-sign-compare']
+    OPT_ARGS = ['-O3', '-DNDEBUG']
+    DBG_ARGS = ['-O0', '-g', '-UNDEBUG', '-DDEBUG']
+    OPENFST_DIR = 'third_party/openfst-1.6.7'
+
+
+
+INCLUDES = [
+    '..',
+    '../kenlm',
+    OPENFST_DIR + '/src/include',
+    'third_party/ThreadPool',
+    'third_party/object_pool'
+]
+
+KENLM_FILES = (glob.glob('../kenlm/util/*.cc')
+                + glob.glob('../kenlm/lm/*.cc')
+                + glob.glob('../kenlm/util/double-conversion/*.cc'))
+
+KENLM_FILES += glob.glob(OPENFST_DIR + '/src/lib/*.cc')
+
+KENLM_FILES = [
+    fn for fn in KENLM_FILES
+    if not (fn.endswith('main.cc') or fn.endswith('test.cc') or fn.endswith(
+        'unittest.cc'))
+]
+
+CTC_DECODER_FILES = [
+    'ctc_beam_search_decoder.cpp',
+    'scorer.cpp',
+    'path_trie.cpp',
+    'decoder_utils.cpp',
+    'workspace_status.cc',
+    '../alphabet.cc',
+]
+
+def build_archive(srcs=[], out_name='', build_dir='temp_build/temp_build', debug=False, num_parallel=1):
+    compiler = os.environ.get('CXX', 'g++')
+    if sys.platform.startswith('win'):
+        compiler = '"{}"'.format(compiler)
+    ar = os.environ.get('AR', 'ar')
+    libexe = os.environ.get('LIBEXE', 'lib.exe')
+    libtool = os.environ.get('LIBTOOL', 'libtool')
+    cflags = os.environ.get('CFLAGS', '') + os.environ.get('CXXFLAGS', '')
+    args = ARGS + (DBG_ARGS if debug else OPT_ARGS)
+
+    for file in srcs:
+        outfile = os.path.join(build_dir, os.path.splitext(file)[0] + '.o')
+        outdir = os.path.dirname(outfile)
+        if not os.path.exists(outdir):
+            print('mkdir', outdir)
+            os.makedirs(outdir)
+
+    def build_one(file):
+        outfile = os.path.join(build_dir, os.path.splitext(file)[0] + '.o')
+        if os.path.exists(outfile):
+            return
+
+        if sys.platform.startswith('win'):
+            file = '"{}"'.format(file.replace('\\', '/'))
+            output = '/Fo"{}"'.format(outfile.replace('\\', '/'))
+        else:
+            output = '-o ' + outfile
+
+        cmd = '{cc} -c {cflags} {args} {includes} {infile} {output}'.format(
+            cc=compiler,
+            cflags=cflags,
+            args=' '.join(args),
+            includes=' '.join('-I' + i for i in INCLUDES),
+            infile=file,
+            output=output,
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+        return outfile
+
+    pool = Pool(num_parallel)
+    obj_files = list(pool.imap_unordered(build_one, srcs))
+
+    if sys.platform.startswith('darwin'):
+        cmd = '{libtool} -static -o {outfile} {infiles}'.format(
+            libtool=libtool,
+            outfile=out_name,
+            infiles=' '.join(obj_files),
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+    elif sys.platform.startswith('win'):
+        cmd = '"{libexe}" /OUT:"{outfile}" {infiles} /MACHINE:X64 /NOLOGO'.format(
+            libexe=libexe,
+            outfile=out_name,
+            infiles=' '.join(obj_files))
+        cmd = cmd.replace('\\', '/')
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+    else:
+        cmd = '{ar} rcs {outfile} {infiles}'.format(
+            ar=ar,
+            outfile=out_name,
+            infiles=' '.join(obj_files)
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+
+if __name__ == '__main__':
+    build_common()
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, division, print_function
+
+import os
+import sys
+import json
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import tensorflow as tf
+import tensorflow.compat.v1.logging as tflogging
+tflogging.set_verbosity(tflogging.ERROR)
+import logging
+logging.getLogger('sox').setLevel(logging.ERROR)
+import glob
+
+from deepspeech_training.util.audio import AudioFile
+from deepspeech_training.util.config import Config, initialize_globals
+from deepspeech_training.util.feeding import split_audio_file
+from deepspeech_training.util.flags import create_flags, FLAGS
+from deepspeech_training.util.logging import log_error, log_info, log_progress, create_progressbar
+from ds_ctcdecoder import ctc_beam_search_decoder_batch, Scorer
+from multiprocessing import Process, cpu_count
+
+
+def fail(message, code=1):
+    log_error(message)
+    sys.exit(code)
+
+
+def transcribe_file(audio_path, tlog_path):
+    from deepspeech_training.train import create_model  # pylint: disable=cyclic-import,import-outside-toplevel
+    from deepspeech_training.util.checkpoints import load_graph_for_evaluation
+    initialize_globals()
+    scorer = Scorer(FLAGS.lm_alpha, FLAGS.lm_beta, FLAGS.scorer_path, Config.alphabet)
+    try:
+        num_processes = cpu_count()
+    except NotImplementedError:
+        num_processes = 1
+    with AudioFile(audio_path, as_path=True) as wav_path:
+        data_set = split_audio_file(wav_path,
+                                    batch_size=FLAGS.batch_size,
+                                    aggressiveness=FLAGS.vad_aggressiveness,
+                                    outlier_duration_ms=FLAGS.outlier_duration_ms,
+                                    outlier_batch_size=FLAGS.outlier_batch_size)
+        iterator = tf.data.Iterator.from_structure(data_set.output_types, data_set.output_shapes,
+                                                   output_classes=data_set.output_classes)
+        batch_time_start, batch_time_end, batch_x, batch_x_len = iterator.get_next()
+        no_dropout = [None] * 6
+        logits, _ = create_model(batch_x=batch_x, seq_length=batch_x_len, dropout=no_dropout)
+        transposed = tf.nn.softmax(tf.transpose(logits, [1, 0, 2]))
+        tf.train.get_or_create_global_step()
+        with tf.Session(config=Config.session_config) as session:
+            load_graph_for_evaluation(session)
+            session.run(iterator.make_initializer(data_set))
+            transcripts = []
+            while True:
+                try:
+                    starts, ends, batch_logits, batch_lengths = \
+                        session.run([batch_time_start, batch_time_end, transposed, batch_x_len])
+                except tf.errors.OutOfRangeError:
+                    break
+                decoded = ctc_beam_search_decoder_batch(batch_logits, batch_lengths, Config.alphabet, FLAGS.beam_width,
+                                                        num_processes=num_processes,
+                                                        scorer=scorer)
+                decoded = list(d[0][1] for d in decoded)
+                transcripts.extend(zip(starts, ends, decoded))
+            transcripts.sort(key=lambda t: t[0])
+            transcripts = [{'start': int(start),
+                            'end': int(end),
+                            'transcript': transcript} for start, end, transcript in transcripts]
+            with open(tlog_path, 'w') as tlog_file:
+                json.dump(transcripts, tlog_file, default=float)
+
+
+def transcribe_many(src_paths,dst_paths):
+    pbar = create_progressbar(prefix='Transcribing files | ', max_value=len(src_paths)).start()
+    for i in range(len(src_paths)):
+        p = Process(target=transcribe_file, args=(src_paths[i], dst_paths[i]))
+        p.start()
+        p.join()
+        log_progress('Transcribed file {} of {} from "{}" to "{}"'.format(i + 1, len(src_paths), src_paths[i], dst_paths[i]))
+        pbar.update(i)
+    pbar.finish()
+
+
+def transcribe_one(src_path, dst_path):
+    transcribe_file(src_path, dst_path)
+    log_info('Transcribed file "{}" to "{}"'.format(src_path, dst_path))
+
+
+def resolve(base_path, spec_path):
+    if spec_path is None:
+        return None
+    if not os.path.isabs(spec_path):
+        spec_path = os.path.join(base_path, spec_path)
+    return spec_path
+
+
+def main(_):
+    if not FLAGS.src or not os.path.exists(FLAGS.src):
+        # path not given or non-existant
+        fail('You have to specify which file or catalog to transcribe via the --src flag.')
+    else:
+        # path given and exists
+        src_path = os.path.abspath(FLAGS.src)
+        if os.path.isfile(src_path):
+            if src_path.endswith('.catalog'):
+                # Transcribe batch of files via ".catalog" file (from DSAlign)
+                if FLAGS.dst:
+                    fail('Parameter --dst not supported if --src points to a catalog')
+                catalog_dir = os.path.dirname(src_path)
+                with open(src_path, 'r') as catalog_file:
+                    catalog_entries = json.load(catalog_file)
+                catalog_entries = [(resolve(catalog_dir, e['audio']), resolve(catalog_dir, e['tlog'])) for e in catalog_entries]
+                if any(map(lambda e: not os.path.isfile(e[0]), catalog_entries)):
+                    fail('Missing source file(s) in catalog')
+                if not FLAGS.force and any(map(lambda e: os.path.isfile(e[1]), catalog_entries)):
+                    fail('Destination file(s) from catalog already existing, use --force for overwriting')
+                if any(map(lambda e: not os.path.isdir(os.path.dirname(e[1])), catalog_entries)):
+                    fail('Missing destination directory for at least one catalog entry')
+                src_paths,dst_paths = zip(*paths)
+                transcribe_many(src_paths,dst_paths)
+            else:
+                # Transcribe one file
+                dst_path = os.path.abspath(FLAGS.dst) if FLAGS.dst else os.path.splitext(src_path)[0] + '.tlog'
+                if os.path.isfile(dst_path):
+                    if FLAGS.force:
+                        transcribe_one(src_path, dst_path)
+                    else:
+                        fail('Destination file "{}" already existing - use --force for overwriting'.format(dst_path), code=0)
+                elif os.path.isdir(os.path.dirname(dst_path)):
+                    transcribe_one(src_path, dst_path)
+                else:
+                    fail('Missing destination directory')
+        elif os.path.isdir(src_path):
+            # Transcribe all files in dir
+            print("Transcribing all WAV files in --src")
+            if FLAGS.dst:
+                fail('Destination file not supported for batch decoding jobs.')
+            else:
+                if not FLAGS.recursive:
+                    print("If you wish to recursively scan --src, then you must use --recursive")
+                    wav_paths = glob.glob(src_path + "/*.wav")
+                else:
+                    wav_paths = glob.glob(src_path + "/**/*.wav")
+                dst_paths = [path.replace('.wav','.tlog') for path in wav_paths]
+                transcribe_many(wav_paths,dst_paths)
+
+
+if __name__ == '__main__':
+    create_flags()
+    tf.app.flags.DEFINE_string('src', '', 'Source path to an audio file or directory or catalog file.'
+                                          'Catalog files should be formatted from DSAlign. A directory will'
+                                          'be recursively searched for audio. If --dst not set, transcription logs (.tlog) will be '
+                                          'written in-place using the source filenames with '
+                                          'suffix ".tlog" instead of ".wav".')
+    tf.app.flags.DEFINE_string('dst', '', 'path for writing the transcription log or logs (.tlog). '
+                                          'If --src is a directory, this one also has to be a directory '
+                                          'and the required sub-dir tree of --src will get replicated.')
+    tf.app.flags.DEFINE_boolean('recursive', False, 'scan dir of audio recursively')
+    tf.app.flags.DEFINE_boolean('force', False, 'Forces re-transcribing and overwriting of already existing '
+                                                'transcription logs (.tlog)')
+    tf.app.flags.DEFINE_integer('vad_aggressiveness', 3, 'How aggressive (0=lowest, 3=highest) the VAD should '
+                                                         'split audio')
+    tf.app.flags.DEFINE_integer('batch_size', 40, 'Default batch size')
+    tf.app.flags.DEFINE_float('outlier_duration_ms', 10000, 'Duration in ms after which samples are considered outliers')
+    tf.app.flags.DEFINE_integer('outlier_batch_size', 1, 'Batch size for duration outliers (defaults to 1)')
+    tf.app.run(main)
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, division, print_function
+
+import absl.app
+import argparse
+import numpy as np
+import wave
+import csv
+import os
+import sys
+
+from deepspeech import Model
+from deepspeech_training.util.evaluate_tools import calculate_and_print_report
+from deepspeech_training.util.flags import create_flags
+from functools import partial
+from multiprocessing import JoinableQueue, Process, cpu_count, Manager
+from six.moves import zip, range
+
+r'''
+This module should be self-contained:
+  - build libdeepspeech.so with TFLite:
+    - bazel build [...] --define=runtime=tflite [...] //native_client:libdeepspeech.so
+  - make -C native_client/python/ TFDIR=... bindings
+  - setup a virtualenv
+  - pip install native_client/python/dist/deepspeech*.whl
+  - pip install -r requirements_eval_tflite.txt
+
+Then run with a TF Lite model, a scorer and a CSV test file
+'''
+
+def tflite_worker(model, scorer, queue_in, queue_out, gpu_mask):
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(gpu_mask)
+    ds = Model(model)
+    ds.enableExternalScorer(scorer)
+
+    while True:
+        try:
+            msg = queue_in.get()
+
+            filename = msg['filename']
+            fin = wave.open(filename, 'rb')
+            audio = np.frombuffer(fin.readframes(fin.getnframes()), np.int16)
+            fin.close()
+
+            decoded = ds.stt(audio)
+
+            queue_out.put({'wav': filename, 'prediction': decoded, 'ground_truth': msg['transcript']})
+        except FileNotFoundError as ex:
+            print('FileNotFoundError: ', ex)
+
+        print(queue_out.qsize(), end='\r') # Update the current progress
+        queue_in.task_done()
+
+def main(args, _):
+    manager = Manager()
+    work_todo = JoinableQueue()   # this is where we are going to store input data
+    work_done = manager.Queue()  # this where we are gonna push them out
+
+    processes = []
+    for i in range(args.proc):
+        worker_process = Process(target=tflite_worker, args=(args.model, args.scorer, work_todo, work_done, i), daemon=True, name='tflite_process_{}'.format(i))
+        worker_process.start()        # Launch reader() as a separate python process
+        processes.append(worker_process)
+
+    print([x.name for x in processes])
+
+    wavlist = []
+    ground_truths = []
+    predictions = []
+    losses = []
+    wav_filenames = []
+
+    with open(args.csv, 'r') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        count = 0
+        for row in csvreader:
+            count += 1
+            # Relative paths are relative to the folder the CSV file is in
+            if not os.path.isabs(row['wav_filename']):
+                row['wav_filename'] = os.path.join(os.path.dirname(args.csv), row['wav_filename'])
+            work_todo.put({'filename': row['wav_filename'], 'transcript': row['transcript']})
+            wav_filenames.extend(row['wav_filename'])
+
+    print('Totally %d wav entries found in csv\n' % count)
+    work_todo.join()
+    print('\nTotally %d wav file transcripted' % work_done.qsize())
+
+    while not work_done.empty():
+        msg = work_done.get()
+        losses.append(0.0)
+        ground_truths.append(msg['ground_truth'])
+        predictions.append(msg['prediction'])
+        wavlist.append(msg['wav'])
+
+    # Print test summary
+    _ = calculate_and_print_report(wav_filenames, ground_truths, predictions, losses, args.csv)
+
+    if args.dump:
+        with open(args.dump + '.txt', 'w') as ftxt, open(args.dump + '.out', 'w') as fout:
+            for wav, txt, out in zip(wavlist, ground_truths, predictions):
+                ftxt.write('%s %s\n' % (wav, txt))
+                fout.write('%s %s\n' % (wav, out))
+            print('Reference texts dumped to %s.txt' % args.dump)
+            print('Transcription   dumped to %s.out' % args.dump)
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Computing TFLite accuracy')
+    parser.add_argument('--model', required=True,
+                        help='Path to the model (protocol buffer binary file)')
+    parser.add_argument('--scorer', required=True,
+                        help='Path to the external scorer file')
+    parser.add_argument('--csv', required=True,
+                        help='Path to the CSV source file')
+    parser.add_argument('--proc', required=False, default=cpu_count(), type=int,
+                        help='Number of processes to spawn, defaulting to number of CPUs')
+    parser.add_argument('--dump', required=False,
+                        help='Path to dump the results as text file, with one line for each wav: "wav transcription".')
+    args, unknown = parser.parse_known_args()
+    # Reconstruct argv for absl.flags
+    sys.argv = [sys.argv[0]] + unknown
+    return args
+
+if __name__ == '__main__':
+    create_flags()
+    absl.app.run(partial(main, parse_args()))
+# -*- coding: utf-8 -*-
+#
+# DeepSpeech documentation build configuration file, created by
+# sphinx-quickstart on Thu Feb  2 21:20:39 2017.
+#
+# This file is execfile()d with the current directory set to its
+# containing dir.
+#
+# Note that not all possible configuration values are present in this
+# autogenerated file.
+#
+# All configuration values have a default; values that are commented out
+# serve to show the default.
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+#
+
+# pylint: skip-file
+
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath('../'))
+
+autodoc_mock_imports = ['deepspeech']
+
+# This is in fact only relevant on ReadTheDocs, but we want to run the same way
+# on our CI as in RTD to avoid regressions on RTD that we would not catch on CI
+import subprocess
+parent = subprocess.check_output("cd ../ && pwd", shell=True).decode().strip()
+os.environ["PATH"] = os.path.join(parent, 'node_modules', '.bin') + ':' + os.environ["PATH"]
+subprocess.check_call('cd ../ && npm install typedoc@0.17.4 typescript@3.8.3 @types/node@13.9.x', shell=True)
+subprocess.check_call('env', shell=True)
+subprocess.check_call('which typedoc', shell=True)
+subprocess.check_call('cd ../ && doxygen doc/doxygen-c.conf', shell=True)
+subprocess.check_call('cd ../ && doxygen doc/doxygen-java.conf', shell=True)
+subprocess.check_call('cd ../ && doxygen doc/doxygen-dotnet.conf', shell=True)
+
+# -- General configuration ------------------------------------------------
+
+import semver
+
+# -- Project information -----------------------------------------------------
+
+project = u'Mozilla DeepSpeech'
+copyright = '2016-2020 Mozilla Corporation, 2020 DeepSpeech authors'
+author = 'DeepSpeech authors'
+
+with open('../VERSION', 'r') as ver:
+    v = ver.read().strip()
+vv = semver.parse(v)
+
+# The version info for the project you're documenting, acts as replacement for
+# |version| and |release|, also used in various other places throughout the
+# built documents.
+# The short X.Y version
+version = '{}.{}'.format(vv['major'], vv['minor'])
+# The full version, including alpha/beta/rc tags
+release = v
+
+# If your documentation needs a minimal Sphinx version, state it here.
+#
+# needs_sphinx = '1.0'
+
+# Add any Sphinx extension module names here, as strings. They can be
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+# ones.
+extensions = [
+  'sphinx.ext.autodoc',
+  'sphinx.ext.extlinks',
+  'sphinx.ext.intersphinx',
+  'sphinx.ext.mathjax',
+  'sphinx.ext.viewcode',
+  'sphinx_rtd_theme',
+  'sphinx_js',
+  'breathe'
+]
+
+
+breathe_projects = {
+  "deepspeech-c": "xml-c/",
+  "deepspeech-java": "xml-java/",
+  "deepspeech-dotnet": "xml-dotnet/",
+}
+
+js_source_path = "../native_client/javascript/index.ts"
+js_language = "typescript"
+jsdoc_config_path = "../native_client/javascript/tsconfig.json"
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ['.templates']
+
+# The suffix(es) of source filenames.
+# You can specify multiple suffix as a list of string:
+#
+# source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
+
+# The master toctree document.
+master_doc = 'index'
+
+# The language for content autogenerated by Sphinx. Refer to documentation
+# for a list of supported languages.
+#
+# This is also used if you do content translation via gettext catalogs.
+# Usually you set "language" from the command line for these cases.
+language = None
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+# This patterns also effect to html_static_path and html_extra_path
+exclude_patterns = ['.build', 'Thumbs.db', '.DS_Store', 'node_modules']
+
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'sphinx'
+
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+todo_include_todos = False
+
+add_module_names = False
+
+
+# -- Options for HTML output ----------------------------------------------
+
+# The theme to use for HTML and HTML Help pages.  See the documentation for
+# a list of builtin themes.
+#
+html_theme = 'sphinx_rtd_theme'
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+#
+html_theme_options = {
+  'collapse_navigation': False,
+}
+
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ['.static']
+
+
+# -- Options for HTMLHelp output ------------------------------------------
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = 'DeepSpeechdoc'
+
+
+# -- Options for LaTeX output ---------------------------------------------
+
+latex_elements = {
+    # The paper size ('letterpaper' or 'a4paper').
+    #
+    # 'papersize': 'letterpaper',
+
+    # The font size ('10pt', '11pt' or '12pt').
+    #
+    # 'pointsize': '10pt',
+
+    # Additional stuff for the LaTeX preamble.
+    #
+    # 'preamble': '',
+
+    # Latex figure (float) alignment
+    #
+    # 'figure_align': 'htbp',
+}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (master_doc, 'DeepSpeech.tex', u'DeepSpeech Documentation',
+     u'DeepSpeech authors', 'manual'),
+]
+
+
+# -- Options for manual page output ---------------------------------------
+
+# One entry per manual page. List of tuples
+# (source start file, name, description, authors, manual section).
+man_pages = [
+    (master_doc, 'deepspeech', u'DeepSpeech Documentation',
+     [author], 1)
+]
+
+
+# -- Options for Texinfo output -------------------------------------------
+
+# Grouping the document tree into Texinfo files. List of tuples
+# (source start file, target name, title, author,
+#  dir menu entry, description, category)
+texinfo_documents = [
+    (master_doc, 'DeepSpeech', u'DeepSpeech Documentation',
+     author, 'DeepSpeech', 'One line description of project.',
+     'Miscellaneous'),
+]
+
+
+
+
+# Example configuration for intersphinx: refer to the Python standard library.
+intersphinx_mapping = {'https://docs.python.org/': None}
+
+extlinks = {'github': ('https://github.com/mozilla/DeepSpeech/blob/v{}/%s'.format(release),
+                      '%s')}
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, division, print_function
+
+if __name__ == '__main__':
+    try:
+        from deepspeech_training import evaluate as ds_evaluate
+    except ImportError:
+        print('Training package is not installed. See training documentation.')
+        raise
+
+    ds_evaluate.run_script()
+import argparse
+import gzip
+import io
+import os
+import subprocess
+from collections import Counter
+
+import progressbar
+
+
+def convert_and_filter_topk(args):
+    """ Convert to lowercase, count word occurrences and save top-k words to a file """
+
+    counter = Counter()
+    data_lower = os.path.join(args.output_dir, "lower.txt.gz")
+
+    print("\nConverting to lowercase and counting word occurrences ...")
+    with io.TextIOWrapper(
+        io.BufferedWriter(gzip.open(data_lower, "w+")), encoding="utf-8"
+    ) as file_out:
+
+        # Open the input file either from input.txt or input.txt.gz
+        _, file_extension = os.path.splitext(args.input_txt)
+        if file_extension == ".gz":
+            file_in = io.TextIOWrapper(
+                io.BufferedReader(gzip.open(args.input_txt)), encoding="utf-8"
+            )
+        else:
+            file_in = open(args.input_txt, encoding="utf-8")
+
+        for line in progressbar.progressbar(file_in):
+            line_lower = line.lower()
+            counter.update(line_lower.split())
+            file_out.write(line_lower)
+
+        file_in.close()
+
+    # Save top-k words
+    print("\nSaving top {} words ...".format(args.top_k))
+    top_counter = counter.most_common(args.top_k)
+    vocab_str = "\n".join(word for word, count in top_counter)
+    vocab_path = "vocab-{}.txt".format(args.top_k)
+    vocab_path = os.path.join(args.output_dir, vocab_path)
+    with open(vocab_path, "w+") as file:
+        file.write(vocab_str)
+
+    print("\nCalculating word statistics ...")
+    total_words = sum(counter.values())
+    print("  Your text file has {} words in total".format(total_words))
+    print("  It has {} unique words".format(len(counter)))
+    top_words_sum = sum(count for word, count in top_counter)
+    word_fraction = (top_words_sum / total_words) * 100
+    print(
+        "  Your top-{} words are {:.4f} percent of all words".format(
+            args.top_k, word_fraction
+        )
+    )
+    print('  Your most common word "{}" occurred {} times'.format(*top_counter[0]))
+    last_word, last_count = top_counter[-1]
+    print(
+        '  The least common word in your top-k is "{}" with {} times'.format(
+            last_word, last_count
+        )
+    )
+    for i, (w, c) in enumerate(reversed(top_counter)):
+        if c > last_count:
+            print(
+                '  The first word with {} occurrences is "{}" at place {}'.format(
+                    c, w, len(top_counter) - 1 - i
+                )
+            )
+            break
+
+    return data_lower, vocab_str
+
+
+def build_lm(args, data_lower, vocab_str):
+    print("\nCreating ARPA file ...")
+    lm_path = os.path.join(args.output_dir, "lm.arpa")
+    subargs = [
+            os.path.join(args.kenlm_bins, "lmplz"),
+            "--order",
+            str(args.arpa_order),
+            "--temp_prefix",
+            args.output_dir,
+            "--memory",
+            args.max_arpa_memory,
+            "--text",
+            data_lower,
+            "--arpa",
+            lm_path,
+            "--prune",
+            *args.arpa_prune.split("|"),
+        ]
+    if args.discount_fallback:
+        subargs += ["--discount_fallback"]
+    subprocess.check_call(subargs)
+
+    # Filter LM using vocabulary of top-k words
+    print("\nFiltering ARPA file using vocabulary of top-k words ...")
+    filtered_path = os.path.join(args.output_dir, "lm_filtered.arpa")
+    subprocess.run(
+        [
+            os.path.join(args.kenlm_bins, "filter"),
+            "single",
+            "model:{}".format(lm_path),
+            filtered_path,
+        ],
+        input=vocab_str.encode("utf-8"),
+        check=True,
+    )
+
+    # Quantize and produce trie binary.
+    print("\nBuilding lm.binary ...")
+    binary_path = os.path.join(args.output_dir, "lm.binary")
+    subprocess.check_call(
+        [
+            os.path.join(args.kenlm_bins, "build_binary"),
+            "-a",
+            str(args.binary_a_bits),
+            "-q",
+            str(args.binary_q_bits),
+            "-v",
+            args.binary_type,
+            filtered_path,
+            binary_path,
+        ]
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Generate lm.binary and top-k vocab for DeepSpeech."
+    )
+    parser.add_argument(
+        "--input_txt",
+        help="Path to a file.txt or file.txt.gz with sample sentences",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--output_dir", help="Directory path for the output", type=str, required=True
+    )
+    parser.add_argument(
+        "--top_k",
+        help="Use top_k most frequent words for the vocab.txt file. These will be used to filter the ARPA file.",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--kenlm_bins",
+        help="File path to the KENLM binaries lmplz, filter and build_binary",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--arpa_order",
+        help="Order of k-grams in ARPA-file generation",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--max_arpa_memory",
+        help="Maximum allowed memory usage for ARPA-file generation",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--arpa_prune",
+        help="ARPA pruning parameters. Separate values with '|'",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_a_bits",
+        help="Build binary quantization value a in bits",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_q_bits",
+        help="Build binary quantization value q in bits",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_type",
+        help="Build binary data structure type",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--discount_fallback",
+        help="To try when such message is returned by kenlm: 'Could not calculate Kneser-Ney discounts [...] rerun with --discount_fallback'",
+        action="store_true",
+    )
+
+    args = parser.parse_args()
+
+    data_lower, vocab_str = convert_and_filter_topk(args)
+    build_lm(args, data_lower, vocab_str)
+
+    # Delete intermediate files
+    os.remove(os.path.join(args.output_dir, "lower.txt.gz"))
+    os.remove(os.path.join(args.output_dir, "lm.arpa"))
+    os.remove(os.path.join(args.output_dir, "lm_filtered.arpa"))
+
+
+if __name__ == "__main__":
+    main()
