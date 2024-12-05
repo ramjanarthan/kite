@@ -3,7 +3,7 @@ from constants import *
 
 class FilePreprocessor:
     def preprocess_file(self, filename, output_filename):
-        with open(filename) as input, open(output_filename, "w") as output:
+        with open(filename) as input, open(output_filename, "w+") as output:
             for _, line in enumerate(input):
                 processed_line = self._preprocess_line(line)
                 output.write(processed_line)
@@ -25,10 +25,7 @@ class FilePreprocessor:
 def preprocess_files():
     file_preprocessor = FilePreprocessor()
     for file in train_files:
-        if os.path.isfile(f"processed_{file}"): # for convenience, remove created processed files
-            os.remove(f"processed_{file}")
-        
-        new_file = f"processed_{file}"
+        new_file = f"{file}_processed"
         file_preprocessor.preprocess_file(file, new_file)
 
-# preprocess_files()
+preprocess_files()

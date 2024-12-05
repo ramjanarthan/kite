@@ -101,7 +101,7 @@ class CustomLanugageModel:
     def compute_perplexity(self, filename):
         # 1. Read in file contents
         file_preprocessor = FilePreprocessor()
-        new_filename = f"processed_{filename}"
+        new_filename = f"{filename}_processed"
 
         # 2. Preprocess file similar to expected vocab
         file_preprocessor.preprocess_file(filename, new_filename)
@@ -114,10 +114,15 @@ class CustomLanugageModel:
         log_sum = 0
         while next_trigram := trigram_tokenizer.next():
             bigram_distribution = self.distribution_map[next_trigram.history()]
+
+            if not bigram_distribution:
+                # print(f"Missing bigram: {next_trigram.history}")
+                continue
             probability = bigram_distribution.dist[next_trigram]
 
             if not bigram_distribution or not probability:
-                raise Exception(f"Error when computing probability for trigram: {next_trigram}")
+                continue
+                # raise Exception(f"Error when computing probability for trigram: {next_trigram}")
             
             log_probability = math.log10(probability)
             log_sum += log_probability
@@ -148,30 +153,8 @@ class CustomLanugageModel:
             start_bigram = Bigram(next_trigram.middle, next_trigram.end)
         return output
    
-english_model = CustomLanugageModel(PROCESSED_ENGLISH_FILENAME, 0.63)
-spanish_model = CustomLanugageModel(PROCESSED_SPANISH_FILENAME, 0.63)
-german_model = CustomLanugageModel(PROCESSED_GERMAN_FILENAME, 0.63)
+python_model = CustomLanugageModel(processed_files[0], 0.63)
+cpp_model = CustomLanugageModel(processed_files[1], 0.63)
 
-# alpha_values = np.linspace(0.01, 1, 100)
-# perplexities = []
-# for alpha in alpha_values:
-#     print(f"alpha - {alpha}")
-#     perplexities.append(CustomLanugageModel(PROCESSED_ENGLISH_FILENAME, alpha=alpha).compute_perplexity('validation'))
-
-# min_perplexity = min(perplexities)
-# index = perplexities.index(min_perplexity)
-# min_alpha = alpha_values[index]
-# print(min_perplexity)
-# print(index)
-# print(min_alpha)
-
-# plt.figure()
-# plt.plot(alpha_values, perplexities, label="Alpha curve")
-# plt.xlabel("Alpha values")
-# plt.ylabel("Perplexity")
-# plt.legend()
-# plt.show()
-
-print(f"Perplexity of english: {english_model.compute_perplexity('random.txt')}")
-print(f"Perplexity of spanish: {spanish_model.compute_perplexity('random.txt')}")
-print(f"Perplexity of german: {german_model.compute_perplexity('random.txt')}")
+print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[1])}")
+print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[1])}")
