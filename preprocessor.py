@@ -12,14 +12,10 @@ class FilePreprocessor:
         line = line.lower()
         output = start_of_line_character
         for char in line:
-            if char in allowed_characters:
-                output += char
-            elif char in numeric_characters:
-                output += "0"
-            elif char == "\n":
+            if char == "\n":
                 output += end_of_line_character
             else:
-                continue
+                output += char
         return output
 
 def preprocess_files():

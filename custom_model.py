@@ -156,5 +156,10 @@ class CustomLanugageModel:
 python_model = CustomLanugageModel(processed_files[0], 0.63)
 cpp_model = CustomLanugageModel(processed_files[1], 0.63)
 
+print("Performance on python validation file")
+print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[0])}")
+print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[0])}")
+
+print("Performance on c++ validation file")
 print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[1])}")
 print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[1])}")
