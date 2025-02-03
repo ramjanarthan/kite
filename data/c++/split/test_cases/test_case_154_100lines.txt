@@ -1,0 +1,100 @@
+DEFINE_int32(generate_filenames, 0,
+             "Generate N digit numeric filenames (def: use keys)");
+DEFINE_string(keys, "",
+              "Extract set of keys separated by comma (default) "
+              "including ranges delimited by dash (default)");
+DEFINE_string(key_separator, ",", "Separator for individual keys");
+DEFINE_string(range_delimiter, "-", "Delimiter for ranges of keys");
+
+int main(int argc, char **argv) {
+  namespace s = fst::script;
+
+  string usage = "Extracts FSTs from a finite-state archive.\n\n Usage:";
+  usage += argv[0];
+  usage += " [in1.far in2.far...]\n";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  s::ExpandArgs(argc, argv, &argc, &argv);
+
+  std::vector<string> in_fnames;
+  for (int i = 1; i < argc; ++i) in_fnames.push_back(argv[i]);
+  if (in_fnames.empty()) in_fnames.push_back("");
+
+  const auto arc_type = s::LoadArcTypeFromFar(in_fnames[0]);
+  if (arc_type.empty()) return 1;
+
+  s::FarExtract(in_fnames, arc_type, FLAGS_generate_filenames, FLAGS_keys,
+                FLAGS_key_separator, FLAGS_range_delimiter,
+                FLAGS_filename_prefix, FLAGS_filename_suffix);
+
+  return 0;
+}
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Definitions and functions for invoking and using Far main functions that
+// support multiple and extensible arc types.
+
+#include <fst/extensions/far/script-impl.h>
+
+#include <string>
+
+#include <fst/extensions/far/far.h>
+#include <fstream>
+
+namespace fst {
+namespace script {
+
+string LoadArcTypeFromFar(const string &far_fname) {
+  FarHeader hdr;
+  if (!hdr.Read(far_fname)) {
+    LOG(ERROR) << "Error reading FAR: " << far_fname;
+    return "";
+  }
+  string atype = hdr.ArcType();
+  if (atype == "unknown") {
+    LOG(ERROR) << "Empty FST archive: " << far_fname;
+    return "";
+  }
+  return atype;
+}
+
+string LoadArcTypeFromFst(const string &fst_fname) {
+  FstHeader hdr;
+  std::ifstream in(fst_fname, std::ios_base::in | std::ios_base::binary);
+  if (!hdr.Read(in, fst_fname)) {
+    LOG(ERROR) << "Error reading FST: " << fst_fname;
+    return "";
+  }
+  return hdr.ArcType();
+}
+
+}  // namespace script
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/far/far-class.h>
+
+#include <fst/script/script-impl.h>
+#include <fst/extensions/far/script-impl.h>
+
+namespace fst {
+namespace script {
+
+
+// FarReaderClass.
+
+FarReaderClass *FarReaderClass::Open(const string &filename) {
+  OpenFarReaderClassArgs1 args(filename);
+  args.retval = nullptr;
+  Apply<Operation<OpenFarReaderClassArgs1>>("OpenFarReaderClass",
+                                            LoadArcTypeFromFar(filename),
+                                            &args);
+  return args.retval;
+}
+
+FarReaderClass *FarReaderClass::Open(const std::vector<string> &filenames) {
+  if (filenames.empty()) {
+    LOG(ERROR) << "FarReaderClass::Open: No files specified";

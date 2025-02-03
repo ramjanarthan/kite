@@ -1,0 +1,50 @@
+ *       raise FstOpError("Incompatible or invalid arc type")
+ *     # An error here usually indicates a key out of order.
+ */
+  if (unlikely(((PyObject *)__pyx_v_self) == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "_writer");
+    __PYX_ERR(0, 4442, __pyx_L1_error)
+  }
+  __pyx_t_7 = __pyx_f_9pywrapfst_tostring(__pyx_v_key, NULL); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 4442, __pyx_L1_error)
+  if (unlikely(((PyObject *)__pyx_v_ifst) == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "_fst");
+    __PYX_ERR(0, 4442, __pyx_L1_error)
+  }
+  __pyx_t_8 = ((!(__pyx_v_self->_writer.get()->Add(__pyx_t_7, (*__pyx_v_ifst->_fst)) != 0)) != 0);
+  if (__pyx_t_8) {
+
+    /* "pywrapfst.pyx":4443
+ *     # used by the FAR was initialized to use.
+ *     if not self._writer.get().Add(tostring(key), deref(ifst._fst)):
+ *       raise FstOpError("Incompatible or invalid arc type")             # <<<<<<<<<<<<<<
+ *     # An error here usually indicates a key out of order.
+ *     if self._writer.get().Error():
+ */
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_FstOpError); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4443, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__95, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4443, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 4443, __pyx_L1_error)
+
+    /* "pywrapfst.pyx":4442
+ *     # Failure here results from passing an FST with a different arc type than
+ *     # used by the FAR was initialized to use.
+ *     if not self._writer.get().Add(tostring(key), deref(ifst._fst)):             # <<<<<<<<<<<<<<
+ *       raise FstOpError("Incompatible or invalid arc type")
+ *     # An error here usually indicates a key out of order.
+ */
+  }
+
+  /* "pywrapfst.pyx":4445
+ *       raise FstOpError("Incompatible or invalid arc type")
+ *     # An error here usually indicates a key out of order.
+ *     if self._writer.get().Error():             # <<<<<<<<<<<<<<
+ *       raise FstArgError("Key out of order")
+ * 
+ */
+  if (unlikely(((PyObject *)__pyx_v_self) == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "_writer");
+    __PYX_ERR(0, 4445, __pyx_L1_error)

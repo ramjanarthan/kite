@@ -1,0 +1,100 @@
+               kWeightedCycles | kUnweightedCycles |
+               kCyclic | kAcyclic | kInitialCyclic | kInitialAcyclic |
+               kTopSorted | kNotTopSorted | kAccessible | kNotAccessible |
+               kCoAccessible | kNotCoAccessible | kString | kNotString) &
+              inprops;
+  if (project_input) {
+    outprops |= (kIDeterministic | kNonIDeterministic | kIEpsilons |
+                 kNoIEpsilons | kILabelSorted | kNotILabelSorted) &
+                inprops;
+
+    if (kIDeterministic & inprops) outprops |= kODeterministic;
+    if (kNonIDeterministic & inprops) outprops |= kNonODeterministic;
+
+    if (kIEpsilons & inprops) outprops |= kOEpsilons | kEpsilons;
+    if (kNoIEpsilons & inprops) outprops |= kNoOEpsilons | kNoEpsilons;
+
+    if (kILabelSorted & inprops) outprops |= kOLabelSorted;
+    if (kNotILabelSorted & inprops) outprops |= kNotOLabelSorted;
+  } else {
+    outprops |= (kODeterministic | kNonODeterministic | kOEpsilons |
+                 kNoOEpsilons | kOLabelSorted | kNotOLabelSorted) &
+                inprops;
+
+    if (kODeterministic & inprops) outprops |= kIDeterministic;
+    if (kNonODeterministic & inprops) outprops |= kNonIDeterministic;
+
+    if (kOEpsilons & inprops) outprops |= kIEpsilons | kEpsilons;
+    if (kNoOEpsilons & inprops) outprops |= kNoIEpsilons | kNoEpsilons;
+
+    if (kOLabelSorted & inprops) outprops |= kILabelSorted;
+    if (kNotOLabelSorted & inprops) outprops |= kNotILabelSorted;
+  }
+  return outprops;
+}
+
+// Properties for a randgen FST.
+uint64 RandGenProperties(uint64 inprops, bool weighted) {
+  auto outprops = kAcyclic | kInitialAcyclic | kAccessible | kUnweightedCycles;
+  outprops |= inprops & kError;
+  if (weighted) {
+    outprops |= kTopSorted;
+    outprops |=
+        (kAcceptor | kNoEpsilons | kNoIEpsilons | kNoOEpsilons |
+         kIDeterministic | kODeterministic | kILabelSorted | kOLabelSorted) &
+        inprops;
+  } else {
+    outprops |= kUnweighted;
+    outprops |= (kAcceptor | kILabelSorted | kOLabelSorted) & inprops;
+  }
+  return outprops;
+}
+
+// Properties for a replace FST.
+uint64 ReplaceProperties(const std::vector<uint64>& inprops, ssize_t root,
+                         bool epsilon_on_call, bool epsilon_on_return,
+                         bool out_epsilon_on_call, bool out_epsilon_on_return,
+                         bool replace_transducer, bool no_empty_fsts,
+                         bool all_ilabel_sorted, bool all_olabel_sorted,
+                         bool all_negative_or_dense) {
+  if (inprops.empty()) return kNullProperties;
+  uint64 outprops = 0;
+  for (auto inprop : inprops) outprops |= kError & inprop;
+  uint64 access_props = no_empty_fsts ? kAccessible | kCoAccessible : 0;
+  for (auto inprop : inprops) {
+    access_props &= (inprop & (kAccessible | kCoAccessible));
+  }
+  if (access_props == (kAccessible | kCoAccessible)) {
+    outprops |= access_props;
+    if (inprops[root] & kInitialCyclic) outprops |= kInitialCyclic;
+    uint64 props = 0;
+    bool string = true;
+    for (auto inprop : inprops) {
+      if (replace_transducer) props |= kNotAcceptor & inprop;
+      props |= (kNonIDeterministic | kNonODeterministic | kEpsilons |
+                kIEpsilons | kOEpsilons | kWeighted | kWeightedCycles |
+                kCyclic | kNotTopSorted | kNotString) & inprop;
+      if (!(inprop & kString)) string = false;
+    }
+    outprops |= props;
+    if (string) outprops |= kString;
+  }
+  bool acceptor = !replace_transducer;
+  bool ideterministic = !epsilon_on_call && epsilon_on_return;
+  bool no_iepsilons = !epsilon_on_call && !epsilon_on_return;
+  bool acyclic = true;
+  bool unweighted = true;
+  for (size_t i = 0; i < inprops.size(); ++i) {
+    if (!(inprops[i] & kAcceptor)) acceptor = false;
+    if (!(inprops[i] & kIDeterministic)) ideterministic = false;
+    if (!(inprops[i] & kNoIEpsilons)) no_iepsilons = false;
+    if (!(inprops[i] & kAcyclic)) acyclic = false;
+    if (!(inprops[i] & kUnweighted)) unweighted = false;
+    if (i != root && !(inprops[i] & kNoIEpsilons)) ideterministic = false;
+  }
+  if (acceptor) outprops |= kAcceptor;
+  if (ideterministic) outprops |= kIDeterministic;
+  if (no_iepsilons) outprops |= kNoIEpsilons;
+  if (acyclic) outprops |= kAcyclic;
+  if (unweighted) outprops |= kUnweighted;
+  if (inprops[root] & kInitialAcyclic) outprops |= kInitialAcyclic;

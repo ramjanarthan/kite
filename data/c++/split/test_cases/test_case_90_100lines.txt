@@ -1,0 +1,100 @@
+ * ARC_WEIGHT_VALUE = fst.kArcWeightValue
+ * ARC_NEXT_STATE_VALUE = fst.kArcNextStateValue             # <<<<<<<<<<<<<<
+ * ARC_NO_CACHE = fst.kArcNoCache
+ * ARC_VALUE_FLAGS = fst.kArcValueFlags
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcNextStateValue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2881, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_NEXT_STATE_VALUE, __pyx_t_1) < 0) __PYX_ERR(0, 2881, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2882
+ * ARC_WEIGHT_VALUE = fst.kArcWeightValue
+ * ARC_NEXT_STATE_VALUE = fst.kArcNextStateValue
+ * ARC_NO_CACHE = fst.kArcNoCache             # <<<<<<<<<<<<<<
+ * ARC_VALUE_FLAGS = fst.kArcValueFlags
+ * ARC_FLAGS = fst.kArcFlags
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcNoCache); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2882, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_NO_CACHE, __pyx_t_1) < 0) __PYX_ERR(0, 2882, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2883
+ * ARC_NEXT_STATE_VALUE = fst.kArcNextStateValue
+ * ARC_NO_CACHE = fst.kArcNoCache
+ * ARC_VALUE_FLAGS = fst.kArcValueFlags             # <<<<<<<<<<<<<<
+ * ARC_FLAGS = fst.kArcFlags
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcValueFlags); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2883, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_VALUE_FLAGS, __pyx_t_1) < 0) __PYX_ERR(0, 2883, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2884
+ * ARC_NO_CACHE = fst.kArcNoCache
+ * ARC_VALUE_FLAGS = fst.kArcValueFlags
+ * ARC_FLAGS = fst.kArcFlags             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcFlags); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2884, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_FLAGS, __pyx_t_1) < 0) __PYX_ERR(0, 2884, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2890
+ * 
+ * 
+ * ENCODE_LABELS = fst.kEncodeLabels             # <<<<<<<<<<<<<<
+ * ENCODE_WEIGHTS = fst.kEncodeWeights
+ * ENCODE_FLAGS = fst.kEncodeFlags
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kEncodeLabels); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2890, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODE_LABELS, __pyx_t_1) < 0) __PYX_ERR(0, 2890, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2891
+ * 
+ * ENCODE_LABELS = fst.kEncodeLabels
+ * ENCODE_WEIGHTS = fst.kEncodeWeights             # <<<<<<<<<<<<<<
+ * ENCODE_FLAGS = fst.kEncodeFlags
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kEncodeWeights); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2891, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODE_WEIGHTS, __pyx_t_1) < 0) __PYX_ERR(0, 2891, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2892
+ * ENCODE_LABELS = fst.kEncodeLabels
+ * ENCODE_WEIGHTS = fst.kEncodeWeights
+ * ENCODE_FLAGS = fst.kEncodeFlags             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kEncodeFlags); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2892, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ENCODE_FLAGS, __pyx_t_1) < 0) __PYX_ERR(0, 2892, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":3258
+ * 
+ * cdef _Fst _map(_Fst ifst,
+ *                float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                map_type=b"identity",
+ *                double power=1.,
+ */
+  __pyx_k__67 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3272
+ * 
+ * cpdef _Fst arcmap(_Fst ifst,
+ *                   float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                   map_type=b"identity",
+ *                   double power=1.,
+ */
+  __pyx_k__68 = fst::kDelta;
+

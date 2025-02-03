@@ -1,0 +1,100 @@
+
+  /* "pywrapfst.pyx":3627
+ * 
+ * 
+ * cpdef bool isomorphic(_Fst ifst1, _Fst ifst2, float delta=fst.kDelta):             # <<<<<<<<<<<<<<
+ *   """
+ *   isomorphic(ifst1, ifst2, delta=0.0009765625)
+ */
+  __pyx_k__75 = fst::kDelta;
+  __pyx_k__75 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3654
+ * 
+ * cpdef _MutableFst prune(_Fst ifst,
+ *                         float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                         int64 nstate=fst.kNoStateId,
+ *                         weight=None):
+ */
+  __pyx_k__76 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3655
+ * cpdef _MutableFst prune(_Fst ifst,
+ *                         float delta=fst.kDelta,
+ *                         int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                         weight=None):
+ *   """
+ */
+  __pyx_k__77 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3654
+ * 
+ * cpdef _MutableFst prune(_Fst ifst,
+ *                         float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                         int64 nstate=fst.kNoStateId,
+ *                         weight=None):
+ */
+  __pyx_k__76 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3655
+ * cpdef _MutableFst prune(_Fst ifst,
+ *                         float delta=fst.kDelta,
+ *                         int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                         weight=None):
+ *   """
+ */
+  __pyx_k__77 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3687
+ * 
+ * cpdef _MutableFst push(_Fst ifst,
+ *                        float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                        bool push_weights=False,
+ *                        bool push_labels=False,
+ */
+  __pyx_k__78 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3686
+ * 
+ * 
+ * cpdef _MutableFst push(_Fst ifst,             # <<<<<<<<<<<<<<
+ *                        float delta=fst.kDelta,
+ *                        bool push_weights=False,
+ */
+  __pyx_k__78 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3743
+ *                           _Fst ifst2,
+ *                           int32 npath=1,
+ *                           float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                           time_t seed=0,
+ *                           select=b"uniform",
+ */
+  __pyx_k__79 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3746
+ *                           time_t seed=0,
+ *                           select=b"uniform",
+ *                           int32 max_length=INT32_MAX) except *:             # <<<<<<<<<<<<<<
+ *   """
+ *   randequivalent(ifst1, ifst2, npath=1, delta=0.0009765625, seed=0,
+ */
+  __pyx_k__80 = INT32_MAX;
+
+  /* "pywrapfst.pyx":3743
+ *                           _Fst ifst2,
+ *                           int32 npath=1,
+ *                           float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                           time_t seed=0,
+ *                           select=b"uniform",
+ */
+  __pyx_k__79 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3746
+ *                           time_t seed=0,
+ *                           select=b"uniform",
+ *                           int32 max_length=INT32_MAX) except *:             # <<<<<<<<<<<<<<
+ *   """
+ *   randequivalent(ifst1, ifst2, npath=1, delta=0.0009765625, seed=0,
+ */
+  __pyx_k__80 = INT32_MAX;

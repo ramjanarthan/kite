@@ -1,0 +1,100 @@
+ *     for item in o:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("vector.from_py.__pyx_convert_vector_from_py_std_3a__3a_string", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_pretend_to_initialize(&__pyx_r);
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_item);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+static struct __pyx_vtabstruct_9pywrapfst_Weight __pyx_vtable_9pywrapfst_Weight;
+
+static PyObject *__pyx_tp_new_9pywrapfst_Weight(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_9pywrapfst_Weight *p;
+  PyObject *o;
+  if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
+    o = (*t->tp_alloc)(t, 0);
+  } else {
+    o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
+  }
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_9pywrapfst_Weight *)o);
+  p->__pyx_vtab = __pyx_vtabptr_9pywrapfst_Weight;
+  new((void*)&(p->_weight)) std::unique_ptr<fst::script::WeightClass> ();
+  return o;
+}
+
+static void __pyx_tp_dealloc_9pywrapfst_Weight(PyObject *o) {
+  struct __pyx_obj_9pywrapfst_Weight *p = (struct __pyx_obj_9pywrapfst_Weight *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  __Pyx_call_destructor(p->_weight);
+  (*Py_TYPE(o)->tp_free)(o);
+}
+
+static PyObject *__pyx_tp_richcompare_9pywrapfst_Weight(PyObject *o1, PyObject *o2, int op) {
+  switch (op) {
+    case Py_EQ: {
+      return __pyx_pw_9pywrapfst_6Weight_17__eq__(o1, o2);
+    }
+    case Py_NE: {
+      return __pyx_pw_9pywrapfst_6Weight_19__ne__(o1, o2);
+    }
+    default: {
+      return __Pyx_NewRef(Py_NotImplemented);
+    }
+  }
+}
+
+static PyMethodDef __pyx_methods_9pywrapfst_Weight[] = {
+  {"copy", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_9copy, METH_NOARGS, __pyx_doc_9pywrapfst_6Weight_8copy},
+  {"Zero", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_11Zero, METH_O, __pyx_doc_9pywrapfst_6Weight_10Zero},
+  {"One", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_13One, METH_O, __pyx_doc_9pywrapfst_6Weight_12One},
+  {"NoWeight", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_15NoWeight, METH_O, __pyx_doc_9pywrapfst_6Weight_14NoWeight},
+  {"to_string", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_21to_string, METH_NOARGS, 0},
+  {"type", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_23type, METH_NOARGS, __pyx_doc_9pywrapfst_6Weight_22type},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_25__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9pywrapfst_6Weight_27__setstate_cython__, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static PyNumberMethods __pyx_tp_as_number_Weight = {
+  0, /*nb_add*/
+  0, /*nb_subtract*/
+  0, /*nb_multiply*/
+  #if PY_MAJOR_VERSION < 3 || (CYTHON_COMPILING_IN_PYPY && PY_VERSION_HEX < 0x03050000)
+  0, /*nb_divide*/
+  #endif
+  0, /*nb_remainder*/
+  0, /*nb_divmod*/
+  0, /*nb_power*/
+  0, /*nb_negative*/
+  0, /*nb_positive*/
+  0, /*nb_absolute*/
+  0, /*nb_nonzero*/
+  0, /*nb_invert*/
+  0, /*nb_lshift*/
+  0, /*nb_rshift*/
+  0, /*nb_and*/
+  0, /*nb_xor*/
+  0, /*nb_or*/
+  #if PY_MAJOR_VERSION < 3 || (CYTHON_COMPILING_IN_PYPY && PY_VERSION_HEX < 0x03050000)
+  0, /*nb_coerce*/
+  #endif
+  0, /*nb_int*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*nb_long*/
+  #else
+  0, /*reserved*/
+  #endif
+  __pyx_pw_9pywrapfst_6Weight_5__float__, /*nb_float*/
+  #if PY_MAJOR_VERSION < 3 || (CYTHON_COMPILING_IN_PYPY && PY_VERSION_HEX < 0x03050000)
+  0, /*nb_oct*/

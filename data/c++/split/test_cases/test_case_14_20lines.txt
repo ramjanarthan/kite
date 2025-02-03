@@ -1,0 +1,20 @@
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_AddTraceback("pywrapfst.FarWriter.create", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF((PyObject *)__pyx_v_result);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pywrapfst.pyx":4420
+ *   # NB: Invoking this method may be dangerous: calling any other method on the
+ *   # instance after this is invoked may result in a null dereference.
+ *   cdef void close(self):             # <<<<<<<<<<<<<<
+ *     self._writer.reset()

@@ -1,0 +1,10 @@
+    LIBS.append('bz2')
+
+if compile_test('lzma.h', 'lzma'):
+    ARGS.append('-DHAVE_XZLIB')
+    LIBS.append('lzma')
+
+ext_modules = [
+    Extension(name='kenlm',
+        sources=FILES + ['python/kenlm.cpp'],
+        language='C++', 

@@ -1,0 +1,100 @@
+  {"start", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_35start, METH_NOARGS, __pyx_doc_9pywrapfst_4_Fst_34start},
+  {"states", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_37states, METH_NOARGS, __pyx_doc_9pywrapfst_4_Fst_36states},
+  {"text", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_39text, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_4_Fst_38text},
+  {"verify", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_41verify, METH_NOARGS, __pyx_doc_9pywrapfst_4_Fst_40verify},
+  {"weight_type", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_43weight_type, METH_NOARGS, __pyx_doc_9pywrapfst_4_Fst_42weight_type},
+  {"write", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_45write, METH_O, __pyx_doc_9pywrapfst_4_Fst_44write},
+  {"write_to_string", (PyCFunction)__pyx_pw_9pywrapfst_4_Fst_47write_to_string, METH_NOARGS, __pyx_doc_9pywrapfst_4_Fst_46write_to_string},
+  {0, 0, 0, 0}
+};
+
+static PyTypeObject __pyx_type_9pywrapfst__Fst = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "pywrapfst._Fst", /*tp_name*/
+  sizeof(struct __pyx_obj_9pywrapfst__Fst), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_9pywrapfst__Fst, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  __pyx_pw_9pywrapfst_4_Fst_3__repr__, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  __pyx_pw_9pywrapfst_4_Fst_7__str__, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  (No constructor.)\n\n  Immutable FST class, wrapping FstClass.\n\n  This class is the basic user-facing FST object. It does not itself support any\n  mutation operations.\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst__Fst, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  __pyx_pw_9pywrapfst_4_Fst_5__init__, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst__Fst, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+static struct __pyx_vtabstruct_9pywrapfst__MutableFst __pyx_vtable_9pywrapfst__MutableFst;
+
+static PyObject *__pyx_tp_new_9pywrapfst__MutableFst(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_9pywrapfst__MutableFst *p;
+  PyObject *o = __pyx_tp_new_9pywrapfst__Fst(t, a, k);
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_9pywrapfst__MutableFst *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_9pywrapfst__Fst*)__pyx_vtabptr_9pywrapfst__MutableFst;
+  new((void*)&(p->_mfst)) std::shared_ptr<fst::script::MutableFstClass> ();
+  return o;
+}
+
+static void __pyx_tp_dealloc_9pywrapfst__MutableFst(PyObject *o) {
+  struct __pyx_obj_9pywrapfst__MutableFst *p = (struct __pyx_obj_9pywrapfst__MutableFst *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  __Pyx_call_destructor(p->_mfst);
+  __pyx_tp_dealloc_9pywrapfst__Fst(o);
+}
+
+static PyMethodDef __pyx_methods_9pywrapfst__MutableFst[] = {
+  {"add_arc", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_1add_arc, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_add_arc},
+  {"add_state", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_3add_state, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_2add_state},
+  {"arcsort", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_5arcsort, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_4arcsort},
+  {"closure", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_7closure, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_6closure},
+  {"concat", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_9concat, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_8concat},
+  {"connect", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_11connect, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_10connect},
+  {"decode", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_13decode, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_12decode},
+  {"delete_arcs", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_15delete_arcs, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_14delete_arcs},
+  {"delete_states", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_17delete_states, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_16delete_states},

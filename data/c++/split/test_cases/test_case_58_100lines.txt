@@ -1,0 +1,100 @@
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  __Pyx_call_destructor(p->_writer);
+  (*Py_TYPE(o)->tp_free)(o);
+}
+
+static int __pyx_mp_ass_subscript_9pywrapfst_FarWriter(PyObject *o, PyObject *i, PyObject *v) {
+  if (v) {
+    return __pyx_pw_9pywrapfst_9FarWriter_15__setitem__(o, i, v);
+  }
+  else {
+    PyErr_Format(PyExc_NotImplementedError,
+      "Subscript deletion not supported by %.200s", Py_TYPE(o)->tp_name);
+    return -1;
+  }
+}
+
+static PyMethodDef __pyx_methods_9pywrapfst_FarWriter[] = {
+  {"create", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_5create, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_9FarWriter_4create},
+  {"add", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_7add, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_9FarWriter_6add},
+  {"arc_type", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_9arc_type, METH_NOARGS, __pyx_doc_9pywrapfst_9FarWriter_8arc_type},
+  {"error", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_11error, METH_NOARGS, __pyx_doc_9pywrapfst_9FarWriter_10error},
+  {"far_type", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_13far_type, METH_NOARGS, __pyx_doc_9pywrapfst_9FarWriter_12far_type},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_17__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9pywrapfst_9FarWriter_19__setstate_cython__, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static PyMappingMethods __pyx_tp_as_mapping_FarWriter = {
+  0, /*mp_length*/
+  0, /*mp_subscript*/
+  __pyx_mp_ass_subscript_9pywrapfst_FarWriter, /*mp_ass_subscript*/
+};
+
+static PyTypeObject __pyx_type_9pywrapfst_FarWriter = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "pywrapfst.FarWriter", /*tp_name*/
+  sizeof(struct __pyx_obj_9pywrapfst_FarWriter), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_9pywrapfst_FarWriter, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  __pyx_pw_9pywrapfst_9FarWriter_3__repr__, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  &__pyx_tp_as_mapping_FarWriter, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  (No constructor.)\n\n  FAR (\"Fst ARchive\") writer object.\n\n  This class is used to write FSTs (of the same arc type) to a FAR on disk. To\n  construct a FarWriter, use the `create` class method.\n\n  Note that the data is not guaranteed to flush to disk until the FarWriter\n  is garbage-collected. If a FarWriter has been assigned to only one variable,\n  then calling `del` on that variable should decrement the object's reference\n  count from 1 to 0, triggering a flush to disk on the next GC cycle.\n\n  Attributes:\n    arc_type: A string indicating the arc type.\n    far_type: A string indicating the FAR type.\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst_FarWriter, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  __pyx_pw_9pywrapfst_9FarWriter_1__init__, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst_FarWriter, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+
+static PyMethodDef __pyx_methods[] = {
+  {"compact_symbol_table", (PyCFunction)__pyx_pw_9pywrapfst_9compact_symbol_table, METH_O, __pyx_doc_9pywrapfst_8compact_symbol_table},
+  {"merge_symbol_table", (PyCFunction)__pyx_pw_9pywrapfst_11merge_symbol_table, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_10merge_symbol_table},
+  {"_read", (PyCFunction)__pyx_pw_9pywrapfst_13_read, METH_O, 0},
+  {"_read_from_string", (PyCFunction)__pyx_pw_9pywrapfst_15_read_from_string, METH_O, 0},

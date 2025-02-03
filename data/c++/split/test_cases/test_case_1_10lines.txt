@@ -1,0 +1,10 @@
+ *         tostring(filename), tostring(arc_type), ft)
+ *     if tfar == NULL:
+ *       raise FstIOError("Open failed: {!r}".format(filename))             # <<<<<<<<<<<<<<
+ *     cdef FarWriter result = FarWriter.__new__(FarWriter)
+ *     result._writer.reset(tfar)
+ */
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_FstIOError); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 4413, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Open_failed_r, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 4413, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);

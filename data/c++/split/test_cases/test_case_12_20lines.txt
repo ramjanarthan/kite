@@ -1,0 +1,20 @@
+  __Pyx_GOTREF(__pyx_t_4);
+  if (!(likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_9pywrapfst_FarWriter)))) __PYX_ERR(0, 4414, __pyx_L1_error)
+  __pyx_v_result = ((struct __pyx_obj_9pywrapfst_FarWriter *)__pyx_t_4);
+  __pyx_t_4 = 0;
+
+  /* "pywrapfst.pyx":4415
+ *       raise FstIOError("Open failed: {!r}".format(filename))
+ *     cdef FarWriter result = FarWriter.__new__(FarWriter)
+ *     result._writer.reset(tfar)             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  if (unlikely(((PyObject *)__pyx_v_result) == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "_writer");
+    __PYX_ERR(0, 4415, __pyx_L1_error)
+  }
+  __pyx_v_result->_writer.reset(__pyx_v_tfar);
+
+  /* "pywrapfst.pyx":4416
+ *     cdef FarWriter result = FarWriter.__new__(FarWriter)

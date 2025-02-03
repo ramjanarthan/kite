@@ -1,0 +1,100 @@
+  __Pyx_GOTREF(__pyx_tuple__91);
+  __Pyx_GIVEREF(__pyx_tuple__91);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__92 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__92)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__92);
+  __Pyx_GIVEREF(__pyx_tuple__92);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._reader cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._reader cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__93 = PyTuple_Pack(1, __pyx_kp_s_self__reader_cannot_be_converted); if (unlikely(!__pyx_tuple__93)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__93);
+  __Pyx_GIVEREF(__pyx_tuple__93);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._reader cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._reader cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__94 = PyTuple_Pack(1, __pyx_kp_s_self__reader_cannot_be_converted); if (unlikely(!__pyx_tuple__94)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__94);
+  __Pyx_GIVEREF(__pyx_tuple__94);
+
+  /* "pywrapfst.pyx":4443
+ *     # used by the FAR was initialized to use.
+ *     if not self._writer.get().Add(tostring(key), deref(ifst._fst)):
+ *       raise FstOpError("Incompatible or invalid arc type")             # <<<<<<<<<<<<<<
+ *     # An error here usually indicates a key out of order.
+ *     if self._writer.get().Error():
+ */
+  __pyx_tuple__95 = PyTuple_Pack(1, __pyx_kp_s_Incompatible_or_invalid_arc_type); if (unlikely(!__pyx_tuple__95)) __PYX_ERR(0, 4443, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__95);
+  __Pyx_GIVEREF(__pyx_tuple__95);
+
+  /* "pywrapfst.pyx":4446
+ *     # An error here usually indicates a key out of order.
+ *     if self._writer.get().Error():
+ *       raise FstArgError("Key out of order")             # <<<<<<<<<<<<<<
+ * 
+ *   cpdef string arc_type(self):
+ */
+  __pyx_tuple__96 = PyTuple_Pack(1, __pyx_kp_s_Key_out_of_order); if (unlikely(!__pyx_tuple__96)) __PYX_ERR(0, 4446, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__96);
+  __Pyx_GIVEREF(__pyx_tuple__96);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__97 = PyTuple_Pack(1, __pyx_kp_s_self__writer_cannot_be_converted); if (unlikely(!__pyx_tuple__97)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__97);
+  __Pyx_GIVEREF(__pyx_tuple__97);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__98 = PyTuple_Pack(1, __pyx_kp_s_self__writer_cannot_be_converted); if (unlikely(!__pyx_tuple__98)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__98);
+  __Pyx_GIVEREF(__pyx_tuple__98);
+
+  /* "pywrapfst.pyx":456
+ * 
+ * 
+ * def plus(Weight lhs, Weight rhs):             # <<<<<<<<<<<<<<
+ *   """
+ *   plus(lhs, rhs)
+ */
+  __pyx_tuple__99 = PyTuple_Pack(3, __pyx_n_s_lhs, __pyx_n_s_rhs, __pyx_n_s_result); if (unlikely(!__pyx_tuple__99)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__99);
+  __Pyx_GIVEREF(__pyx_tuple__99);
+  __pyx_codeobj__100 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__99, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_plus, 456, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__100)) __PYX_ERR(0, 456, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":488
+ * 
+ * 
+ * def times(Weight lhs, Weight rhs):             # <<<<<<<<<<<<<<
+ *   """
+ *   times(lhs, rhs)
+ */
+  __pyx_tuple__101 = PyTuple_Pack(3, __pyx_n_s_lhs, __pyx_n_s_rhs, __pyx_n_s_result); if (unlikely(!__pyx_tuple__101)) __PYX_ERR(0, 488, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__101);
+  __Pyx_GIVEREF(__pyx_tuple__101);
+  __pyx_codeobj__102 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__101, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_times, 488, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__102)) __PYX_ERR(0, 488, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":520
+ * 
+ * 
+ * def divide(Weight lhs, Weight rhs):             # <<<<<<<<<<<<<<

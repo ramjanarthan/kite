@@ -1,0 +1,100 @@
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__45 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 2367, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
+
+  /* "pywrapfst.pyx":2494
+ *   cdef void _set_final(self, int64 state, weight=None) except *:
+ *     if not self._mfst.get().ValidStateId(state):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     cdef fst.WeightClass wc = _get_WeightClass_or_One(self.weight_type(),
+ *                                                       weight)
+ */
+  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 2494, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__50);
+  __Pyx_GIVEREF(__pyx_tuple__50);
+
+  /* "pywrapfst.pyx":2498
+ *                                                       weight)
+ *     if not self._mfst.get().SetFinal(state, wc):
+ *       raise FstOpError("Incompatible or invalid weight")             # <<<<<<<<<<<<<<
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__51 = PyTuple_Pack(1, __pyx_kp_s_Incompatible_or_invalid_weight); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(0, 2498, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__51);
+  __Pyx_GIVEREF(__pyx_tuple__51);
+
+  /* "pywrapfst.pyx":2598
+ *   cdef void _set_start(self, int64 state) except *:
+ *     if not self._mfst.get().SetStart(state):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__52 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__52)) __PYX_ERR(0, 2598, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__52);
+  __Pyx_GIVEREF(__pyx_tuple__52);
+
+  /* "pywrapfst.pyx":2624
+ *     # TopSort returns False if the FST is cyclic, and thus can't be TopSorted.
+ *     if not fst.TopSort(self._mfst.get()):
+ *       logging.warning("Cannot topsort cyclic FST.")             # <<<<<<<<<<<<<<
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_kp_s_Cannot_topsort_cyclic_FST); if (unlikely(!__pyx_tuple__53)) __PYX_ERR(0, 2624, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__53);
+  __Pyx_GIVEREF(__pyx_tuple__53);
+
+  /* "pywrapfst.pyx":2693
+ * cdef _Fst _init_Fst(FstClass_ptr tfst):
+ *   if tfst.Properties(fst.kError, True):
+ *     raise FstOpError("Operation failed")             # <<<<<<<<<<<<<<
+ *   cdef _Fst ofst = _Fst.__new__(_Fst)
+ *   ofst._fst.reset(tfst)
+ */
+  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_Operation_failed); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 2693, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__54);
+  __Pyx_GIVEREF(__pyx_tuple__54);
+
+  /* "pywrapfst.pyx":2701
+ * cdef _MutableFst _init_MutableFst(MutableFstClass_ptr tfst):
+ *   if tfst.Properties(fst.kError, True):
+ *     raise FstOpError("Operation failed")             # <<<<<<<<<<<<<<
+ *   cdef _MutableFst ofst = _MutableFst.__new__(_MutableFst)
+ *   ofst._fst.reset(tfst)
+ */
+  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_Operation_failed); if (unlikely(!__pyx_tuple__55)) __PYX_ERR(0, 2701, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__55);
+  __Pyx_GIVEREF(__pyx_tuple__55);
+
+  /* "pywrapfst.pyx":2738
+ *   tfst.reset(fst.FstClass.ReadFromStream(sstrm, b"<pywrapfst>"))
+ *   if tfst.get() == NULL:
+ *     raise FstIOError("Read failed: <string>")             # <<<<<<<<<<<<<<
+ *   return _init_XFst(tfst.release())
+ * 
+ */
+  __pyx_tuple__56 = PyTuple_Pack(1, __pyx_kp_s_Read_failed_string); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 2738, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__56);
+  __Pyx_GIVEREF(__pyx_tuple__56);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._arc cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._arc cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__57 = PyTuple_Pack(1, __pyx_kp_s_self__arc_cannot_be_converted_to); if (unlikely(!__pyx_tuple__57)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__57);
+  __Pyx_GIVEREF(__pyx_tuple__57);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._arc cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._arc cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__58 = PyTuple_Pack(1, __pyx_kp_s_self__arc_cannot_be_converted_to); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(1, 4, __pyx_L1_error)

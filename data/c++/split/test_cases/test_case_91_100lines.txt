@@ -1,0 +1,100 @@
+  /* "pywrapfst.pyx":3271
+ * 
+ * 
+ * cpdef _Fst arcmap(_Fst ifst,             # <<<<<<<<<<<<<<
+ *                   float delta=fst.kDelta,
+ *                   map_type=b"identity",
+ */
+  __pyx_k__68 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3384
+ * 
+ * cpdef _MutableFst determinize(_Fst ifst,
+ *                               float delta=fst.kShortestDelta,             # <<<<<<<<<<<<<<
+ *                               det_type=b"functional",
+ *                               int64 nstate=fst.kNoStateId,
+ */
+  __pyx_k__69 = fst::kShortestDelta;
+
+  /* "pywrapfst.pyx":3386
+ *                               float delta=fst.kShortestDelta,
+ *                               det_type=b"functional",
+ *                               int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                               int64 subsequential_label=0,
+ *                               weight=None,
+ */
+  __pyx_k__70 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3384
+ * 
+ * cpdef _MutableFst determinize(_Fst ifst,
+ *                               float delta=fst.kShortestDelta,             # <<<<<<<<<<<<<<
+ *                               det_type=b"functional",
+ *                               int64 nstate=fst.kNoStateId,
+ */
+  __pyx_k__69 = fst::kShortestDelta;
+
+  /* "pywrapfst.pyx":3386
+ *                               float delta=fst.kShortestDelta,
+ *                               det_type=b"functional",
+ *                               int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                               int64 subsequential_label=0,
+ *                               weight=None,
+ */
+  __pyx_k__70 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3477
+ * 
+ * cpdef _MutableFst disambiguate(_Fst ifst,
+ *                                float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                                int64 nstate=fst.kNoStateId,
+ *                                int64 subsequential_label=0,
+ */
+  __pyx_k__71 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3478
+ * cpdef _MutableFst disambiguate(_Fst ifst,
+ *                                float delta=fst.kDelta,
+ *                                int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                                int64 subsequential_label=0,
+ *                                weight=None):
+ */
+  __pyx_k__72 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3477
+ * 
+ * cpdef _MutableFst disambiguate(_Fst ifst,
+ *                                float delta=fst.kDelta,             # <<<<<<<<<<<<<<
+ *                                int64 nstate=fst.kNoStateId,
+ *                                int64 subsequential_label=0,
+ */
+  __pyx_k__71 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3478
+ * cpdef _MutableFst disambiguate(_Fst ifst,
+ *                                float delta=fst.kDelta,
+ *                                int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                                int64 subsequential_label=0,
+ *                                weight=None):
+ */
+  __pyx_k__72 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":3548
+ * 
+ * 
+ * cpdef bool equal(_Fst ifst1, _Fst ifst2, float delta=fst.kDelta):             # <<<<<<<<<<<<<<
+ *   """
+ *   equal(ifst1, ifst2, delta=0.0009765625)
+ */
+  __pyx_k__73 = fst::kDelta;
+  __pyx_k__73 = fst::kDelta;
+
+  /* "pywrapfst.pyx":3571
+ * 
+ * 
+ * cpdef bool equivalent(_Fst ifst1, _Fst ifst2, float delta=fst.kDelta) except *:             # <<<<<<<<<<<<<<
+ *   """
+ *   equivalent(ifst1, ifst2, delta=0.0009765625)
+ */
+  __pyx_k__74 = fst::kDelta;
+  __pyx_k__74 = fst::kDelta;

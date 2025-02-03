@@ -1,0 +1,100 @@
+                                                      block_begin, block_end,
+                                                      rem_bit_index)
+      - block_begin;
+}
+
+inline size_t BitmapIndex::find_primary_block(size_t bit_index) const {
+  return std::distance(
+      primary_index_.begin(),
+      std::lower_bound(primary_index_.begin(),
+                       primary_index_.begin() + primary_index_size(),
+                       bit_index));
+}
+
+size_t BitmapIndex::find_inverted_primary_block(size_t bit_index) const {
+  return InvertedSearch<kPrimaryBlockBits>(
+      primary_index_, 0, primary_index_.size(), bit_index);
+}
+}  // end namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/ngram/ngram-fst.h>
+
+#include <sys/types.h>
+
+#include <fst/arc.h>
+#include <fst/register.h>
+
+using fst::NGramFst;
+using fst::StdArc;
+using fst::LogArc;
+
+REGISTER_FST(NGramFst, StdArc);
+REGISTER_FST(NGramFst, LogArc);
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/fst.h>
+#include <fst/extensions/special/phi-fst.h>
+
+DEFINE_int64(phi_fst_phi_label, 0,
+             "Label of transitions to be interpreted as phi ('failure') "
+              "transitions");
+DEFINE_bool(phi_fst_phi_loop, true,
+            "When true, a phi self loop consumes a symbol");
+DEFINE_string(phi_fst_rewrite_mode, "auto",
+              "Rewrite both sides when matching? One of:"
+              " \"auto\" (rewrite iff acceptor), \"always\", \"never\"");
+
+namespace fst {
+
+const char phi_fst_type[] = "phi";
+const char input_phi_fst_type[] = "input_phi";
+const char output_phi_fst_type[] = "output_phi";
+
+static FstRegisterer<StdPhiFst> PhiFst_StdArc_registerer;
+static FstRegisterer<LogPhiFst> PhiFst_LogArc_registerer;
+static FstRegisterer<Log64PhiFst> PhiFst_Log64Arc_registerer;
+
+static FstRegisterer<StdInputPhiFst> InputPhiFst_StdArc_registerer;
+static FstRegisterer<LogInputPhiFst> InputPhiFst_LogArc_registerer;
+static FstRegisterer<Log64InputPhiFst> InputPhiFst_Log64Arc_registerer;
+
+static FstRegisterer<StdOutputPhiFst> OutputPhiFst_StdArc_registerer;
+static FstRegisterer<LogOutputPhiFst> OutputPhiFst_LogArc_registerer;
+static FstRegisterer<Log64OutputPhiFst> OutputPhiFst_Log64Arc_registerer;
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/special/sigma-fst.h>
+
+#include <fst/fst.h>
+
+DEFINE_int64(sigma_fst_sigma_label, 0,
+             "Label of transitions to be interpreted as sigma ('any') "
+             "transitions");
+DEFINE_string(sigma_fst_rewrite_mode, "auto",
+              "Rewrite both sides when matching? One of:"
+              " \"auto\" (rewrite iff acceptor), \"always\", \"never\"");
+
+namespace fst {
+
+const char sigma_fst_type[] = "sigma";
+const char input_sigma_fst_type[] = "input_sigma";
+const char output_sigma_fst_type[] = "output_sigma";
+
+static FstRegisterer<StdSigmaFst> SigmaFst_StdArc_registerer;
+static FstRegisterer<LogSigmaFst> SigmaFst_LogArc_registerer;
+static FstRegisterer<Log64SigmaFst> SigmaFst_Log64Arc_registerer;
+
+static FstRegisterer<StdInputSigmaFst> InputSigmaFst_StdArc_registerer;
+static FstRegisterer<LogInputSigmaFst> InputSigmaFst_LogArc_registerer;
+static FstRegisterer<Log64InputSigmaFst> InputSigmaFst_Log64Arc_registerer;
+
+static FstRegisterer<StdOutputSigmaFst> OutputSigmaFst_StdArc_registerer;
+static FstRegisterer<LogOutputSigmaFst> OutputSigmaFst_LogArc_registerer;
+static FstRegisterer<Log64OutputSigmaFst> OutputSigmaFst_Log64Arc_registerer;
+

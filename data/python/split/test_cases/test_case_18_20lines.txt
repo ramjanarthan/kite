@@ -1,0 +1,20 @@
+
+    :param probs_seq: 2-D list of probability distributions over each time
+                      step, with each element being a list of normalized
+                      probabilities over alphabet and blank.
+    :type probs_seq: 2-D list
+    :param alphabet: Alphabet
+    :param beam_size: Width for beam search.
+    :type beam_size: int
+    :param cutoff_prob: Cutoff probability in pruning,
+                        default 1.0, no pruning.
+    :type cutoff_prob: float
+    :param cutoff_top_n: Cutoff number in pruning, only top cutoff_top_n
+                         characters with highest probs in alphabet will be
+                         used in beam search, default 40.
+    :type cutoff_top_n: int
+    :param scorer: External scorer for partially decoded sentence, e.g. word
+                   count or language model.
+    :type scorer: Scorer
+    :param hot_words: Map of words (keys) to their assigned boosts (values)
+    :type hot_words: map{string:float}

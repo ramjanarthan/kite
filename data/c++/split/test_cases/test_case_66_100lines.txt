@@ -1,0 +1,100 @@
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  __pyx_tuple__28 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+
+  /* "pywrapfst.pyx":1770
+ *     cdef stringstream sstrm
+ *     if not self._fst.get().Write(sstrm, "write_to_string"):
+ *       raise FstIOError("Write to string failed")             # <<<<<<<<<<<<<<
+ *     return sstrm.str()
+ * 
+ */
+  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_kp_s_Write_to_string_failed); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 1770, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__29);
+  __Pyx_GIVEREF(__pyx_tuple__29);
+
+  /* "pywrapfst.pyx":1790
+ *     """
+ *     if self._fst.get().Properties(fst.kError, True) == fst.kError:
+ *       raise FstOpError("Operation failed")             # <<<<<<<<<<<<<<
+ * 
+ *   cdef void _add_arc(self, int64 state, Arc arc) except *:
+ */
+  __pyx_tuple__30 = PyTuple_Pack(1, __pyx_kp_s_Operation_failed); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 1790, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
+
+  /* "pywrapfst.pyx":1794
+ *   cdef void _add_arc(self, int64 state, Arc arc) except *:
+ *     if not self._fst.get().ValidStateId(state):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     if not self._mfst.get().AddArc(state, deref(arc._arc)):
+ *       raise FstOpError("Incompatible or invalid weight type")
+ */
+  __pyx_tuple__31 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 1794, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+
+  /* "pywrapfst.pyx":1796
+ *       raise FstIndexError("State index out of range")
+ *     if not self._mfst.get().AddArc(state, deref(arc._arc)):
+ *       raise FstOpError("Incompatible or invalid weight type")             # <<<<<<<<<<<<<<
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_kp_s_Incompatible_or_invalid_weight_t); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 1796, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
+
+  /* "pywrapfst.pyx":1961
+ *     if not (self._mfst.get().DeleteArcs(state, n) if n else
+ *             self._mfst.get().DeleteArcs(state)):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     self._check_mutating_imethod()
+ * 
+ */
+  __pyx_tuple__33 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 1961, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+
+  /* "pywrapfst.pyx":1991
+ *     if states:
+ *       if not self._mfst.get().DeleteStates(<const vector[int64]> states):
+ *         raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     else:
+ *       self._mfst.get().DeleteStates()
+ */
+  __pyx_tuple__34 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 1991, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__34);
+  __Pyx_GIVEREF(__pyx_tuple__34);
+
+  /* "pywrapfst.pyx":2260
+ *         _opairs.get().push_back(fst.LabelPair(before, after))
+ *     if _ipairs.get().empty() and _opairs.get().empty():
+ *       raise FstArgError("No relabeling pairs specified.")             # <<<<<<<<<<<<<<
+ *     fst.Relabel(self._mfst.get(), deref(_ipairs), deref(_opairs))
+ *     self._check_mutating_imethod()
+ */
+  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_No_relabeling_pairs_specified); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 2260, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
+
+  /* "pywrapfst.pyx":2299
+ *                             bool attach_new_osymbols=True) except *:
+ *     if new_isymbols is None and new_osymbols is None:
+ *       raise FstArgError("No new SymbolTables specified")             # <<<<<<<<<<<<<<
+ *     cdef fst.SymbolTable *new_isymbols_ptr = NULL
+ *     if new_isymbols is not None:
+ */
+  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_No_new_SymbolTables_specified); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 2299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__44);
+  __Pyx_GIVEREF(__pyx_tuple__44);
+
+  /* "pywrapfst.pyx":2367
+ *   cdef void _reserve_arcs(self, int64 state, size_t n) except *:
+ *     if not self._mfst.get().ReserveArcs(state, n):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<

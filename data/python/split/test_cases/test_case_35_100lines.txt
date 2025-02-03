@@ -1,0 +1,63 @@
+        required=True,
+    )
+    parser.add_argument(
+        "--kenlm_bins",
+        help="File path to the KENLM binaries lmplz, filter and build_binary",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--arpa_order",
+        help="Order of k-grams in ARPA-file generation",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--max_arpa_memory",
+        help="Maximum allowed memory usage for ARPA-file generation",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--arpa_prune",
+        help="ARPA pruning parameters. Separate values with '|'",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_a_bits",
+        help="Build binary quantization value a in bits",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_q_bits",
+        help="Build binary quantization value q in bits",
+        type=int,
+        required=True,
+    )
+    parser.add_argument(
+        "--binary_type",
+        help="Build binary data structure type",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--discount_fallback",
+        help="To try when such message is returned by kenlm: 'Could not calculate Kneser-Ney discounts [...] rerun with --discount_fallback'",
+        action="store_true",
+    )
+
+    args = parser.parse_args()
+
+    data_lower, vocab_str = convert_and_filter_topk(args)
+    build_lm(args, data_lower, vocab_str)
+
+    # Delete intermediate files
+    os.remove(os.path.join(args.output_dir, "lower.txt.gz"))
+    os.remove(os.path.join(args.output_dir, "lm.arpa"))
+    os.remove(os.path.join(args.output_dir, "lm_filtered.arpa"))
+
+
+if __name__ == "__main__":
+    main()

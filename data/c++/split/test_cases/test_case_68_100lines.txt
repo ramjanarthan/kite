@@ -1,0 +1,100 @@
+  __Pyx_GOTREF(__pyx_tuple__58);
+  __Pyx_GIVEREF(__pyx_tuple__58);
+
+  /* "pywrapfst.pyx":2978
+ *   def __init__(self, _Fst ifst, int64 state):
+ *     if not ifst._fst.get().ValidStateId(state):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     # Makes copy of the shared_ptr, potentially extending the FST's lifetime.
+ *     self._fst = ifst._fst
+ */
+  __pyx_tuple__59 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__59)) __PYX_ERR(0, 2978, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__59);
+  __Pyx_GIVEREF(__pyx_tuple__59);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._aiter,self._fst cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._aiter,self._fst cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__60 = PyTuple_Pack(1, __pyx_kp_s_self__aiter_self__fst_cannot_be); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__60);
+  __Pyx_GIVEREF(__pyx_tuple__60);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._aiter,self._fst cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._aiter,self._fst cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__61 = PyTuple_Pack(1, __pyx_kp_s_self__aiter_self__fst_cannot_be); if (unlikely(!__pyx_tuple__61)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__61);
+  __Pyx_GIVEREF(__pyx_tuple__61);
+
+  /* "pywrapfst.pyx":3090
+ *   def __init__(self, _MutableFst ifst, int64 state):
+ *     if not ifst._fst.get().ValidStateId(state):
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     # Makes copy of the shared_ptr, potentially extending the FST's lifetime.
+ *     self._mfst = ifst._mfst
+ */
+  __pyx_tuple__62 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(0, 3090, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__62);
+  __Pyx_GIVEREF(__pyx_tuple__62);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._aiter,self._mfst cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._aiter,self._mfst cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__63 = PyTuple_Pack(1, __pyx_kp_s_self__aiter_self__mfst_cannot_be); if (unlikely(!__pyx_tuple__63)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__63);
+  __Pyx_GIVEREF(__pyx_tuple__63);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._aiter,self._mfst cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._aiter,self._mfst cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__64 = PyTuple_Pack(1, __pyx_kp_s_self__aiter_self__mfst_cannot_be); if (unlikely(!__pyx_tuple__64)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__64);
+  __Pyx_GIVEREF(__pyx_tuple__64);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._fst,self._siter cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._fst,self._siter cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__65 = PyTuple_Pack(1, __pyx_kp_s_self__fst_self__siter_cannot_be); if (unlikely(!__pyx_tuple__65)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__65);
+  __Pyx_GIVEREF(__pyx_tuple__65);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._fst,self._siter cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._fst,self._siter cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__66 = PyTuple_Pack(1, __pyx_kp_s_self__fst_self__siter_cannot_be); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__66);
+  __Pyx_GIVEREF(__pyx_tuple__66);
+
+  /* "pywrapfst.pyx":4190
+ *     self._sstrm.reset(new stringstream())
+ *     if tfst.get() == NULL:
+ *       raise FstOpError("Compilation failed")             # <<<<<<<<<<<<<<
+ *     return _init_XFst(tfst.release())
+ * 
+ */
+  __pyx_tuple__90 = PyTuple_Pack(1, __pyx_kp_s_Compilation_failed); if (unlikely(!__pyx_tuple__90)) __PYX_ERR(0, 4190, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__90);
+  __Pyx_GIVEREF(__pyx_tuple__90);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
+ */
+  __pyx_tuple__91 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__91)) __PYX_ERR(1, 2, __pyx_L1_error)

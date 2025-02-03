@@ -7,14 +7,18 @@ from preprocessor import FilePreprocessor
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 class CustomLanugageModel:
     """For a given vocabulary and training input, contains all the trigram distributions over that set of bigrams"""
     DEBUG_MODE = False
 
-    def __init__(self, filename, alpha) -> None:
+    def __init__(self, filename=None, alpha= 0.63, model_file=None) -> None:
         self.distribution_map = defaultdict(lambda: {})
-        self._compute_model(filename, alpha)
+        if model_file:
+            self.load_model(model_file)
+        elif filename:
+            self._compute_model(filename, alpha)
 
     def _compute_model(self, filename, alpha):
         """ For a given filename as input, compute trigram probabilites"""
@@ -37,6 +41,17 @@ class CustomLanugageModel:
             
             bigram_distribution.dist[trigram] = probability
             self.distribution_map[bigram] = bigram_distribution
+
+    def save_model(self, model_file):
+        """Save the model to a file"""
+        with open(model_file, 'wb') as f:
+            pickle.dump(self.distribution_map, f)
+
+    def load_model(self, model_file):
+        """Load the model from a file"""
+        with open(model_file, 'rb') as f:
+            self.distribution_map = pickle.load(f)
+
 
     def generate_next(self, context): 
         """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
@@ -152,14 +167,3 @@ class CustomLanugageModel:
 
             start_bigram = Bigram(next_trigram.middle, next_trigram.end)
         return output
-   
-python_model = CustomLanugageModel(processed_files[0], 0.63)
-cpp_model = CustomLanugageModel(processed_files[1], 0.63)
-
-print("Performance on python validation file")
-print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[0])}")
-print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[0])}")
-
-print("Performance on c++ validation file")
-print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[1])}")
-print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[1])}")

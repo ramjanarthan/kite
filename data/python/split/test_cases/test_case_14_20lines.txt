@@ -1,0 +1,20 @@
+        '''
+        Encode a sequence of character/output classes into a sequence of labels.
+        Characters are assumed to always take a single Unicode codepoint.
+        Characters must be in the alphabet, this method will assert that. Use
+        `CanEncode` and `CanEncodeSingle` to test.
+        '''
+        # Convert SWIG's UnsignedIntVec to a Python list
+        res = super(Alphabet, self).Encode(input.encode('utf-8'))
+        return [el for el in res]
+
+    def DecodeSingle(self, input):
+        res = super(Alphabet, self).DecodeSingle(input)
+        return res.decode('utf-8')
+
+    def Decode(self, input):
+        '''Decode a sequence of labels into a string.'''
+        res = super(Alphabet, self).Decode(input)
+        return res.decode('utf-8')
+
+

@@ -1,0 +1,100 @@
+ */
+  __pyx_k__87 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":4140
+ * 
+ *   def __cinit__(self,
+ *                 string fst_type=b"vector",             # <<<<<<<<<<<<<<
+ *                 string arc_type=b"standard",
+ *                 SymbolTable isymbols=None,
+ */
+  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_n_b_vector); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 4140, __pyx_L1_error)
+  __pyx_k__88 = __pyx_t_6;
+
+  /* "pywrapfst.pyx":4141
+ *   def __cinit__(self,
+ *                 string fst_type=b"vector",
+ *                 string arc_type=b"standard",             # <<<<<<<<<<<<<<
+ *                 SymbolTable isymbols=None,
+ *                 SymbolTable osymbols=None,
+ */
+  __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_n_b_standard); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 4141, __pyx_L1_error)
+  __pyx_k__89 = __pyx_t_6;
+
+  /* "pywrapfst.pyx":4239
+ * 
+ *   @classmethod
+ *   def open(cls, *filenames):             # <<<<<<<<<<<<<<
+ *     """
+ *     FarReader.open(*filenames)
+ */
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_9pywrapfst_FarReader, __pyx_n_s_open); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4239, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "pywrapfst.pyx":4238
+ *     return "<{} FarReader at 0x{:x}>".format(self.far_type(), id(self))
+ * 
+ *   @classmethod             # <<<<<<<<<<<<<<
+ *   def open(cls, *filenames):
+ *     """
+ */
+  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4238, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_9pywrapfst_FarReader->tp_dict, __pyx_n_s_open, __pyx_t_2) < 0) __PYX_ERR(0, 4239, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  PyType_Modified(__pyx_ptype_9pywrapfst_FarReader);
+
+  /* "pywrapfst.pyx":4388
+ * 
+ *   @classmethod
+ *   def create(cls, filename, arc_type=b"standard", far_type=b"default"):             # <<<<<<<<<<<<<<
+ *     """
+ *     FarWriter.
+ */
+  __pyx_t_2 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_9pywrapfst_FarWriter, __pyx_n_s_create); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4388, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+
+  /* "pywrapfst.pyx":4387
+ *     return "<{} FarWriter at 0x{:x}>".format(self.far_type(), id(self))
+ * 
+ *   @classmethod             # <<<<<<<<<<<<<<
+ *   def create(cls, filename, arc_type=b"standard", far_type=b"default"):
+ *     """
+ */
+  __pyx_t_1 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4387, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_9pywrapfst_FarWriter->tp_dict, __pyx_n_s_create, __pyx_t_1) < 0) __PYX_ERR(0, 4388, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  PyType_Modified(__pyx_ptype_9pywrapfst_FarWriter);
+
+  /* "pywrapfst.pyx":4487
+ * 
+ * 
+ * _fst_error_fatal_old = fst.FLAGS_fst_error_fatal             # <<<<<<<<<<<<<<
+ * fst.FLAGS_fst_error_fatal = False
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyBool_FromLong(FLAGS_fst_error_fatal); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4487, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_fst_error_fatal_old, __pyx_t_1) < 0) __PYX_ERR(0, 4487, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":4488
+ * 
+ * _fst_error_fatal_old = fst.FLAGS_fst_error_fatal
+ * fst.FLAGS_fst_error_fatal = False             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  FLAGS_fst_error_fatal = 0;
+
+  /* "pywrapfst.pyx":4491
+ * 
+ * 
+ * @atexit.register             # <<<<<<<<<<<<<<
+ * def _reset_fst_error_fatal():
+ *   fst.FLAGS_fst_error_fatal = _fst_error_fatal_old
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_atexit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4491, __pyx_L1_error)

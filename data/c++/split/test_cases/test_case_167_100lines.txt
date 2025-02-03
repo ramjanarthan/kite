@@ -1,0 +1,100 @@
+  }
+  // Calculates the original label-agnostic checksum.
+  CheckSummer check_sum;
+  for (size_t i = 0; i < symbols_.size(); ++i) {
+    const auto &symbol = symbols_.GetSymbol(i);
+    check_sum.Update(symbol.data(), symbol.size());
+    check_sum.Update("", 1);
+  }
+  check_sum_string_ = check_sum.Digest();
+  // Calculates the safer, label-dependent checksum.
+  CheckSummer labeled_check_sum;
+  for (int64 i = 0; i < dense_key_limit_; ++i) {
+    std::ostringstream line;
+    line << symbols_.GetSymbol(i) << '\t' << i;
+    labeled_check_sum.Update(line.str().data(), line.str().size());
+  }
+  using citer = map<int64, int64>::const_iterator;
+  for (citer it = key_map_.begin(); it != key_map_.end(); ++it) {
+    // TODO(tombagby, 2013-11-22) This line maintains a bug that ignores
+    // negative labels in the checksum that too many tests rely on.
+    if (it->first < dense_key_limit_) continue;
+    std::ostringstream line;
+    line << symbols_.GetSymbol(it->second) << '\t' << it->first;
+    labeled_check_sum.Update(line.str().data(), line.str().size());
+  }
+  labeled_check_sum_string_ = labeled_check_sum.Digest();
+  check_sum_finalized_ = true;
+}
+
+int64 SymbolTableImpl::AddSymbol(const string &symbol, int64 key) {
+  if (key == kNoSymbol) return key;
+  const std::pair<int64, bool> &insert_key = symbols_.InsertOrFind(symbol);
+  if (!insert_key.second) {
+    auto key_already = GetNthKey(insert_key.first);
+    if (key_already == key) return key;
+    VLOG(1) << "SymbolTable::AddSymbol: symbol = " << symbol
+            << " already in symbol_map_ with key = " << key_already
+            << " but supplied new key = " << key << " (ignoring new key)";
+    return key_already;
+  }
+  if (key == (symbols_.size() - 1) && key == dense_key_limit_) {
+    ++dense_key_limit_;
+  } else {
+    idx_key_.push_back(key);
+    key_map_[key] = symbols_.size() - 1;
+  }
+  if (key >= available_key_) available_key_ = key + 1;
+  check_sum_finalized_ = false;
+  return key;
+}
+
+// TODO(rybach): Consider a more efficient implementation which re-uses holes in
+// the dense-key range or re-arranges the dense-key range from time to time.
+void SymbolTableImpl::RemoveSymbol(const int64 key) {
+  auto idx = key;
+  if (key < 0 || key >= dense_key_limit_) {
+    auto iter = key_map_.find(key);
+    if (iter == key_map_.end()) return;
+    idx = iter->second;
+    key_map_.erase(iter);
+  }
+  if (idx < 0 || idx >= symbols_.size()) return;
+  symbols_.RemoveSymbol(idx);
+  // Removed one symbol, all indexes > idx are shifted by -1.
+  for (auto &k : key_map_) {
+    if (k.second > idx) --k.second;
+  }
+  if (key >= 0 && key < dense_key_limit_) {
+    // Removal puts a hole in the dense key range. Adjusts range to [0, key).
+    const auto new_dense_key_limit = key;
+    for (int64 i = key + 1; i < dense_key_limit_; ++i) {
+      key_map_[i] = i - 1;
+    }
+    // Moves existing values in idx_key to new place.
+    idx_key_.resize(symbols_.size() - new_dense_key_limit);
+    for (int64 i = symbols_.size(); i >= dense_key_limit_; --i) {
+      idx_key_[i - new_dense_key_limit - 1] = idx_key_[i - dense_key_limit_];
+    }
+    // Adds indexes for previously dense keys.
+    for (int64 i = new_dense_key_limit; i < dense_key_limit_ - 1; ++i) {
+      idx_key_[i - new_dense_key_limit] = i + 1;
+    }
+    dense_key_limit_ = new_dense_key_limit;
+  } else {
+    // Remove entry for removed index in idx_key.
+    for (int64 i = idx - dense_key_limit_; i < idx_key_.size() - 1; ++i) {
+      idx_key_[i] = idx_key_[i + 1];
+    }
+    idx_key_.pop_back();
+  }
+  if (key == available_key_ - 1) available_key_ = key;
+}
+
+SymbolTableImpl *SymbolTableImpl::Read(std::istream &strm,
+                                       const SymbolTableReadOptions &opts) {
+  int32 magic_number = 0;
+  ReadType(strm, &magic_number);
+  if (strm.fail()) {
+    LOG(ERROR) << "SymbolTable::Read: Read failed";
+    return nullptr;

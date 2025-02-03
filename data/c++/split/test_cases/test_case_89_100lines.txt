@@ -1,0 +1,100 @@
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2868
+ * ADD_SUPERFINAL_PROPERTIES = fst.kAddSuperFinalProperties
+ * RM_SUPERFINAL_PROPERTIES = fst.kRmSuperFinalProperties
+ * BINARY_PROPERTIES = fst.kBinaryProperties             # <<<<<<<<<<<<<<
+ * TRINARY_PROPERTIES = fst.kTrinaryProperties
+ * POS_TRINARY_PROPERTIES = fst.kPosTrinaryProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kBinaryProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2868, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BINARY_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2868, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2869
+ * RM_SUPERFINAL_PROPERTIES = fst.kRmSuperFinalProperties
+ * BINARY_PROPERTIES = fst.kBinaryProperties
+ * TRINARY_PROPERTIES = fst.kTrinaryProperties             # <<<<<<<<<<<<<<
+ * POS_TRINARY_PROPERTIES = fst.kPosTrinaryProperties
+ * NEG_TRINARY_PROPERTIES = fst.kNegTrinaryProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kTrinaryProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2869, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TRINARY_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2869, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2870
+ * BINARY_PROPERTIES = fst.kBinaryProperties
+ * TRINARY_PROPERTIES = fst.kTrinaryProperties
+ * POS_TRINARY_PROPERTIES = fst.kPosTrinaryProperties             # <<<<<<<<<<<<<<
+ * NEG_TRINARY_PROPERTIES = fst.kNegTrinaryProperties
+ * FST_PROPERTIES = fst.kFstProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kPosTrinaryProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2870, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_POS_TRINARY_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2870, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2871
+ * TRINARY_PROPERTIES = fst.kTrinaryProperties
+ * POS_TRINARY_PROPERTIES = fst.kPosTrinaryProperties
+ * NEG_TRINARY_PROPERTIES = fst.kNegTrinaryProperties             # <<<<<<<<<<<<<<
+ * FST_PROPERTIES = fst.kFstProperties
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNegTrinaryProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2871, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NEG_TRINARY_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2871, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2872
+ * POS_TRINARY_PROPERTIES = fst.kPosTrinaryProperties
+ * NEG_TRINARY_PROPERTIES = fst.kNegTrinaryProperties
+ * FST_PROPERTIES = fst.kFstProperties             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kFstProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2872, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_FST_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2872, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2878
+ * 
+ * 
+ * ARC_I_LABEL_VALUE = fst.kArcILabelValue             # <<<<<<<<<<<<<<
+ * ARC_O_LABEL_VALUE = fst.kArcOLabelValue
+ * ARC_WEIGHT_VALUE = fst.kArcWeightValue
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcILabelValue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2878, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_I_LABEL_VALUE, __pyx_t_1) < 0) __PYX_ERR(0, 2878, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2879
+ * 
+ * ARC_I_LABEL_VALUE = fst.kArcILabelValue
+ * ARC_O_LABEL_VALUE = fst.kArcOLabelValue             # <<<<<<<<<<<<<<
+ * ARC_WEIGHT_VALUE = fst.kArcWeightValue
+ * ARC_NEXT_STATE_VALUE = fst.kArcNextStateValue
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcOLabelValue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2879, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_O_LABEL_VALUE, __pyx_t_1) < 0) __PYX_ERR(0, 2879, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2880
+ * ARC_I_LABEL_VALUE = fst.kArcILabelValue
+ * ARC_O_LABEL_VALUE = fst.kArcOLabelValue
+ * ARC_WEIGHT_VALUE = fst.kArcWeightValue             # <<<<<<<<<<<<<<
+ * ARC_NEXT_STATE_VALUE = fst.kArcNextStateValue
+ * ARC_NO_CACHE = fst.kArcNoCache
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint32_t(fst::kArcWeightValue); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2880, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_WEIGHT_VALUE, __pyx_t_1) < 0) __PYX_ERR(0, 2880, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2881
+ * ARC_O_LABEL_VALUE = fst.kArcOLabelValue

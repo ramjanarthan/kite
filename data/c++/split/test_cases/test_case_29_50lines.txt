@@ -1,0 +1,50 @@
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9pywrapfst_9FarWriter_11error(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_9pywrapfst_9FarWriter_10error[] = "\n    error(self)\n\n    Indicates whether the FarWriter has encountered an error.\n\n    Returns:\n      True if the FarWriter is in an errorful state, False otherwise.\n    ";
+static PyObject *__pyx_pw_9pywrapfst_9FarWriter_11error(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("error (wrapper)", 0);
+  __pyx_r = __pyx_pf_9pywrapfst_9FarWriter_10error(((struct __pyx_obj_9pywrapfst_FarWriter *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9pywrapfst_9FarWriter_10error(struct __pyx_obj_9pywrapfst_FarWriter *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("error", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_9pywrapfst_9FarWriter_error(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4456, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pywrapfst.FarWriter.error", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pywrapfst.pyx":4467
+ *     return self._writer.get().Error()
+ * 
+ *   cpdef string far_type(self):             # <<<<<<<<<<<<<<
+ *     """
+ *     far_type(self)
+ */
+
+static PyObject *__pyx_pw_9pywrapfst_9FarWriter_13far_type(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/

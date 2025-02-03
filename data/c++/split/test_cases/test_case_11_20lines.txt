@@ -1,0 +1,20 @@
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __PYX_ERR(0, 4413, __pyx_L1_error)
+
+    /* "pywrapfst.pyx":4412
+ *     cdef fst.FarWriterClass *tfar = fst.FarWriterClass.Create(
+ *         tostring(filename), tostring(arc_type), ft)
+ *     if tfar == NULL:             # <<<<<<<<<<<<<<
+ *       raise FstIOError("Open failed: {!r}".format(filename))
+ *     cdef FarWriter result = FarWriter.__new__(FarWriter)
+ */
+  }
+
+  /* "pywrapfst.pyx":4414
+ *     if tfar == NULL:
+ *       raise FstIOError("Open failed: {!r}".format(filename))
+ *     cdef FarWriter result = FarWriter.__new__(FarWriter)             # <<<<<<<<<<<<<<
+ *     result._writer.reset(tfar)
+ *     return result
+ */
+  __pyx_t_4 = __pyx_tp_new_9pywrapfst_FarWriter(((PyTypeObject *)__pyx_ptype_9pywrapfst_FarWriter), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 4414, __pyx_L1_error)

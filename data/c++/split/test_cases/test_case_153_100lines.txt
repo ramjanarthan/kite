@@ -1,0 +1,100 @@
+void GetFarInfo(const std::vector<string> &filenames, const string &arc_type,
+                const string &begin_key, const string &end_key,
+                const bool list_fsts, FarInfoData *data) {
+  GetFarInfoArgs args(filenames, begin_key, end_key, list_fsts, data);
+  Apply<Operation<GetFarInfoArgs>>("GetFarInfo", arc_type, &args);
+}
+
+bool FarIsomorphic(const string &filename1, const string &filename2,
+                   const string &arc_type, float delta, const string &begin_key,
+                   const string &end_key) {
+  FarIsomorphicInnerArgs args(filename1, filename2, delta, begin_key, end_key);
+  FarIsomorphicArgs args_with_retval(args);
+  Apply<Operation<FarIsomorphicArgs>>("FarIsomorphic", arc_type,
+                                      &args_with_retval);
+  return args_with_retval.retval;
+}
+
+void FarPrintStrings(const std::vector<string> &ifilenames,
+                     const string &arc_type, const FarEntryType entry_type,
+                     const FarTokenType token_type, const string &begin_key,
+                     const string &end_key, const bool print_key,
+                     const bool print_weight, const string &symbols_fname,
+                     const bool initial_symbols, const int32 generate_filenames,
+                     const string &filename_prefix,
+                     const string &filename_suffix) {
+  FarPrintStringsArgs args(ifilenames, entry_type, token_type, begin_key,
+                           end_key, print_key, print_weight, symbols_fname,
+                           initial_symbols, generate_filenames, filename_prefix,
+                           filename_suffix);
+  Apply<Operation<FarPrintStringsArgs>>("FarPrintStrings", arc_type, &args);
+}
+
+// Instantiate all templates for common arc types.
+
+REGISTER_FST_FAR_OPERATIONS(StdArc);
+REGISTER_FST_FAR_OPERATIONS(LogArc);
+REGISTER_FST_FAR_OPERATIONS(Log64Arc);
+
+}  // namespace script
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fstream>
+#include <fst/extensions/far/sttable.h>
+
+namespace fst {
+
+bool IsSTTable(const string &filename) {
+  std::ifstream strm(filename);
+  if (!strm.good()) return false;
+
+  int32 magic_number = 0;
+  ReadType(strm, &magic_number);
+  return magic_number == kSTTableMagicNumber;
+}
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <cmath>
+#include <string>
+
+#include <fst/flags.h>
+#include <fst/extensions/far/compile-strings.h>
+#include <fstream>
+
+DEFINE_string(far_field_separator, "\t",
+              "Set of characters used as a separator between printed fields");
+
+namespace fst {
+
+// Computes the minimal length required to encode each line number as a decimal
+// number.
+int KeySize(const char *filename) {
+  std::ifstream istrm(filename);
+  istrm.seekg(0);
+  string s;
+  int nline = 0;
+  while (getline(istrm, s)) ++nline;
+  istrm.seekg(0);
+  return nline ? ceil(log10(nline + 1)) : 1;
+}
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Extracts component FSTs from an finite-state archive.
+
+#include <string>
+#include <vector>
+
+#include <fst/flags.h>
+#include <fst/extensions/far/farscript.h>
+#include <fst/extensions/far/getters.h>
+
+DEFINE_string(filename_prefix, "", "Prefix to append to filenames");
+DEFINE_string(filename_suffix, "", "Suffix to append to filenames");

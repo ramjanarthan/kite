@@ -1,0 +1,100 @@
+  __pyx_vtable_9pywrapfst_Weight.copy = (struct __pyx_obj_9pywrapfst_Weight *(*)(struct __pyx_obj_9pywrapfst_Weight *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_6Weight_copy;
+  __pyx_vtable_9pywrapfst_Weight.to_string = (std::string (*)(struct __pyx_obj_9pywrapfst_Weight *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_6Weight_to_string;
+  __pyx_vtable_9pywrapfst_Weight.type = (std::string (*)(struct __pyx_obj_9pywrapfst_Weight *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_6Weight_type;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_Weight) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_type_9pywrapfst_Weight.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_Weight.tp_dict, __pyx_vtabptr_9pywrapfst_Weight) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "Weight", (PyObject *)&__pyx_type_9pywrapfst_Weight) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_Weight) < 0) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_Weight = &__pyx_type_9pywrapfst_Weight;
+  __pyx_vtabptr_9pywrapfst__SymbolTable = &__pyx_vtable_9pywrapfst__SymbolTable;
+  __pyx_vtable_9pywrapfst__SymbolTable.available_key = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_available_key;
+  __pyx_vtable_9pywrapfst__SymbolTable.checksum = (std::string (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_checksum;
+  __pyx_vtable_9pywrapfst__SymbolTable.copy = (struct __pyx_obj_9pywrapfst_SymbolTable *(*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_copy;
+  __pyx_vtable_9pywrapfst__SymbolTable.get_nth_key = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, Py_ssize_t, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_get_nth_key;
+  __pyx_vtable_9pywrapfst__SymbolTable.labeled_checksum = (std::string (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_labeled_checksum;
+  __pyx_vtable_9pywrapfst__SymbolTable.member = (bool (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, PyObject *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_member;
+  __pyx_vtable_9pywrapfst__SymbolTable.name = (std::string (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_name;
+  __pyx_vtable_9pywrapfst__SymbolTable.num_symbols = (size_t (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_num_symbols;
+  __pyx_vtable_9pywrapfst__SymbolTable.write = (void (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, PyObject *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_write;
+  __pyx_vtable_9pywrapfst__SymbolTable.write_text = (void (*)(struct __pyx_obj_9pywrapfst__SymbolTable *, PyObject *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12_SymbolTable_write_text;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__SymbolTable) < 0) __PYX_ERR(0, 675, __pyx_L1_error)
+  __pyx_type_9pywrapfst__SymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__SymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst__SymbolTable) < 0) __PYX_ERR(0, 675, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_SymbolTable", (PyObject *)&__pyx_type_9pywrapfst__SymbolTable) < 0) __PYX_ERR(0, 675, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst__SymbolTable) < 0) __PYX_ERR(0, 675, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__SymbolTable = &__pyx_type_9pywrapfst__SymbolTable;
+  __pyx_vtabptr_9pywrapfst__EncodeMapperSymbolTable = &__pyx_vtable_9pywrapfst__EncodeMapperSymbolTable;
+  __pyx_vtable_9pywrapfst__EncodeMapperSymbolTable.__pyx_base = *__pyx_vtabptr_9pywrapfst__SymbolTable;
+  __pyx_type_9pywrapfst__EncodeMapperSymbolTable.tp_base = __pyx_ptype_9pywrapfst__SymbolTable;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__EncodeMapperSymbolTable) < 0) __PYX_ERR(0, 839, __pyx_L1_error)
+  __pyx_type_9pywrapfst__EncodeMapperSymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__EncodeMapperSymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst__EncodeMapperSymbolTable) < 0) __PYX_ERR(0, 839, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_EncodeMapperSymbolTable", (PyObject *)&__pyx_type_9pywrapfst__EncodeMapperSymbolTable) < 0) __PYX_ERR(0, 839, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst__EncodeMapperSymbolTable) < 0) __PYX_ERR(0, 839, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__EncodeMapperSymbolTable = &__pyx_type_9pywrapfst__EncodeMapperSymbolTable;
+  __pyx_vtabptr_9pywrapfst__FstSymbolTable = &__pyx_vtable_9pywrapfst__FstSymbolTable;
+  __pyx_vtable_9pywrapfst__FstSymbolTable.__pyx_base = *__pyx_vtabptr_9pywrapfst__SymbolTable;
+  __pyx_type_9pywrapfst__FstSymbolTable.tp_base = __pyx_ptype_9pywrapfst__SymbolTable;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__FstSymbolTable) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+  __pyx_type_9pywrapfst__FstSymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__FstSymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst__FstSymbolTable) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_FstSymbolTable", (PyObject *)&__pyx_type_9pywrapfst__FstSymbolTable) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst__FstSymbolTable) < 0) __PYX_ERR(0, 859, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__FstSymbolTable = &__pyx_type_9pywrapfst__FstSymbolTable;
+  __pyx_vtabptr_9pywrapfst__MutableSymbolTable = &__pyx_vtable_9pywrapfst__MutableSymbolTable;
+  __pyx_vtable_9pywrapfst__MutableSymbolTable.__pyx_base = *__pyx_vtabptr_9pywrapfst__SymbolTable;
+  __pyx_vtable_9pywrapfst__MutableSymbolTable.add_symbol = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__MutableSymbolTable *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_19_MutableSymbolTable_add_symbol *__pyx_optional_args))__pyx_f_9pywrapfst_19_MutableSymbolTable_add_symbol;
+  __pyx_vtable_9pywrapfst__MutableSymbolTable.add_table = (void (*)(struct __pyx_obj_9pywrapfst__MutableSymbolTable *, struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19_MutableSymbolTable_add_table;
+  __pyx_vtable_9pywrapfst__MutableSymbolTable.set_name = (void (*)(struct __pyx_obj_9pywrapfst__MutableSymbolTable *, PyObject *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19_MutableSymbolTable_set_name;
+  __pyx_type_9pywrapfst__MutableSymbolTable.tp_base = __pyx_ptype_9pywrapfst__SymbolTable;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__MutableSymbolTable) < 0) __PYX_ERR(0, 878, __pyx_L1_error)
+  __pyx_type_9pywrapfst__MutableSymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__MutableSymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst__MutableSymbolTable) < 0) __PYX_ERR(0, 878, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_MutableSymbolTable", (PyObject *)&__pyx_type_9pywrapfst__MutableSymbolTable) < 0) __PYX_ERR(0, 878, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst__MutableSymbolTable) < 0) __PYX_ERR(0, 878, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__MutableSymbolTable = &__pyx_type_9pywrapfst__MutableSymbolTable;
+  __pyx_vtabptr_9pywrapfst__MutableFstSymbolTable = &__pyx_vtable_9pywrapfst__MutableFstSymbolTable;
+  __pyx_vtable_9pywrapfst__MutableFstSymbolTable.__pyx_base = *__pyx_vtabptr_9pywrapfst__MutableSymbolTable;
+  __pyx_type_9pywrapfst__MutableFstSymbolTable.tp_base = __pyx_ptype_9pywrapfst__MutableSymbolTable;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__MutableFstSymbolTable) < 0) __PYX_ERR(0, 930, __pyx_L1_error)
+  __pyx_type_9pywrapfst__MutableFstSymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__MutableFstSymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst__MutableFstSymbolTable) < 0) __PYX_ERR(0, 930, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_MutableFstSymbolTable", (PyObject *)&__pyx_type_9pywrapfst__MutableFstSymbolTable) < 0) __PYX_ERR(0, 930, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst__MutableFstSymbolTable) < 0) __PYX_ERR(0, 930, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__MutableFstSymbolTable = &__pyx_type_9pywrapfst__MutableFstSymbolTable;
+  __pyx_vtabptr_9pywrapfst_SymbolTable = &__pyx_vtable_9pywrapfst_SymbolTable;
+  __pyx_vtable_9pywrapfst_SymbolTable.__pyx_base = *__pyx_vtabptr_9pywrapfst__MutableSymbolTable;
+  __pyx_type_9pywrapfst_SymbolTable.tp_base = __pyx_ptype_9pywrapfst__MutableSymbolTable;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_SymbolTable) < 0) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_type_9pywrapfst_SymbolTable.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_SymbolTable.tp_dict, __pyx_vtabptr_9pywrapfst_SymbolTable) < 0) __PYX_ERR(0, 941, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SymbolTable", (PyObject *)&__pyx_type_9pywrapfst_SymbolTable) < 0) __PYX_ERR(0, 941, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_SymbolTable) < 0) __PYX_ERR(0, 941, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_SymbolTable = &__pyx_type_9pywrapfst_SymbolTable;
+  __pyx_vtabptr_9pywrapfst_SymbolTableIterator = &__pyx_vtable_9pywrapfst_SymbolTableIterator;
+  __pyx_vtable_9pywrapfst_SymbolTableIterator.done = (bool (*)(struct __pyx_obj_9pywrapfst_SymbolTableIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19SymbolTableIterator_done;
+  __pyx_vtable_9pywrapfst_SymbolTableIterator.next = (void (*)(struct __pyx_obj_9pywrapfst_SymbolTableIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19SymbolTableIterator_next;
+  __pyx_vtable_9pywrapfst_SymbolTableIterator.reset = (void (*)(struct __pyx_obj_9pywrapfst_SymbolTableIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19SymbolTableIterator_reset;
+  __pyx_vtable_9pywrapfst_SymbolTableIterator.symbol = (std::string (*)(struct __pyx_obj_9pywrapfst_SymbolTableIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19SymbolTableIterator_symbol;
+  __pyx_vtable_9pywrapfst_SymbolTableIterator.value = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst_SymbolTableIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_19SymbolTableIterator_value;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_SymbolTableIterator) < 0) __PYX_ERR(0, 1124, __pyx_L1_error)
+  __pyx_type_9pywrapfst_SymbolTableIterator.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_SymbolTableIterator.tp_dict, __pyx_vtabptr_9pywrapfst_SymbolTableIterator) < 0) __PYX_ERR(0, 1124, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "SymbolTableIterator", (PyObject *)&__pyx_type_9pywrapfst_SymbolTableIterator) < 0) __PYX_ERR(0, 1124, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_SymbolTableIterator) < 0) __PYX_ERR(0, 1124, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_SymbolTableIterator = &__pyx_type_9pywrapfst_SymbolTableIterator;
+  __pyx_vtabptr_9pywrapfst_EncodeMapper = &__pyx_vtable_9pywrapfst_EncodeMapper;
+  __pyx_vtable_9pywrapfst_EncodeMapper.arc_type = (std::string (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_arc_type;
+  __pyx_vtable_9pywrapfst_EncodeMapper.flags = (__pyx_t_10basictypes_uint32 (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_flags;
+  __pyx_vtable_9pywrapfst_EncodeMapper.input_symbols = (struct __pyx_obj_9pywrapfst__EncodeMapperSymbolTable *(*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_input_symbols;
+  __pyx_vtable_9pywrapfst_EncodeMapper.output_symbols = (struct __pyx_obj_9pywrapfst__EncodeMapperSymbolTable *(*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_output_symbols;
+  __pyx_vtable_9pywrapfst_EncodeMapper.properties = (__pyx_t_10basictypes_uint64 (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, __pyx_t_10basictypes_uint64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_properties;
+  __pyx_vtable_9pywrapfst_EncodeMapper.set_input_symbols = (void (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_set_input_symbols;
+  __pyx_vtable_9pywrapfst_EncodeMapper.set_output_symbols = (void (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, struct __pyx_obj_9pywrapfst__SymbolTable *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_set_output_symbols;
+  __pyx_vtable_9pywrapfst_EncodeMapper.weight_type = (std::string (*)(struct __pyx_obj_9pywrapfst_EncodeMapper *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_12EncodeMapper_weight_type;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_EncodeMapper) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+  __pyx_type_9pywrapfst_EncodeMapper.tp_print = 0;
+  #if CYTHON_COMPILING_IN_CPYTHON
+  {
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_9pywrapfst_EncodeMapper, "__call__"); if (unlikely(!wrapper)) __PYX_ERR(0, 1206, __pyx_L1_error)

@@ -1,0 +1,100 @@
+  sizeof(struct __pyx_obj_9pywrapfst_Compiler), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_9pywrapfst_Compiler, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  0, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  Compiler(fst_type=\"vector\", arc_type=\"standard\", isymbols=None,\n           osymbols=None, ssymbols=None, acceptor=False, keep_isymbols=False,\n           keep_osymbols=False, keep_state_numbering=False,\n           allow_negative_labels=False)\n\n  Class used to compile FSTs from strings.\n\n  This class is used to compile FSTs specified using the AT&T FSM library\n  format described here:\n\n  http://web.eecs.umich.edu/~radev/NLP-fall2015/resources/fsm_archive/fsm.5.html\n\n  This is the same format used by the `fstcompile` executable.\n\n  Compiler options (symbol tables, etc.) are set at construction time.\n\n      compiler = fst.Compiler(isymbols=ascii_syms, osymbols=ascii_syms)\n\n  Once constructed, Compiler instances behave like a file handle opened for\n  writing:\n\n      # /ba+/\n      print >> compiler, \"0 1 50 50\"\n      print >> compiler, \"1 2 49 49\"\n      print >> compiler, \"2 2 49 49\"\n      print >> compiler, \"2\"\n\n  The `compile` method returns an actual FST instance:\n\n      sheep_machine = compiler.compile()\n\n  Compilation flushes the internal buffer, so the compiler instance can be\n  reused to compile new machines with the same symbol tables (etc.)\n\n  Args:\n    fst_type: A string indicating the container type for the compiled FST.\n    arc_type: A string indicating the arc type for the compiled FST.\n    isymbols: An optional SymbolTable used to label input symbols.\n    osymbols: An optional SymbolTable used to label output symbols.\n    ssymbols: An optional SymbolTable used to label states.\n    acceptor: Should the FST be rendered in acceptor format if possible?\n    keep_isymbols: Should the input symbol table be stored in the FST?\n    keep_osymbols: Should the output symbol table be stored in the FST?\n    keep_state_numbering: Should the state numbering be preserved?\n    allow_negative_labels: Should negative labels be allowed? (Not\n        recommended; may cause conflicts).\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst_Compiler, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  0, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst_Compiler, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+static struct __pyx_vtabstruct_9pywrapfst_FarReader __pyx_vtable_9pywrapfst_FarReader;
+
+static PyObject *__pyx_tp_new_9pywrapfst_FarReader(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_9pywrapfst_FarReader *p;
+  PyObject *o;
+  if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
+    o = (*t->tp_alloc)(t, 0);
+  } else {
+    o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
+  }
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_9pywrapfst_FarReader *)o);
+  p->__pyx_vtab = __pyx_vtabptr_9pywrapfst_FarReader;
+  new((void*)&(p->_reader)) std::unique_ptr<fst::script::FarReaderClass> ();
+  return o;
+}
+
+static void __pyx_tp_dealloc_9pywrapfst_FarReader(PyObject *o) {
+  struct __pyx_obj_9pywrapfst_FarReader *p = (struct __pyx_obj_9pywrapfst_FarReader *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  __Pyx_call_destructor(p->_reader);
+  (*Py_TYPE(o)->tp_free)(o);
+}
+static PyObject *__pyx_sq_item_9pywrapfst_FarReader(PyObject *o, Py_ssize_t i) {
+  PyObject *r;
+  PyObject *x = PyInt_FromSsize_t(i); if(!x) return 0;
+  r = Py_TYPE(o)->tp_as_mapping->mp_subscript(o, x);
+  Py_DECREF(x);
+  return r;
+}
+
+static PyMethodDef __pyx_methods_9pywrapfst_FarReader[] = {
+  {"open", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_5open, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_9FarReader_4open},
+  {"arc_type", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_7arc_type, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_6arc_type},
+  {"done", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_9done, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_8done},
+  {"error", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_11error, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_10error},
+  {"far_type", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_13far_type, METH_NOARGS, 0},
+  {"find", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_15find, METH_O, __pyx_doc_9pywrapfst_9FarReader_14find},
+  {"get_fst", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_17get_fst, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_16get_fst},
+  {"get_key", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_19get_key, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_18get_key},
+  {"next", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_21next, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_20next},
+  {"reset", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_23reset, METH_NOARGS, __pyx_doc_9pywrapfst_9FarReader_22reset},

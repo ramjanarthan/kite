@@ -1,0 +1,20 @@
+for symbol in dir(swigwrapper):
+    if symbol.startswith('DS_ERR_'):
+        globals()[symbol] = getattr(swigwrapper, symbol)
+
+class Scorer(swigwrapper.Scorer):
+    """Wrapper for Scorer.
+
+    :param alpha: Language model weight.
+    :type alpha: float
+    :param beta: Word insertion bonus.
+    :type beta: float
+    :scorer_path: Path to load scorer from.
+    :alphabet: Alphabet
+    :type scorer_path: basestring
+    """
+    def __init__(self, alpha=None, beta=None, scorer_path=None, alphabet=None):
+        super(Scorer, self).__init__()
+        # Allow bare initialization
+        if alphabet:
+            assert alpha is not None, 'alpha parameter is required'

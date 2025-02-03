@@ -1,0 +1,100 @@
+
+#include <fst/log.h>
+#include <fst/extensions/ngram/nthbit.h>
+
+namespace fst {
+namespace {
+const size_t kPrimaryBlockBits =
+    BitmapIndex::kStorageBitSize * BitmapIndex::kSecondaryBlockSize;
+
+// If [begin, begin+size) is a monotonically increasing running sum of
+// popcounts for a bitmap, this will return the index of the word that contains
+// the value'th zero.  If value is larger then the number of zeros in the
+// bitmap, size will be returned.  The idea is that the number of zerocounts
+// (i.e. the popcount of logical NOT of values) is offset * kStorageBitSize
+// minus the value for each element of the running sum.
+template <size_t BlockSize, typename Container>
+size_t InvertedSearch(const Container& c,
+                      size_t first_idx,
+                      size_t last_idx,
+                      size_t value) {
+  const size_t begin_idx = first_idx;
+  while (first_idx != last_idx) {
+    // Invariant: [first_idx, last_idx) is the search range.
+    size_t mid_idx = first_idx + ((last_idx - first_idx) / 2);
+    size_t mid_value = BlockSize * (1 + (mid_idx - begin_idx)) - c[mid_idx];
+    if (mid_value < value) {
+      first_idx = mid_idx + 1;
+    } else {
+      last_idx = mid_idx;
+    }
+  }
+  return first_idx;
+}
+}  // namespace
+
+size_t BitmapIndex::Rank1(size_t end) const {
+  if (end == 0) return 0;
+  const uint32 end_word = (end - 1) >> BitmapIndex::kStorageLogBitSize;
+  const uint32 sum = get_index_ones_count(end_word);
+  const size_t masked = end & kStorageBlockMask;
+  if (masked == 0) {
+    return sum + __builtin_popcountll(bits_[end_word]);
+  } else {
+    const uint64 zero = 0;
+    return sum + __builtin_popcountll(bits_[end_word] &
+                                      (~zero >> (kStorageBitSize - masked)));
+  }
+}
+
+size_t BitmapIndex::Select1(size_t bit_index) const {
+  if (bit_index >= GetOnesCount()) return Bits();
+  // search primary index for the relevant block
+  uint32 rembits = bit_index + 1;
+  const uint32 block = find_primary_block(bit_index + 1);
+  uint32 offset = 0;
+  if (block > 0) {
+    rembits -= primary_index_[block - 1];
+    offset += block * kSecondaryBlockSize;
+  }
+  // search the secondary index
+  uint32 word = find_secondary_block(offset, rembits);
+  if (word > 0) {
+    rembits -= secondary_index_[offset + word - 1];
+    offset += word;
+  }
+  int nth = nth_bit(bits_[offset], rembits);
+  return (offset << BitmapIndex::kStorageLogBitSize) + nth;
+}
+
+size_t BitmapIndex::Select0(size_t bit_index) const {
+  if (bit_index >= Bits() - GetOnesCount()) return Bits();
+  // search inverted primary index for relevant block
+  uint32 remzeros = bit_index + 1;
+  uint32 offset = 0;
+  const uint32 block = find_inverted_primary_block(bit_index + 1);
+  if (block > 0) {
+    remzeros -= kPrimaryBlockBits * block - primary_index_[block - 1];
+    offset += block * kSecondaryBlockSize;
+  }
+  // search the inverted secondary index
+  uint32 word = find_inverted_secondary_block(offset, remzeros);
+  if (word > 0) {
+    remzeros -= BitmapIndex::kStorageBitSize * word -
+                secondary_index_[offset + word - 1];
+    offset += word;
+  }
+  int nth = nth_bit(~bits_[offset], remzeros);
+  return (offset << BitmapIndex::kStorageLogBitSize) + nth;
+}
+
+std::pair<size_t, size_t> BitmapIndex::Select0s(size_t bit_index) const {
+  const uint64 zero = 0;
+  const uint64 ones = ~zero;
+  size_t zeros_count = Bits() - GetOnesCount();
+  if (bit_index >= zeros_count) return std::make_pair(Bits(), Bits());
+  if (bit_index + 1 >= zeros_count) {
+    return std::make_pair(Select0(bit_index), Bits());
+  }
+  // search inverted primary index for relevant block
+  uint32 remzeros = bit_index + 1;

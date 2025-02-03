@@ -1,0 +1,100 @@
+                   char **models, int models_len, const string &out,
+                   const string &save_isymbols, const string &save_fsymbols,
+                   const string &save_osymbols) {
+  LinearCompileArgs args(epsilon_symbol, unknown_symbol, vocab, models,
+                         models_len, out, save_isymbols, save_fsymbols,
+                         save_osymbols);
+  Apply<Operation<LinearCompileArgs>>("LinearCompileTpl", arc_type, &args);
+}
+
+// Instantiate templates for common arc types
+REGISTER_FST_LINEAR_OPERATIONS(StdArc);
+REGISTER_FST_LINEAR_OPERATIONS(LogArc);
+
+void SplitByWhitespace(const string &str, std::vector<string> *out) {
+  out->clear();
+  std::istringstream strm(str);
+  string buf;
+  while (strm >> buf) out->push_back(buf);
+}
+
+int ScanNumClasses(char **models, int models_len) {
+  std::set<string> preds;
+  for (int i = 0; i < models_len; ++i) {
+    std::ifstream in(models[i]);
+    if (!in) LOG(FATAL) << "Failed to open " << models[i];
+
+    string line;
+    std::getline(in, line);
+
+    size_t num_line = 1;
+    while (std::getline(in, line)) {
+      ++num_line;
+      std::vector<string> fields;
+      SplitByWhitespace(line, &fields);
+      if (fields.size() != 3)
+        LOG(FATAL) << "Wrong number of fields in source " << models[i]
+                   << ", line " << num_line;
+      preds.insert(fields[1]);
+    }
+  }
+  return preds.size();
+}
+
+}  // namespace script
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/linear/linearscript.h>
+
+#include <fst/flags.h>
+
+DEFINE_string(arc_type, "standard", "Output arc type");
+
+DEFINE_string(epsilon_symbol, "<eps>", "Epsilon symbol");
+DEFINE_string(unknown_symbol, "<unk>", "Unknown word symbol");
+
+DEFINE_string(vocab, "", "Path to the vocabulary file");
+DEFINE_string(out, "", "Path to the output binary");
+
+DEFINE_string(save_isymbols, "", "Save input symbol table to file");
+DEFINE_string(save_fsymbols, "", "Save feature symbol table to file");
+DEFINE_string(save_osymbols, "", "Save output symbol table to file");
+
+int main(int argc, char **argv) {
+  // TODO(wuke): more detailed usage
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(argv[0], &argc, &argv, true);
+  fst::script::ValidateDelimiter();
+  fst::script::ValidateEmptySymbol();
+
+  if (argc == 1) {
+    ShowUsage();
+    return 1;
+  }
+
+  fst::script::LinearCompile(FLAGS_arc_type, FLAGS_epsilon_symbol,
+                                 FLAGS_unknown_symbol, FLAGS_vocab, argv + 1,
+                                 argc - 1, FLAGS_out, FLAGS_save_isymbols,
+                                 FLAGS_save_fsymbols, FLAGS_save_osymbols);
+}
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/compat.h>
+#include <fst/extensions/linear/linear-fst.h>
+#include <fst/extensions/linear/loglinear-apply.h>
+#include <fst/vector-fst.h>
+
+#include <fst/flags.h>
+#include <fst/log.h>
+
+DEFINE_bool(normalize, true, "Normalize to get posterior");
+
+int main(int argc, char **argv) {
+  string usage =
+      "Applies an FST to another FST, treating the second as a log-linear "
+      "model.\n\n  "
+      "Usage: ";
+  usage += argv[0];

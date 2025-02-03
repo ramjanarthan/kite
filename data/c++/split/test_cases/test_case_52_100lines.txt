@@ -1,0 +1,100 @@
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  __pyx_pw_9pywrapfst_3Arc_1__repr__, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  Arc(ilabel, olabel, weight, nextstate)\n\n  This class represents an arc while remaining agnostic about the underlying arc\n  type.  Attributes of the arc can be accessed or mutated, and the arc can be\n  copied.\n\n  Attributes:\n    ilabel: The input label.\n    olabel: The output label.\n    weight: The arc weight.\n    nextstate: The destination state for the arc.\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst_Arc, /*tp_methods*/
+  0, /*tp_members*/
+  __pyx_getsets_9pywrapfst_Arc, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  __pyx_pw_9pywrapfst_3Arc_3__init__, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst_Arc, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+static struct __pyx_vtabstruct_9pywrapfst_ArcIterator __pyx_vtable_9pywrapfst_ArcIterator;
+
+static PyObject *__pyx_tp_new_9pywrapfst_ArcIterator(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_9pywrapfst_ArcIterator *p;
+  PyObject *o;
+  if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
+    o = (*t->tp_alloc)(t, 0);
+  } else {
+    o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
+  }
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_9pywrapfst_ArcIterator *)o);
+  p->__pyx_vtab = __pyx_vtabptr_9pywrapfst_ArcIterator;
+  new((void*)&(p->_fst)) std::shared_ptr<fst::script::FstClass> ();
+  new((void*)&(p->_aiter)) std::unique_ptr<fst::script::ArcIteratorClass> ();
+  return o;
+}
+
+static void __pyx_tp_dealloc_9pywrapfst_ArcIterator(PyObject *o) {
+  struct __pyx_obj_9pywrapfst_ArcIterator *p = (struct __pyx_obj_9pywrapfst_ArcIterator *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  __Pyx_call_destructor(p->_fst);
+  __Pyx_call_destructor(p->_aiter);
+  (*Py_TYPE(o)->tp_free)(o);
+}
+
+static PyMethodDef __pyx_methods_9pywrapfst_ArcIterator[] = {
+  {"__next__", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_7__next__, METH_NOARGS|METH_COEXIST, 0},
+  {"done", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_9done, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_8done},
+  {"flags", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_11flags, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_10flags},
+  {"next", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_13next, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_12next},
+  {"position", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_15position, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_14position},
+  {"reset", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_17reset, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_16reset},
+  {"seek", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_19seek, METH_O, __pyx_doc_9pywrapfst_11ArcIterator_18seek},
+  {"set_flags", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_21set_flags, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11ArcIterator_20set_flags},
+  {"value", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_23value, METH_NOARGS, __pyx_doc_9pywrapfst_11ArcIterator_22value},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_25__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9pywrapfst_11ArcIterator_27__setstate_cython__, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static PyTypeObject __pyx_type_9pywrapfst_ArcIterator = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "pywrapfst.ArcIterator", /*tp_name*/
+  sizeof(struct __pyx_obj_9pywrapfst_ArcIterator), /*tp_basicsize*/

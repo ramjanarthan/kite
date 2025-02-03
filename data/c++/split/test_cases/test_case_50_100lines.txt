@@ -1,0 +1,100 @@
+  {"encode", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_19encode, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_18encode},
+  {"invert", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_21invert, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_20invert},
+  {"minimize", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_23minimize, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_22minimize},
+  {"mutable_arcs", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_25mutable_arcs, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_24mutable_arcs},
+  {"mutable_input_symbols", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_27mutable_input_symbols, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_26mutable_input_symbols},
+  {"mutable_output_symbols", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_29mutable_output_symbols, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_28mutable_output_symbols},
+  {"num_states", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_31num_states, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_30num_states},
+  {"project", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_33project, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_32project},
+  {"prune", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_35prune, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_34prune},
+  {"push", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_37push, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_36push},
+  {"relabel_pairs", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_39relabel_pairs, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_38relabel_pairs},
+  {"relabel_tables", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_41relabel_tables, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_40relabel_tables},
+  {"reserve_arcs", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_43reserve_arcs, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_42reserve_arcs},
+  {"reserve_states", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_45reserve_states, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_44reserve_states},
+  {"reweight", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_47reweight, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_46reweight},
+  {"rmepsilon", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_49rmepsilon, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_48rmepsilon},
+  {"set_final", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_51set_final, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_50set_final},
+  {"set_input_symbols", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_53set_input_symbols, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_52set_input_symbols},
+  {"set_output_symbols", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_55set_output_symbols, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_54set_output_symbols},
+  {"set_properties", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_57set_properties, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_11_MutableFst_56set_properties},
+  {"set_start", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_59set_start, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_58set_start},
+  {"topsort", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_61topsort, METH_NOARGS, __pyx_doc_9pywrapfst_11_MutableFst_60topsort},
+  {"union", (PyCFunction)__pyx_pw_9pywrapfst_11_MutableFst_63union, METH_O, __pyx_doc_9pywrapfst_11_MutableFst_62union},
+  {0, 0, 0, 0}
+};
+
+static PyTypeObject __pyx_type_9pywrapfst__MutableFst = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "pywrapfst._MutableFst", /*tp_name*/
+  sizeof(struct __pyx_obj_9pywrapfst__MutableFst), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_9pywrapfst__MutableFst, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  #if CYTHON_COMPILING_IN_PYPY
+  __pyx_pw_9pywrapfst_4_Fst_3__repr__, /*tp_repr*/
+  #else
+  0, /*tp_repr*/
+  #endif
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  #if CYTHON_COMPILING_IN_PYPY
+  __pyx_pw_9pywrapfst_4_Fst_7__str__, /*tp_str*/
+  #else
+  0, /*tp_str*/
+  #endif
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  (No constructor.)\n\n  Mutable FST class, wrapping MutableFstClass.\n\n  This class extends _Fst by adding mutation operations.\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst__MutableFst, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  #if CYTHON_COMPILING_IN_PYPY
+  __pyx_pw_9pywrapfst_4_Fst_5__init__, /*tp_init*/
+  #else
+  0, /*tp_init*/
+  #endif
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst__MutableFst, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+static struct __pyx_vtabstruct_9pywrapfst_Arc __pyx_vtable_9pywrapfst_Arc;
+
+static PyObject *__pyx_tp_new_9pywrapfst_Arc(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_9pywrapfst_Arc *p;
+  PyObject *o;

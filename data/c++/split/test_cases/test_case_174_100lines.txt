@@ -1,0 +1,100 @@
+  outprops |= kError & (inprops1 | inprops2);
+  const bool empty1 = delayed;  // Can the first FST be the empty machine?
+  const bool empty2 = delayed;  // Can the second FST be the empty machine?
+  if (!delayed) {
+    outprops |= (kExpanded | kMutable | kNotTopSorted | kNotString) & inprops1;
+    outprops |= (kNotTopSorted | kNotString) & inprops2;
+  }
+  if (!empty1) outprops |= (kInitialAcyclic | kInitialCyclic) & inprops1;
+  if (!delayed || inprops1 & kAccessible) {
+    outprops |= (kNotAcceptor | kNonIDeterministic | kNonODeterministic |
+                 kEpsilons | kIEpsilons | kOEpsilons | kNotILabelSorted |
+                 kNotOLabelSorted | kWeighted | kWeightedCycles | kCyclic |
+                 kNotAccessible | kNotCoAccessible) &
+                inprops1;
+  }
+  if ((inprops1 & (kAccessible | kCoAccessible)) ==
+          (kAccessible | kCoAccessible) &&
+      !empty1) {
+    outprops |= kAccessible & inprops2;
+    if (!empty2) outprops |= kCoAccessible & inprops2;
+    if (!delayed || inprops2 & kAccessible) {
+      outprops |= (kNotAcceptor | kNonIDeterministic | kNonODeterministic |
+                   kEpsilons | kIEpsilons | kOEpsilons | kNotILabelSorted |
+                   kNotOLabelSorted | kWeighted | kWeightedCycles | kCyclic |
+                   kNotAccessible | kNotCoAccessible) &
+                  inprops2;
+    }
+  }
+  return outprops;
+}
+
+// Properties for a determinized FST.
+uint64 DeterminizeProperties(uint64 inprops, bool has_subsequential_label,
+                             bool distinct_psubsequential_labels) {
+  auto outprops = kAccessible;
+  if ((kAcceptor & inprops) ||
+      ((kNoIEpsilons & inprops) && distinct_psubsequential_labels) ||
+      (has_subsequential_label && distinct_psubsequential_labels)) {
+    outprops |= kIDeterministic;
+  }
+  outprops |= (kError | kAcceptor | kAcyclic | kInitialAcyclic | kCoAccessible |
+               kString) &
+              inprops;
+  if ((inprops & kNoIEpsilons) && distinct_psubsequential_labels) {
+    outprops |= kNoEpsilons & inprops;
+  }
+  if (inprops & kAccessible) {
+    outprops |= (kIEpsilons | kOEpsilons | kCyclic) & inprops;
+  }
+  if (inprops & kAcceptor) outprops |= (kNoIEpsilons | kNoOEpsilons) & inprops;
+  if ((inprops & kNoIEpsilons) && has_subsequential_label) {
+    outprops |= kNoIEpsilons;
+  }
+  return outprops;
+}
+
+// Properties for factored weight FST.
+uint64 FactorWeightProperties(uint64 inprops) {
+  auto outprops = (kExpanded | kMutable | kError | kAcceptor | kAcyclic |
+                   kAccessible | kCoAccessible) &
+                  inprops;
+  if (inprops & kAccessible) {
+    outprops |= (kNotAcceptor | kNonIDeterministic | kNonODeterministic |
+                 kEpsilons | kIEpsilons | kOEpsilons | kCyclic |
+                 kNotILabelSorted | kNotOLabelSorted) &
+                inprops;
+  }
+  return outprops;
+}
+
+// Properties for an inverted FST.
+uint64 InvertProperties(uint64 inprops) {
+  auto outprops = (kExpanded | kMutable | kError | kAcceptor | kNotAcceptor |
+                   kEpsilons | kNoEpsilons | kWeighted | kUnweighted |
+                   kWeightedCycles | kUnweightedCycles | kCyclic | kAcyclic |
+                   kInitialCyclic | kInitialAcyclic | kTopSorted |
+                   kNotTopSorted | kAccessible | kNotAccessible |
+                   kCoAccessible | kNotCoAccessible | kString | kNotString) &
+                  inprops;
+  if (kIDeterministic & inprops) outprops |= kODeterministic;
+  if (kNonIDeterministic & inprops) outprops |= kNonODeterministic;
+  if (kODeterministic & inprops) outprops |= kIDeterministic;
+  if (kNonODeterministic & inprops) outprops |= kNonIDeterministic;
+
+  if (kIEpsilons & inprops) outprops |= kOEpsilons;
+  if (kNoIEpsilons & inprops) outprops |= kNoOEpsilons;
+  if (kOEpsilons & inprops) outprops |= kIEpsilons;
+  if (kNoOEpsilons & inprops) outprops |= kNoIEpsilons;
+
+  if (kILabelSorted & inprops) outprops |= kOLabelSorted;
+  if (kNotILabelSorted & inprops) outprops |= kNotOLabelSorted;
+  if (kOLabelSorted & inprops) outprops |= kILabelSorted;
+  if (kNotOLabelSorted & inprops) outprops |= kNotILabelSorted;
+  return outprops;
+}
+
+// Properties for a projected FST.
+uint64 ProjectProperties(uint64 inprops, bool project_input) {
+  auto outprops = kAcceptor;
+  outprops |= (kExpanded | kMutable | kError | kWeighted | kUnweighted |

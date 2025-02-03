@@ -1,0 +1,100 @@
+    if (c_ != open_paren_) {
+      FSTERROR() << "CompositeWeightReader: Open paren missing: "
+                 << "fst_weight_parentheses flag set correcty?";
+      istrm_.clear(std::ios::badbit);
+      return;
+    }
+    ++depth_;
+    c_ = istrm_.get();
+  }
+}
+
+void CompositeWeightReader::ReadEnd() {
+  if (c_ != EOF && !std::isspace(c_)) {
+    FSTERROR() << "CompositeWeightReader: excess character: '"
+               << static_cast<char>(c_)
+               << "': fst_weight_parentheses flag set correcty?";
+    istrm_.clear(std::ios::badbit);
+  }
+}
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Functions for updating property bits for various FST operations and
+// string names of the properties.
+
+#include <fst/properties.h>
+
+#include <stddef.h>
+#include <vector>
+
+namespace fst {
+
+// These functions determine the properties associated with the FST result of
+// various finite-state operations. The property arguments correspond to the
+// operation's FST arguments. The properties returned assume the operation
+// modifies its first argument. Bitwise-and this result with kCopyProperties for
+// the case when a new (possibly delayed) FST is instead constructed.
+
+// Properties for a concatenatively-closed FST.
+uint64 ClosureProperties(uint64 inprops, bool star, bool delayed) {
+  auto outprops = (kError | kAcceptor | kUnweighted | kAccessible) & inprops;
+  if (inprops & kUnweighted) outprops |= kUnweightedCycles;
+  if (!delayed) {
+    outprops |=
+        (kExpanded | kMutable | kCoAccessible | kNotTopSorted | kNotString) &
+        inprops;
+  }
+  if (!delayed || inprops & kAccessible) {
+    outprops |= (kNotAcceptor | kNonIDeterministic | kNonODeterministic |
+                 kNotILabelSorted | kNotOLabelSorted | kWeighted |
+                 kWeightedCycles | kNotAccessible | kNotCoAccessible) & inprops;
+    if ((inprops & kWeighted) && (inprops & kAccessible) &&
+        (inprops & kCoAccessible)) {
+        outprops |= kWeightedCycles;
+    }
+  }
+  return outprops;
+}
+
+// Properties for a complemented FST.
+uint64 ComplementProperties(uint64 inprops) {
+  auto outprops = kAcceptor | kUnweighted | kUnweightedCycles | kNoEpsilons |
+                  kNoIEpsilons | kNoOEpsilons | kIDeterministic |
+                  kODeterministic | kAccessible;
+  outprops |=
+      (kError | kILabelSorted | kOLabelSorted | kInitialCyclic) & inprops;
+  if (inprops & kAccessible) {
+    outprops |= kNotILabelSorted | kNotOLabelSorted | kCyclic;
+  }
+  return outprops;
+}
+
+// Properties for a composed FST.
+uint64 ComposeProperties(uint64 inprops1, uint64 inprops2) {
+  auto outprops = kError & (inprops1 | inprops2);
+  if (inprops1 & kAcceptor && inprops2 & kAcceptor) {
+    outprops |= kAcceptor | kAccessible;
+    outprops |= (kNoEpsilons | kNoIEpsilons | kNoOEpsilons | kAcyclic |
+                 kInitialAcyclic) &
+                inprops1 & inprops2;
+    if (kNoIEpsilons & inprops1 & inprops2) {
+      outprops |= (kIDeterministic | kODeterministic) & inprops1 & inprops2;
+    }
+  } else {
+    outprops |= kAccessible;
+    outprops |= (kAcceptor | kNoIEpsilons | kAcyclic | kInitialAcyclic) &
+                inprops1 & inprops2;
+    if (kNoIEpsilons & inprops1 & inprops2) {
+      outprops |= kIDeterministic & inprops1 & inprops2;
+    }
+  }
+  return outprops;
+}
+
+// Properties for a concatenated FST.
+uint64 ConcatProperties(uint64 inprops1, uint64 inprops2, bool delayed) {
+  auto outprops = (kAcceptor | kUnweighted | kUnweightedCycles | kAcyclic) &
+                  inprops1 & inprops2;

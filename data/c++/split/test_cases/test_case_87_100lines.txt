@@ -1,0 +1,100 @@
+ * NULL_PROPERTIES = fst.kNullProperties
+ * COPY_PROPERTIES = fst.kCopyProperties             # <<<<<<<<<<<<<<
+ * INTRINSIC_PROPERTIES = fst.kIntrinsicProperties
+ * EXTRINSIC_PROPERTIES = fst.kExtrinsicProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kCopyProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2851, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_COPY_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2851, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2852
+ * NULL_PROPERTIES = fst.kNullProperties
+ * COPY_PROPERTIES = fst.kCopyProperties
+ * INTRINSIC_PROPERTIES = fst.kIntrinsicProperties             # <<<<<<<<<<<<<<
+ * EXTRINSIC_PROPERTIES = fst.kExtrinsicProperties
+ * SET_START_PROPERTIES = fst.kSetStartProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kIntrinsicProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2852, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_INTRINSIC_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2852, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2853
+ * COPY_PROPERTIES = fst.kCopyProperties
+ * INTRINSIC_PROPERTIES = fst.kIntrinsicProperties
+ * EXTRINSIC_PROPERTIES = fst.kExtrinsicProperties             # <<<<<<<<<<<<<<
+ * SET_START_PROPERTIES = fst.kSetStartProperties
+ * SET_FINAL_PROPERTIES = fst.kSetFinalProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kExtrinsicProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2853, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_EXTRINSIC_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2853, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2854
+ * INTRINSIC_PROPERTIES = fst.kIntrinsicProperties
+ * EXTRINSIC_PROPERTIES = fst.kExtrinsicProperties
+ * SET_START_PROPERTIES = fst.kSetStartProperties             # <<<<<<<<<<<<<<
+ * SET_FINAL_PROPERTIES = fst.kSetFinalProperties
+ * ADD_STATE_PROPERTIES = fst.kAddStateProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kSetStartProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2854, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SET_START_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2854, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2855
+ * EXTRINSIC_PROPERTIES = fst.kExtrinsicProperties
+ * SET_START_PROPERTIES = fst.kSetStartProperties
+ * SET_FINAL_PROPERTIES = fst.kSetFinalProperties             # <<<<<<<<<<<<<<
+ * ADD_STATE_PROPERTIES = fst.kAddStateProperties
+ * ADD_ARC_PROPERTIES = fst.kAddArcProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kSetFinalProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2855, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SET_FINAL_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2855, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2856
+ * SET_START_PROPERTIES = fst.kSetStartProperties
+ * SET_FINAL_PROPERTIES = fst.kSetFinalProperties
+ * ADD_STATE_PROPERTIES = fst.kAddStateProperties             # <<<<<<<<<<<<<<
+ * ADD_ARC_PROPERTIES = fst.kAddArcProperties
+ * SET_ARC_PROPERTIES = fst.kSetArcProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAddStateProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2856, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ADD_STATE_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2856, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2857
+ * SET_FINAL_PROPERTIES = fst.kSetFinalProperties
+ * ADD_STATE_PROPERTIES = fst.kAddStateProperties
+ * ADD_ARC_PROPERTIES = fst.kAddArcProperties             # <<<<<<<<<<<<<<
+ * SET_ARC_PROPERTIES = fst.kSetArcProperties
+ * DELETE_STATE_PROPERTIES = fst.kDeleteStatesProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAddArcProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2857, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ADD_ARC_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2857, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2858
+ * ADD_STATE_PROPERTIES = fst.kAddStateProperties
+ * ADD_ARC_PROPERTIES = fst.kAddArcProperties
+ * SET_ARC_PROPERTIES = fst.kSetArcProperties             # <<<<<<<<<<<<<<
+ * DELETE_STATE_PROPERTIES = fst.kDeleteStatesProperties
+ * DELETE_ARC_PROPERTIES = fst.kDeleteArcsProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kSetArcProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2858, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SET_ARC_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2858, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2859
+ * ADD_ARC_PROPERTIES = fst.kAddArcProperties
+ * SET_ARC_PROPERTIES = fst.kSetArcProperties
+ * DELETE_STATE_PROPERTIES = fst.kDeleteStatesProperties             # <<<<<<<<<<<<<<
+ * DELETE_ARC_PROPERTIES = fst.kDeleteArcsProperties
+ * STATE_SORT_PROPERTIES = fst.kStateSortProperties

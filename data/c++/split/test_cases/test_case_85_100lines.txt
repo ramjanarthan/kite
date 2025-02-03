@@ -1,0 +1,100 @@
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kWeighted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2834, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_WEIGHTED, __pyx_t_1) < 0) __PYX_ERR(0, 2834, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2835
+ * NOT_O_LABEL_SORTED = fst.kNotOLabelSorted
+ * WEIGHTED = fst.kWeighted
+ * UNWEIGHTED = fst.kUnweighted             # <<<<<<<<<<<<<<
+ * CYCLIC = fst.kCyclic
+ * ACYCLIC = fst.kAcyclic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kUnweighted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2835, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UNWEIGHTED, __pyx_t_1) < 0) __PYX_ERR(0, 2835, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2836
+ * WEIGHTED = fst.kWeighted
+ * UNWEIGHTED = fst.kUnweighted
+ * CYCLIC = fst.kCyclic             # <<<<<<<<<<<<<<
+ * ACYCLIC = fst.kAcyclic
+ * INITIAL_CYCLIC = fst.kInitialCyclic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kCyclic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2836, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_CYCLIC, __pyx_t_1) < 0) __PYX_ERR(0, 2836, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2837
+ * UNWEIGHTED = fst.kUnweighted
+ * CYCLIC = fst.kCyclic
+ * ACYCLIC = fst.kAcyclic             # <<<<<<<<<<<<<<
+ * INITIAL_CYCLIC = fst.kInitialCyclic
+ * INITIAL_ACYCLIC = fst.kInitialAcyclic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAcyclic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2837, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ACYCLIC, __pyx_t_1) < 0) __PYX_ERR(0, 2837, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2838
+ * CYCLIC = fst.kCyclic
+ * ACYCLIC = fst.kAcyclic
+ * INITIAL_CYCLIC = fst.kInitialCyclic             # <<<<<<<<<<<<<<
+ * INITIAL_ACYCLIC = fst.kInitialAcyclic
+ * TOP_SORTED = fst.kTopSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kInitialCyclic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2838, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_INITIAL_CYCLIC, __pyx_t_1) < 0) __PYX_ERR(0, 2838, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2839
+ * ACYCLIC = fst.kAcyclic
+ * INITIAL_CYCLIC = fst.kInitialCyclic
+ * INITIAL_ACYCLIC = fst.kInitialAcyclic             # <<<<<<<<<<<<<<
+ * TOP_SORTED = fst.kTopSorted
+ * NOT_TOP_SORTED = fst.kNotTopSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kInitialAcyclic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2839, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_INITIAL_ACYCLIC, __pyx_t_1) < 0) __PYX_ERR(0, 2839, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2840
+ * INITIAL_CYCLIC = fst.kInitialCyclic
+ * INITIAL_ACYCLIC = fst.kInitialAcyclic
+ * TOP_SORTED = fst.kTopSorted             # <<<<<<<<<<<<<<
+ * NOT_TOP_SORTED = fst.kNotTopSorted
+ * ACCESSIBLE = fst.kAccessible
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kTopSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2840, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TOP_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2840, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2841
+ * INITIAL_ACYCLIC = fst.kInitialAcyclic
+ * TOP_SORTED = fst.kTopSorted
+ * NOT_TOP_SORTED = fst.kNotTopSorted             # <<<<<<<<<<<<<<
+ * ACCESSIBLE = fst.kAccessible
+ * NOT_ACCESSIBLE = fst.kNotAccessible
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotTopSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2841, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_TOP_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2841, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2842
+ * TOP_SORTED = fst.kTopSorted
+ * NOT_TOP_SORTED = fst.kNotTopSorted
+ * ACCESSIBLE = fst.kAccessible             # <<<<<<<<<<<<<<
+ * NOT_ACCESSIBLE = fst.kNotAccessible
+ * COACCESSIBLE = fst.kCoAccessible
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAccessible); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2842, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ACCESSIBLE, __pyx_t_1) < 0) __PYX_ERR(0, 2842, __pyx_L1_error)

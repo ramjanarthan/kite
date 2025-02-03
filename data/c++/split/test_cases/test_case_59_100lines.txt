@@ -1,0 +1,100 @@
+  {"arcmap", (PyCFunction)__pyx_pw_9pywrapfst_17arcmap, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_16arcmap},
+  {"compose", (PyCFunction)__pyx_pw_9pywrapfst_19compose, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_18compose},
+  {"convert", (PyCFunction)__pyx_pw_9pywrapfst_21convert, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_20convert},
+  {"determinize", (PyCFunction)__pyx_pw_9pywrapfst_23determinize, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_22determinize},
+  {"difference", (PyCFunction)__pyx_pw_9pywrapfst_25difference, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_24difference},
+  {"disambiguate", (PyCFunction)__pyx_pw_9pywrapfst_27disambiguate, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_26disambiguate},
+  {"epsnormalize", (PyCFunction)__pyx_pw_9pywrapfst_29epsnormalize, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_28epsnormalize},
+  {"equal", (PyCFunction)__pyx_pw_9pywrapfst_31equal, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_30equal},
+  {"equivalent", (PyCFunction)__pyx_pw_9pywrapfst_33equivalent, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_32equivalent},
+  {"intersect", (PyCFunction)__pyx_pw_9pywrapfst_35intersect, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_34intersect},
+  {"isomorphic", (PyCFunction)__pyx_pw_9pywrapfst_37isomorphic, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_36isomorphic},
+  {"prune", (PyCFunction)__pyx_pw_9pywrapfst_39prune, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_38prune},
+  {"push", (PyCFunction)__pyx_pw_9pywrapfst_41push, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_40push},
+  {"randequivalent", (PyCFunction)__pyx_pw_9pywrapfst_43randequivalent, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_42randequivalent},
+  {"randgen", (PyCFunction)__pyx_pw_9pywrapfst_45randgen, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_44randgen},
+  {"replace", (PyCFunction)__pyx_pw_9pywrapfst_47replace, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_46replace},
+  {"reverse", (PyCFunction)__pyx_pw_9pywrapfst_49reverse, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_48reverse},
+  {"shortestpath", (PyCFunction)__pyx_pw_9pywrapfst_53shortestpath, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_52shortestpath},
+  {"statemap", (PyCFunction)__pyx_pw_9pywrapfst_55statemap, METH_VARARGS|METH_KEYWORDS, __pyx_doc_9pywrapfst_54statemap},
+  {"synchronize", (PyCFunction)__pyx_pw_9pywrapfst_57synchronize, METH_O, __pyx_doc_9pywrapfst_56synchronize},
+  {0, 0, 0, 0}
+};
+
+#if PY_MAJOR_VERSION >= 3
+#if CYTHON_PEP489_MULTI_PHASE_INIT
+static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
+static int __pyx_pymod_exec_pywrapfst(PyObject* module); /*proto*/
+static PyModuleDef_Slot __pyx_moduledef_slots[] = {
+  {Py_mod_create, (void*)__pyx_pymod_create},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_pywrapfst},
+  {0, NULL}
+};
+#endif
+
+static struct PyModuleDef __pyx_moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "pywrapfst",
+    __pyx_k_Python_interface_to_the_FST_scri, /* m_doc */
+  #if CYTHON_PEP489_MULTI_PHASE_INIT
+    0, /* m_size */
+  #else
+    -1, /* m_size */
+  #endif
+    __pyx_methods /* m_methods */,
+  #if CYTHON_PEP489_MULTI_PHASE_INIT
+    __pyx_moduledef_slots, /* m_slots */
+  #else
+    NULL, /* m_reload */
+  #endif
+    NULL, /* m_traverse */
+    NULL, /* m_clear */
+    NULL /* m_free */
+};
+#endif
+
+static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_n_s_ACCEPTOR, __pyx_k_ACCEPTOR, sizeof(__pyx_k_ACCEPTOR), 0, 0, 1, 1},
+  {&__pyx_n_s_ACCESSIBLE, __pyx_k_ACCESSIBLE, sizeof(__pyx_k_ACCESSIBLE), 0, 0, 1, 1},
+  {&__pyx_n_s_ACYCLIC, __pyx_k_ACYCLIC, sizeof(__pyx_k_ACYCLIC), 0, 0, 1, 1},
+  {&__pyx_n_s_ADD_ARC_PROPERTIES, __pyx_k_ADD_ARC_PROPERTIES, sizeof(__pyx_k_ADD_ARC_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_ADD_STATE_PROPERTIES, __pyx_k_ADD_STATE_PROPERTIES, sizeof(__pyx_k_ADD_STATE_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_ADD_SUPERFINAL_PROPERTIES, __pyx_k_ADD_SUPERFINAL_PROPERTIES, sizeof(__pyx_k_ADD_SUPERFINAL_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_FLAGS, __pyx_k_ARC_FLAGS, sizeof(__pyx_k_ARC_FLAGS), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_I_LABEL_VALUE, __pyx_k_ARC_I_LABEL_VALUE, sizeof(__pyx_k_ARC_I_LABEL_VALUE), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_NEXT_STATE_VALUE, __pyx_k_ARC_NEXT_STATE_VALUE, sizeof(__pyx_k_ARC_NEXT_STATE_VALUE), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_NO_CACHE, __pyx_k_ARC_NO_CACHE, sizeof(__pyx_k_ARC_NO_CACHE), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_O_LABEL_VALUE, __pyx_k_ARC_O_LABEL_VALUE, sizeof(__pyx_k_ARC_O_LABEL_VALUE), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_SORT_PROPERTIES, __pyx_k_ARC_SORT_PROPERTIES, sizeof(__pyx_k_ARC_SORT_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_VALUE_FLAGS, __pyx_k_ARC_VALUE_FLAGS, sizeof(__pyx_k_ARC_VALUE_FLAGS), 0, 0, 1, 1},
+  {&__pyx_n_s_ARC_WEIGHT_VALUE, __pyx_k_ARC_WEIGHT_VALUE, sizeof(__pyx_k_ARC_WEIGHT_VALUE), 0, 0, 1, 1},
+  {&__pyx_kp_s_ArcIterator_at_0x_x, __pyx_k_ArcIterator_at_0x_x, sizeof(__pyx_k_ArcIterator_at_0x_x), 0, 0, 1, 0},
+  {&__pyx_kp_s_Arc_at_0x_x, __pyx_k_Arc_at_0x_x, sizeof(__pyx_k_Arc_at_0x_x), 0, 0, 1, 0},
+  {&__pyx_n_s_BINARY_PROPERTIES, __pyx_k_BINARY_PROPERTIES, sizeof(__pyx_k_BINARY_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_COACCESSIBLE, __pyx_k_COACCESSIBLE, sizeof(__pyx_k_COACCESSIBLE), 0, 0, 1, 1},
+  {&__pyx_n_s_COPY_PROPERTIES, __pyx_k_COPY_PROPERTIES, sizeof(__pyx_k_COPY_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_CYCLIC, __pyx_k_CYCLIC, sizeof(__pyx_k_CYCLIC), 0, 0, 1, 1},
+  {&__pyx_n_s_CalledProcessError, __pyx_k_CalledProcessError, sizeof(__pyx_k_CalledProcessError), 0, 0, 1, 1},
+  {&__pyx_kp_s_Cannot_construct, __pyx_k_Cannot_construct, sizeof(__pyx_k_Cannot_construct), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_encode_as_string_r, __pyx_k_Cannot_encode_as_string_r, sizeof(__pyx_k_Cannot_encode_as_string_r), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_topsort_cyclic_FST, __pyx_k_Cannot_topsort_cyclic_FST, sizeof(__pyx_k_Cannot_topsort_cyclic_FST), 0, 0, 1, 0},
+  {&__pyx_kp_s_Compilation_failed, __pyx_k_Compilation_failed, sizeof(__pyx_k_Compilation_failed), 0, 0, 1, 0},
+  {&__pyx_kp_s_Conversion_to_r_failed, __pyx_k_Conversion_to_r_failed, sizeof(__pyx_k_Conversion_to_r_failed), 0, 0, 1, 0},
+  {&__pyx_n_s_DELETE_ARC_PROPERTIES, __pyx_k_DELETE_ARC_PROPERTIES, sizeof(__pyx_k_DELETE_ARC_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_DELETE_STATE_PROPERTIES, __pyx_k_DELETE_STATE_PROPERTIES, sizeof(__pyx_k_DELETE_STATE_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_n_s_DOT_TSVG, __pyx_k_DOT_TSVG, sizeof(__pyx_k_DOT_TSVG), 0, 0, 1, 1},
+  {&__pyx_n_s_ENCODE_FLAGS, __pyx_k_ENCODE_FLAGS, sizeof(__pyx_k_ENCODE_FLAGS), 0, 0, 1, 1},
+  {&__pyx_n_s_ENCODE_LABELS, __pyx_k_ENCODE_LABELS, sizeof(__pyx_k_ENCODE_LABELS), 0, 0, 1, 1},
+  {&__pyx_n_s_ENCODE_WEIGHTS, __pyx_k_ENCODE_WEIGHTS, sizeof(__pyx_k_ENCODE_WEIGHTS), 0, 0, 1, 1},
+  {&__pyx_n_s_EPSILONS, __pyx_k_EPSILONS, sizeof(__pyx_k_EPSILONS), 0, 0, 1, 1},
+  {&__pyx_n_s_ERROR, __pyx_k_ERROR, sizeof(__pyx_k_ERROR), 0, 0, 1, 1},
+  {&__pyx_n_s_EXPANDED, __pyx_k_EXPANDED, sizeof(__pyx_k_EXPANDED), 0, 0, 1, 1},
+  {&__pyx_n_s_EXTRINSIC_PROPERTIES, __pyx_k_EXTRINSIC_PROPERTIES, sizeof(__pyx_k_EXTRINSIC_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_kp_s_EncodeMapper_at_0x_x, __pyx_k_EncodeMapper_at_0x_x, sizeof(__pyx_k_EncodeMapper_at_0x_x), 0, 0, 1, 0},
+  {&__pyx_n_s_FST_PROPERTIES, __pyx_k_FST_PROPERTIES, sizeof(__pyx_k_FST_PROPERTIES), 0, 0, 1, 1},
+  {&__pyx_kp_s_FarReader_at_0x_x, __pyx_k_FarReader_at_0x_x, sizeof(__pyx_k_FarReader_at_0x_x), 0, 0, 1, 0},
+  {&__pyx_kp_s_FarWriter_at_0x_x, __pyx_k_FarWriter_at_0x_x, sizeof(__pyx_k_FarWriter_at_0x_x), 0, 0, 1, 0},
+  {&__pyx_n_s_Fst, __pyx_k_Fst, sizeof(__pyx_k_Fst), 0, 0, 1, 1},
+  {&__pyx_n_s_FstArgError, __pyx_k_FstArgError, sizeof(__pyx_k_FstArgError), 0, 0, 1, 1},
+  {&__pyx_n_s_FstBadWeightError, __pyx_k_FstBadWeightError, sizeof(__pyx_k_FstBadWeightError), 0, 0, 1, 1},
+  {&__pyx_n_s_FstDeletedConstructorError, __pyx_k_FstDeletedConstructorError, sizeof(__pyx_k_FstDeletedConstructorError), 0, 0, 1, 1},

@@ -1,0 +1,100 @@
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2843
+ * NOT_TOP_SORTED = fst.kNotTopSorted
+ * ACCESSIBLE = fst.kAccessible
+ * NOT_ACCESSIBLE = fst.kNotAccessible             # <<<<<<<<<<<<<<
+ * COACCESSIBLE = fst.kCoAccessible
+ * NOT_COACCESSIBLE = fst.kNotCoAccessible
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotAccessible); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2843, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_ACCESSIBLE, __pyx_t_1) < 0) __PYX_ERR(0, 2843, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2844
+ * ACCESSIBLE = fst.kAccessible
+ * NOT_ACCESSIBLE = fst.kNotAccessible
+ * COACCESSIBLE = fst.kCoAccessible             # <<<<<<<<<<<<<<
+ * NOT_COACCESSIBLE = fst.kNotCoAccessible
+ * STRING = fst.kString
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kCoAccessible); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2844, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_COACCESSIBLE, __pyx_t_1) < 0) __PYX_ERR(0, 2844, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2845
+ * NOT_ACCESSIBLE = fst.kNotAccessible
+ * COACCESSIBLE = fst.kCoAccessible
+ * NOT_COACCESSIBLE = fst.kNotCoAccessible             # <<<<<<<<<<<<<<
+ * STRING = fst.kString
+ * NOT_STRING = fst.kNotString
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotCoAccessible); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2845, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_COACCESSIBLE, __pyx_t_1) < 0) __PYX_ERR(0, 2845, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2846
+ * COACCESSIBLE = fst.kCoAccessible
+ * NOT_COACCESSIBLE = fst.kNotCoAccessible
+ * STRING = fst.kString             # <<<<<<<<<<<<<<
+ * NOT_STRING = fst.kNotString
+ * WEIGHTED_CYCLES = fst.kWeightedCycles
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kString); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2846, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STRING, __pyx_t_1) < 0) __PYX_ERR(0, 2846, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2847
+ * NOT_COACCESSIBLE = fst.kNotCoAccessible
+ * STRING = fst.kString
+ * NOT_STRING = fst.kNotString             # <<<<<<<<<<<<<<
+ * WEIGHTED_CYCLES = fst.kWeightedCycles
+ * UNWEIGHTED_CYCLES = fst.kUnweightedCycles
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotString); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2847, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_STRING, __pyx_t_1) < 0) __PYX_ERR(0, 2847, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2848
+ * STRING = fst.kString
+ * NOT_STRING = fst.kNotString
+ * WEIGHTED_CYCLES = fst.kWeightedCycles             # <<<<<<<<<<<<<<
+ * UNWEIGHTED_CYCLES = fst.kUnweightedCycles
+ * NULL_PROPERTIES = fst.kNullProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kWeightedCycles); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2848, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_WEIGHTED_CYCLES, __pyx_t_1) < 0) __PYX_ERR(0, 2848, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2849
+ * NOT_STRING = fst.kNotString
+ * WEIGHTED_CYCLES = fst.kWeightedCycles
+ * UNWEIGHTED_CYCLES = fst.kUnweightedCycles             # <<<<<<<<<<<<<<
+ * NULL_PROPERTIES = fst.kNullProperties
+ * COPY_PROPERTIES = fst.kCopyProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kUnweightedCycles); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2849, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UNWEIGHTED_CYCLES, __pyx_t_1) < 0) __PYX_ERR(0, 2849, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2850
+ * WEIGHTED_CYCLES = fst.kWeightedCycles
+ * UNWEIGHTED_CYCLES = fst.kUnweightedCycles
+ * NULL_PROPERTIES = fst.kNullProperties             # <<<<<<<<<<<<<<
+ * COPY_PROPERTIES = fst.kCopyProperties
+ * INTRINSIC_PROPERTIES = fst.kIntrinsicProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNullProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2850, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NULL_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2850, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2851
+ * UNWEIGHTED_CYCLES = fst.kUnweightedCycles

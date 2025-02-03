@@ -1,0 +1,50 @@
+
+            decoded = ds.stt(audio)
+
+            queue_out.put({'wav': filename, 'prediction': decoded, 'ground_truth': msg['transcript']})
+        except FileNotFoundError as ex:
+            print('FileNotFoundError: ', ex)
+
+        print(queue_out.qsize(), end='\r') # Update the current progress
+        queue_in.task_done()
+
+def main(args, _):
+    manager = Manager()
+    work_todo = JoinableQueue()   # this is where we are going to store input data
+    work_done = manager.Queue()  # this where we are gonna push them out
+
+    processes = []
+    for i in range(args.proc):
+        worker_process = Process(target=tflite_worker, args=(args.model, args.scorer, work_todo, work_done, i), daemon=True, name='tflite_process_{}'.format(i))
+        worker_process.start()        # Launch reader() as a separate python process
+        processes.append(worker_process)
+
+    print([x.name for x in processes])
+
+    wavlist = []
+    ground_truths = []
+    predictions = []
+    losses = []
+    wav_filenames = []
+
+    with open(args.csv, 'r') as csvfile:
+        csvreader = csv.DictReader(csvfile)
+        count = 0
+        for row in csvreader:
+            count += 1
+            # Relative paths are relative to the folder the CSV file is in
+            if not os.path.isabs(row['wav_filename']):
+                row['wav_filename'] = os.path.join(os.path.dirname(args.csv), row['wav_filename'])
+            work_todo.put({'filename': row['wav_filename'], 'transcript': row['transcript']})
+            wav_filenames.extend(row['wav_filename'])
+
+    print('Totally %d wav entries found in csv\n' % count)
+    work_todo.join()
+    print('\nTotally %d wav file transcripted' % work_done.qsize())
+
+    while not work_done.empty():
+        msg = work_done.get()
+        losses.append(0.0)
+        ground_truths.append(msg['ground_truth'])
+        predictions.append(msg['prediction'])
+        wavlist.append(msg['wav'])

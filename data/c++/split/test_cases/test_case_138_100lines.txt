@@ -1,0 +1,100 @@
+         case -2:
+           if (8 * sizeof(Py_ssize_t) > 2 * PyLong_SHIFT) {
+             return -(Py_ssize_t) (((((size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+           }
+           break;
+         case 3:
+           if (8 * sizeof(Py_ssize_t) > 3 * PyLong_SHIFT) {
+             return (Py_ssize_t) (((((((size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+           }
+           break;
+         case -3:
+           if (8 * sizeof(Py_ssize_t) > 3 * PyLong_SHIFT) {
+             return -(Py_ssize_t) (((((((size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+           }
+           break;
+         case 4:
+           if (8 * sizeof(Py_ssize_t) > 4 * PyLong_SHIFT) {
+             return (Py_ssize_t) (((((((((size_t)digits[3]) << PyLong_SHIFT) | (size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+           }
+           break;
+         case -4:
+           if (8 * sizeof(Py_ssize_t) > 4 * PyLong_SHIFT) {
+             return -(Py_ssize_t) (((((((((size_t)digits[3]) << PyLong_SHIFT) | (size_t)digits[2]) << PyLong_SHIFT) | (size_t)digits[1]) << PyLong_SHIFT) | (size_t)digits[0]));
+           }
+           break;
+      }
+    }
+    #endif
+    return PyLong_AsSsize_t(b);
+  }
+  x = PyNumber_Index(b);
+  if (!x) return -1;
+  ival = PyInt_AsSsize_t(x);
+  Py_DECREF(x);
+  return ival;
+}
+static CYTHON_INLINE PyObject * __Pyx_PyInt_FromSize_t(size_t ival) {
+    return PyInt_FromSize_t(ival);
+}
+
+
+#endif /* Py_PYTHON_H */
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/linear/linear-fst.h>
+#include <fst/register.h>
+
+using fst::LinearClassifierFst;
+using fst::StdArc;
+using fst::LogArc;
+
+REGISTER_FST(LinearClassifierFst, StdArc);
+REGISTER_FST(LinearClassifierFst, LogArc);
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <cctype>
+#include <cstdio>
+#include <set>
+
+#include <fst/compat.h>
+#include <fst/flags.h>
+#include <fst/extensions/linear/linearscript.h>
+#include <fst/arc.h>
+#include <fstream>
+#include <fst/script/script-impl.h>
+
+DEFINE_string(delimiter, "|",
+              "Single non-white-space character delimiter inside sequences of "
+              "feature symbols and output symbols");
+DEFINE_string(empty_symbol, "<empty>",
+              "Special symbol that designates an empty sequence");
+
+DEFINE_string(start_symbol, "<s>", "Start of sentence symbol");
+DEFINE_string(end_symbol, "</s>", "End of sentence symbol");
+
+DEFINE_bool(classifier, false,
+            "Treat input model as a classifier instead of a tagger");
+
+namespace fst {
+namespace script {
+
+bool ValidateDelimiter() {
+  if (FLAGS_delimiter.size() == 1 && !std::isspace(FLAGS_delimiter[0]))
+    return true;
+  return false;
+}
+
+bool ValidateEmptySymbol() {
+  bool okay = !FLAGS_empty_symbol.empty();
+  for (size_t i = 0; i < FLAGS_empty_symbol.size(); ++i) {
+    char c = FLAGS_empty_symbol[i];
+    if (std::isspace(c)) okay = false;
+  }
+  return okay;
+}
+
+void LinearCompile(const string &arc_type, const string &epsilon_symbol,
+                   const string &unknown_symbol, const string &vocab,

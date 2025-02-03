@@ -1,0 +1,100 @@
+    if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
+      __pyx_wrapperbase_9pywrapfst_12EncodeMapper_6__call__ = *((PyWrapperDescrObject *)wrapper)->d_base;
+      __pyx_wrapperbase_9pywrapfst_12EncodeMapper_6__call__.doc = __pyx_doc_9pywrapfst_12EncodeMapper_6__call__;
+      ((PyWrapperDescrObject *)wrapper)->d_base = &__pyx_wrapperbase_9pywrapfst_12EncodeMapper_6__call__;
+    }
+  }
+  #endif
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_EncodeMapper.tp_dict, __pyx_vtabptr_9pywrapfst_EncodeMapper) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "EncodeMapper", (PyObject *)&__pyx_type_9pywrapfst_EncodeMapper) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_EncodeMapper) < 0) __PYX_ERR(0, 1206, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_EncodeMapper = &__pyx_type_9pywrapfst_EncodeMapper;
+  __pyx_vtabptr_9pywrapfst__Fst = &__pyx_vtable_9pywrapfst__Fst;
+  __pyx_vtable_9pywrapfst__Fst.arc_type = (std::string (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_arc_type;
+  __pyx_vtable_9pywrapfst__Fst.arcs = (struct __pyx_obj_9pywrapfst_ArcIterator *(*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_arcs;
+  __pyx_vtable_9pywrapfst__Fst.copy = (struct __pyx_obj_9pywrapfst__Fst *(*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_copy;
+  __pyx_vtable_9pywrapfst__Fst.draw = (void (*)(struct __pyx_obj_9pywrapfst__Fst *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_4_Fst_draw *__pyx_optional_args))__pyx_f_9pywrapfst_4_Fst_draw;
+  __pyx_vtable_9pywrapfst__Fst.final = (struct __pyx_obj_9pywrapfst_Weight *(*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_final;
+  __pyx_vtable_9pywrapfst__Fst.fst_type = (std::string (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_fst_type;
+  __pyx_vtable_9pywrapfst__Fst.input_symbols = (struct __pyx_obj_9pywrapfst__FstSymbolTable *(*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_input_symbols;
+  __pyx_vtable_9pywrapfst__Fst.num_arcs = (size_t (*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_num_arcs;
+  __pyx_vtable_9pywrapfst__Fst.num_input_epsilons = (size_t (*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_num_input_epsilons;
+  __pyx_vtable_9pywrapfst__Fst.num_output_epsilons = (size_t (*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_num_output_epsilons;
+  __pyx_vtable_9pywrapfst__Fst.output_symbols = (struct __pyx_obj_9pywrapfst__FstSymbolTable *(*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_output_symbols;
+  __pyx_vtable_9pywrapfst__Fst.properties = (__pyx_t_10basictypes_uint64 (*)(struct __pyx_obj_9pywrapfst__Fst *, __pyx_t_10basictypes_uint64, bool, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_properties;
+  __pyx_vtable_9pywrapfst__Fst.start = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_start;
+  __pyx_vtable_9pywrapfst__Fst.states = (struct __pyx_obj_9pywrapfst_StateIterator *(*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_states;
+  __pyx_vtable_9pywrapfst__Fst.text = (std::string (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_4_Fst_text *__pyx_optional_args))__pyx_f_9pywrapfst_4_Fst_text;
+  __pyx_vtable_9pywrapfst__Fst.verify = (bool (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_verify;
+  __pyx_vtable_9pywrapfst__Fst.weight_type = (std::string (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_weight_type;
+  __pyx_vtable_9pywrapfst__Fst.write = (void (*)(struct __pyx_obj_9pywrapfst__Fst *, PyObject *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_write;
+  __pyx_vtable_9pywrapfst__Fst.write_to_string = (std::string (*)(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_4_Fst_write_to_string;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__Fst) < 0) __PYX_ERR(0, 1362, __pyx_L1_error)
+  __pyx_type_9pywrapfst__Fst.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__Fst.tp_dict, __pyx_vtabptr_9pywrapfst__Fst) < 0) __PYX_ERR(0, 1362, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_Fst", (PyObject *)&__pyx_type_9pywrapfst__Fst) < 0) __PYX_ERR(0, 1362, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__Fst = &__pyx_type_9pywrapfst__Fst;
+  __pyx_vtabptr_9pywrapfst__MutableFst = &__pyx_vtable_9pywrapfst__MutableFst;
+  __pyx_vtable_9pywrapfst__MutableFst.__pyx_base = *__pyx_vtabptr_9pywrapfst__Fst;
+  __pyx_vtable_9pywrapfst__MutableFst._check_mutating_imethod = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *))__pyx_f_9pywrapfst_11_MutableFst__check_mutating_imethod;
+  __pyx_vtable_9pywrapfst__MutableFst._add_arc = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64, struct __pyx_obj_9pywrapfst_Arc *))__pyx_f_9pywrapfst_11_MutableFst__add_arc;
+  __pyx_vtable_9pywrapfst__MutableFst.add_state = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__MutableFst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11_MutableFst_add_state;
+  __pyx_vtable_9pywrapfst__MutableFst._arcsort = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__arcsort *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__arcsort;
+  __pyx_vtable_9pywrapfst__MutableFst._closure = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__closure *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__closure;
+  __pyx_vtable_9pywrapfst__MutableFst._concat = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst__Fst *))__pyx_f_9pywrapfst_11_MutableFst__concat;
+  __pyx_vtable_9pywrapfst__MutableFst._connect = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *))__pyx_f_9pywrapfst_11_MutableFst__connect;
+  __pyx_vtable_9pywrapfst__MutableFst._decode = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst_EncodeMapper *))__pyx_f_9pywrapfst_11_MutableFst__decode;
+  __pyx_vtable_9pywrapfst__MutableFst._delete_arcs = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64, struct __pyx_opt_args_9pywrapfst_11_MutableFst__delete_arcs *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__delete_arcs;
+  __pyx_vtable_9pywrapfst__MutableFst._delete_states = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__delete_states *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__delete_states;
+  __pyx_vtable_9pywrapfst__MutableFst._encode = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst_EncodeMapper *))__pyx_f_9pywrapfst_11_MutableFst__encode;
+  __pyx_vtable_9pywrapfst__MutableFst._invert = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *))__pyx_f_9pywrapfst_11_MutableFst__invert;
+  __pyx_vtable_9pywrapfst__MutableFst._minimize = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__minimize *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__minimize;
+  __pyx_vtable_9pywrapfst__MutableFst.mutable_arcs = (struct __pyx_obj_9pywrapfst_MutableArcIterator *(*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11_MutableFst_mutable_arcs;
+  __pyx_vtable_9pywrapfst__MutableFst.num_states = (__pyx_t_10basictypes_int64 (*)(struct __pyx_obj_9pywrapfst__MutableFst *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11_MutableFst_num_states;
+  __pyx_vtable_9pywrapfst__MutableFst._project = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__project *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__project;
+  __pyx_vtable_9pywrapfst__MutableFst._prune = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__prune *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__prune;
+  __pyx_vtable_9pywrapfst__MutableFst._push = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__push *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__push;
+  __pyx_vtable_9pywrapfst__MutableFst._relabel_pairs = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__relabel_pairs *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__relabel_pairs;
+  __pyx_vtable_9pywrapfst__MutableFst._relabel_tables = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__relabel_tables *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__relabel_tables;
+  __pyx_vtable_9pywrapfst__MutableFst._reserve_arcs = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64, size_t))__pyx_f_9pywrapfst_11_MutableFst__reserve_arcs;
+  __pyx_vtable_9pywrapfst__MutableFst._reserve_states = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64))__pyx_f_9pywrapfst_11_MutableFst__reserve_states;
+  __pyx_vtable_9pywrapfst__MutableFst._reweight = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, PyObject *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__reweight *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__reweight;
+  __pyx_vtable_9pywrapfst__MutableFst._rmepsilon = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_opt_args_9pywrapfst_11_MutableFst__rmepsilon *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__rmepsilon;
+  __pyx_vtable_9pywrapfst__MutableFst._set_final = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64, struct __pyx_opt_args_9pywrapfst_11_MutableFst__set_final *__pyx_optional_args))__pyx_f_9pywrapfst_11_MutableFst__set_final;
+  __pyx_vtable_9pywrapfst__MutableFst._set_properties = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_uint64, __pyx_t_10basictypes_uint64))__pyx_f_9pywrapfst_11_MutableFst__set_properties;
+  __pyx_vtable_9pywrapfst__MutableFst._set_start = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, __pyx_t_10basictypes_int64))__pyx_f_9pywrapfst_11_MutableFst__set_start;
+  __pyx_vtable_9pywrapfst__MutableFst._set_input_symbols = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst__SymbolTable *))__pyx_f_9pywrapfst_11_MutableFst__set_input_symbols;
+  __pyx_vtable_9pywrapfst__MutableFst._set_output_symbols = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst__SymbolTable *))__pyx_f_9pywrapfst_11_MutableFst__set_output_symbols;
+  __pyx_vtable_9pywrapfst__MutableFst._topsort = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *))__pyx_f_9pywrapfst_11_MutableFst__topsort;
+  __pyx_vtable_9pywrapfst__MutableFst._union = (void (*)(struct __pyx_obj_9pywrapfst__MutableFst *, struct __pyx_obj_9pywrapfst__Fst *))__pyx_f_9pywrapfst_11_MutableFst__union;
+  __pyx_type_9pywrapfst__MutableFst.tp_base = __pyx_ptype_9pywrapfst__Fst;
+  if (PyType_Ready(&__pyx_type_9pywrapfst__MutableFst) < 0) __PYX_ERR(0, 1774, __pyx_L1_error)
+  __pyx_type_9pywrapfst__MutableFst.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst__MutableFst.tp_dict, __pyx_vtabptr_9pywrapfst__MutableFst) < 0) __PYX_ERR(0, 1774, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "_MutableFst", (PyObject *)&__pyx_type_9pywrapfst__MutableFst) < 0) __PYX_ERR(0, 1774, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst__MutableFst = &__pyx_type_9pywrapfst__MutableFst;
+  __pyx_vtabptr_9pywrapfst_Arc = &__pyx_vtable_9pywrapfst_Arc;
+  __pyx_vtable_9pywrapfst_Arc.copy = (struct __pyx_obj_9pywrapfst_Arc *(*)(struct __pyx_obj_9pywrapfst_Arc *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_3Arc_copy;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_Arc) < 0) __PYX_ERR(0, 2898, __pyx_L1_error)
+  __pyx_type_9pywrapfst_Arc.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_Arc.tp_dict, __pyx_vtabptr_9pywrapfst_Arc) < 0) __PYX_ERR(0, 2898, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "Arc", (PyObject *)&__pyx_type_9pywrapfst_Arc) < 0) __PYX_ERR(0, 2898, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_Arc) < 0) __PYX_ERR(0, 2898, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_Arc = &__pyx_type_9pywrapfst_Arc;
+  __pyx_vtabptr_9pywrapfst_ArcIterator = &__pyx_vtable_9pywrapfst_ArcIterator;
+  __pyx_vtable_9pywrapfst_ArcIterator.done = (bool (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_done;
+  __pyx_vtable_9pywrapfst_ArcIterator.flags = (__pyx_t_10basictypes_uint32 (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_flags;
+  __pyx_vtable_9pywrapfst_ArcIterator.next = (void (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_next;
+  __pyx_vtable_9pywrapfst_ArcIterator.position = (size_t (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_position;
+  __pyx_vtable_9pywrapfst_ArcIterator.reset = (void (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_reset;
+  __pyx_vtable_9pywrapfst_ArcIterator.seek = (void (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, size_t, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_seek;
+  __pyx_vtable_9pywrapfst_ArcIterator.set_flags = (void (*)(struct __pyx_obj_9pywrapfst_ArcIterator *, __pyx_t_10basictypes_uint32, __pyx_t_10basictypes_uint32, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_set_flags;
+  __pyx_vtable_9pywrapfst_ArcIterator.value = (PyObject *(*)(struct __pyx_obj_9pywrapfst_ArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_11ArcIterator_value;
+  if (PyType_Ready(&__pyx_type_9pywrapfst_ArcIterator) < 0) __PYX_ERR(0, 2965, __pyx_L1_error)
+  __pyx_type_9pywrapfst_ArcIterator.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_9pywrapfst_ArcIterator.tp_dict, __pyx_vtabptr_9pywrapfst_ArcIterator) < 0) __PYX_ERR(0, 2965, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "ArcIterator", (PyObject *)&__pyx_type_9pywrapfst_ArcIterator) < 0) __PYX_ERR(0, 2965, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_9pywrapfst_ArcIterator) < 0) __PYX_ERR(0, 2965, __pyx_L1_error)
+  __pyx_ptype_9pywrapfst_ArcIterator = &__pyx_type_9pywrapfst_ArcIterator;
+  __pyx_vtabptr_9pywrapfst_MutableArcIterator = &__pyx_vtable_9pywrapfst_MutableArcIterator;
+  __pyx_vtable_9pywrapfst_MutableArcIterator.done = (bool (*)(struct __pyx_obj_9pywrapfst_MutableArcIterator *, int __pyx_skip_dispatch))__pyx_f_9pywrapfst_18MutableArcIterator_done;

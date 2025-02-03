@@ -1,0 +1,100 @@
+  // We assume that all terminals are positive. The resulting ReplaceFst is
+  // known to be kILabelSorted when: (1) all sub-FSTs are kILabelSorted, (2) the
+  // input label of the return arc is epsilon, and (3) one of the 3 following
+  // conditions is satisfied:
+  //
+  //  1. the input label of the call arc is not epsilon
+  //  2. all non-terminals are negative, or
+  //  3. all non-terninals are positive and form a dense range containing 1.
+  if (all_ilabel_sorted && epsilon_on_return &&
+      (!epsilon_on_call || all_negative_or_dense)) {
+    outprops |= kILabelSorted;
+  }
+  // Similarly, the resulting ReplaceFst is known to be kOLabelSorted when: (1)
+  // all sub-FSTs are kOLabelSorted, (2) the output label of the return arc is
+  // epsilon, and (3) one of the 3 following conditions is satisfied:
+  //
+  //  1. the output label of the call arc is not epsilon
+  //  2. all non-terminals are negative, or
+  //  3. all non-terninals are positive and form a dense range containing 1.
+  if (all_olabel_sorted && out_epsilon_on_return &&
+      (!out_epsilon_on_call || all_negative_or_dense)) {
+    outprops |= kOLabelSorted;
+  }
+  return outprops;
+}
+
+// Properties for a relabeled FST.
+uint64 RelabelProperties(uint64 inprops) {
+  static constexpr auto outprops =
+      kExpanded | kMutable | kError | kWeighted | kUnweighted |
+      kWeightedCycles | kUnweightedCycles | kCyclic | kAcyclic |
+      kInitialCyclic | kInitialAcyclic | kTopSorted | kNotTopSorted |
+      kAccessible | kNotAccessible | kCoAccessible | kNotCoAccessible |
+      kString | kNotString;
+  return outprops & inprops;
+}
+
+// Properties for a reversed FST (the superinitial state limits this set).
+uint64 ReverseProperties(uint64 inprops, bool has_superinitial) {
+  auto outprops = (kExpanded | kMutable | kError | kAcceptor | kNotAcceptor |
+                   kEpsilons | kIEpsilons | kOEpsilons | kUnweighted | kCyclic |
+                   kAcyclic | kWeightedCycles | kUnweightedCycles) &
+                  inprops;
+  if (has_superinitial) outprops |= kWeighted & inprops;
+  return outprops;
+}
+
+// Properties for re-weighted FST.
+uint64 ReweightProperties(uint64 inprops) {
+  auto outprops = inprops & kWeightInvariantProperties;
+  outprops = outprops & ~kCoAccessible;
+  return outprops;
+}
+
+// Properties for an epsilon-removed FST.
+uint64 RmEpsilonProperties(uint64 inprops, bool delayed) {
+  auto outprops = kNoEpsilons;
+  outprops |= (kError | kAcceptor | kAcyclic | kInitialAcyclic) & inprops;
+  if (inprops & kAcceptor) outprops |= kNoIEpsilons | kNoOEpsilons;
+  if (!delayed) {
+    outprops |= kExpanded | kMutable;
+    outprops |= kTopSorted & inprops;
+  }
+  if (!delayed || inprops & kAccessible) outprops |= kNotAcceptor & inprops;
+  return outprops;
+}
+
+// Properties for shortest path. This function computes how the properties of
+// the output of shortest path need to be updated, given that 'props' is already
+// known.
+uint64 ShortestPathProperties(uint64 props, bool tree) {
+  auto outprops =
+      props | kAcyclic | kInitialAcyclic | kAccessible | kUnweightedCycles;
+  if (!tree) outprops |= kCoAccessible;
+  return outprops;
+}
+
+// Properties for a synchronized FST.
+uint64 SynchronizeProperties(uint64 inprops) {
+  auto outprops = (kError | kAcceptor | kAcyclic | kAccessible | kCoAccessible |
+                   kUnweighted | kUnweightedCycles) &
+                  inprops;
+  if (inprops & kAccessible) {
+    outprops |= (kCyclic | kNotCoAccessible | kWeighted | kWeightedCycles) &
+        inprops;
+  }
+  return outprops;
+}
+
+// Properties for a unioned FST.
+uint64 UnionProperties(uint64 inprops1, uint64 inprops2, bool delayed) {
+  auto outprops =
+      (kAcceptor | kUnweighted | kUnweightedCycles | kAcyclic | kAccessible) &
+      inprops1 & inprops2;
+  outprops |= kError & (inprops1 | inprops2);
+  outprops |= kInitialAcyclic;
+  bool empty1 = delayed;  // Can the first FST be the empty machine?
+  bool empty2 = delayed;  // Can the second FST be the empty machine?
+  if (!delayed) {
+    outprops |= (kExpanded | kMutable | kNotTopSorted) & inprops1;

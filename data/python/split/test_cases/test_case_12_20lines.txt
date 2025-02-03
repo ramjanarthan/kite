@@ -1,0 +1,20 @@
+            assert beta is not None, 'beta parameter is required'
+            assert scorer_path, 'scorer_path parameter is required'
+
+            err = self.init(scorer_path.encode('utf-8'), alphabet)
+            if err != 0:
+                raise ValueError('Scorer initialization failed with error code 0x{:X}'.format(err))
+
+            self.reset_params(alpha, beta)
+
+
+class Alphabet(swigwrapper.Alphabet):
+    """Convenience wrapper for Alphabet which calls init in the constructor"""
+    def __init__(self, config_path):
+        super(Alphabet, self).__init__()
+        err = self.init(config_path.encode('utf-8'))
+        if err != 0:
+            raise ValueError('Alphabet initialization failed with error code 0x{:X}'.format(err))
+
+    def CanEncodeSingle(self, input):
+        '''

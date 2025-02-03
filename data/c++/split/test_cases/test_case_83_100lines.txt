@@ -1,0 +1,100 @@
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2818
+ * MUTABLE = fst.kMutable
+ * ERROR = fst.kError
+ * ACCEPTOR = fst.kAcceptor             # <<<<<<<<<<<<<<
+ * NOT_ACCEPTOR = fst.kNotAcceptor
+ * I_DETERMINISTIC = fst.kIDeterministic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAcceptor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2818, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ACCEPTOR, __pyx_t_1) < 0) __PYX_ERR(0, 2818, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2819
+ * ERROR = fst.kError
+ * ACCEPTOR = fst.kAcceptor
+ * NOT_ACCEPTOR = fst.kNotAcceptor             # <<<<<<<<<<<<<<
+ * I_DETERMINISTIC = fst.kIDeterministic
+ * NON_I_DETERMINISTIC = fst.kNonIDeterministic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotAcceptor); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2819, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_ACCEPTOR, __pyx_t_1) < 0) __PYX_ERR(0, 2819, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2820
+ * ACCEPTOR = fst.kAcceptor
+ * NOT_ACCEPTOR = fst.kNotAcceptor
+ * I_DETERMINISTIC = fst.kIDeterministic             # <<<<<<<<<<<<<<
+ * NON_I_DETERMINISTIC = fst.kNonIDeterministic
+ * O_DETERMINISTIC = fst.kODeterministic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kIDeterministic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2820, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_I_DETERMINISTIC, __pyx_t_1) < 0) __PYX_ERR(0, 2820, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2821
+ * NOT_ACCEPTOR = fst.kNotAcceptor
+ * I_DETERMINISTIC = fst.kIDeterministic
+ * NON_I_DETERMINISTIC = fst.kNonIDeterministic             # <<<<<<<<<<<<<<
+ * O_DETERMINISTIC = fst.kODeterministic
+ * NON_O_DETERMINISTIC = fst.kNonODeterministic
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNonIDeterministic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2821, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NON_I_DETERMINISTIC, __pyx_t_1) < 0) __PYX_ERR(0, 2821, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2822
+ * I_DETERMINISTIC = fst.kIDeterministic
+ * NON_I_DETERMINISTIC = fst.kNonIDeterministic
+ * O_DETERMINISTIC = fst.kODeterministic             # <<<<<<<<<<<<<<
+ * NON_O_DETERMINISTIC = fst.kNonODeterministic
+ * EPSILONS = fst.kEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kODeterministic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2822, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_O_DETERMINISTIC, __pyx_t_1) < 0) __PYX_ERR(0, 2822, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2823
+ * NON_I_DETERMINISTIC = fst.kNonIDeterministic
+ * O_DETERMINISTIC = fst.kODeterministic
+ * NON_O_DETERMINISTIC = fst.kNonODeterministic             # <<<<<<<<<<<<<<
+ * EPSILONS = fst.kEpsilons
+ * NO_EPSILONS = fst.kNoEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNonODeterministic); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2823, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NON_O_DETERMINISTIC, __pyx_t_1) < 0) __PYX_ERR(0, 2823, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2824
+ * O_DETERMINISTIC = fst.kODeterministic
+ * NON_O_DETERMINISTIC = fst.kNonODeterministic
+ * EPSILONS = fst.kEpsilons             # <<<<<<<<<<<<<<
+ * NO_EPSILONS = fst.kNoEpsilons
+ * I_EPSILONS = fst.kIEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2824, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2824, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2825
+ * NON_O_DETERMINISTIC = fst.kNonODeterministic
+ * EPSILONS = fst.kEpsilons
+ * NO_EPSILONS = fst.kNoEpsilons             # <<<<<<<<<<<<<<
+ * I_EPSILONS = fst.kIEpsilons
+ * NO_I_EPSILONS = fst.kNoIEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNoEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2825, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NO_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2825, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2826
+ * EPSILONS = fst.kEpsilons

@@ -1,0 +1,100 @@
+    }
+  } else {
+    for (int i = 1; i < argc - 1; ++i)
+      in_fnames.push_back(argv[i]);
+  }
+  if (in_fnames.empty())
+    in_fnames.push_back(argc == 2 && strcmp(argv[1], "-") != 0 ? argv[1] : "");
+
+  string out_fname =
+      argc > 2 && strcmp(argv[argc - 1], "-") != 0 ? argv[argc - 1] : "";
+
+  const auto arc_type = s::LoadArcTypeFromFst(in_fnames[0]);
+  if (arc_type.empty()) return 1;
+
+  const auto far_type = s::GetFarType(FLAGS_far_type);
+
+  s::FarCreate(in_fnames, out_fname, arc_type, FLAGS_generate_keys, far_type,
+               FLAGS_key_prefix, FLAGS_key_suffix);
+
+  return 0;
+}
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <ios>
+
+#include <fst/extensions/far/stlist.h>
+#include <fstream>
+
+namespace fst {
+
+bool IsSTList(const string &filename) {
+  std::ifstream strm(filename, std::ios_base::in | std::ios_base::binary);
+  if (!strm) return false;
+  int32 magic_number = 0;
+  ReadType(strm, &magic_number);
+  return magic_number == kSTListMagicNumber;
+}
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Reverses an MPDT.
+
+#include <cstring>
+
+#include <memory>
+#include <string>
+#include <vector>
+
+#include <fst/flags.h>
+#include <fst/log.h>
+
+#include <fst/extensions/mpdt/mpdtscript.h>
+#include <fst/extensions/mpdt/read_write_utils.h>
+#include <fst/util.h>
+
+DEFINE_string(mpdt_parentheses, "",
+              "MPDT parenthesis label pairs with assignments.");
+
+DEFINE_string(mpdt_new_parentheses, "",
+              "Output for reassigned parentheses and stacks");
+
+int main(int argc, char **argv) {
+  namespace s = fst::script;
+  using fst::ReadLabelTriples;
+  using fst::WriteLabelTriples;
+  using fst::script::FstClass;
+  using fst::script::VectorFstClass;
+
+  string usage = "Reverse an MPDT.\n\n  Usage: ";
+  usage += argv[0];
+  usage += " in.pdt [out.fst]\n";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  if (argc > 3) {
+    ShowUsage();
+    return 1;
+  }
+
+  const string in_name =
+      (argc > 1 && (strcmp(argv[1], "-") != 0)) ? argv[1] : "";
+  const string out_name = argc > 2 ? argv[2] : "";
+
+  std::unique_ptr<FstClass> ifst(FstClass::Read(in_name));
+  if (!ifst) return 1;
+
+  if (FLAGS_mpdt_parentheses.empty()) {
+    LOG(ERROR) << argv[0] << ": No MPDT parenthesis label pairs provided";
+    return 1;
+  }
+
+  if (FLAGS_mpdt_new_parentheses.empty()) {
+    LOG(ERROR) << argv[0] << ": No MPDT output parenthesis label file provided";
+    return 1;
+  }
+
+  std::vector<s::LabelPair> parens;

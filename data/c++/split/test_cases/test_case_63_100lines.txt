@@ -1,0 +1,100 @@
+  {&__pyx_n_s_text, __pyx_k_text, sizeof(__pyx_k_text), 0, 0, 1, 1},
+  {&__pyx_n_s_times, __pyx_k_times, sizeof(__pyx_k_times), 0, 0, 1, 1},
+  {&__pyx_n_s_title, __pyx_k_title, sizeof(__pyx_k_title), 0, 0, 1, 1},
+  {&__pyx_n_s_to_final, __pyx_k_to_final, sizeof(__pyx_k_to_final), 0, 0, 1, 1},
+  {&__pyx_n_s_to_string, __pyx_k_to_string, sizeof(__pyx_k_to_string), 0, 0, 1, 1},
+  {&__pyx_n_b_tropical, __pyx_k_tropical, sizeof(__pyx_k_tropical), 0, 0, 0, 1},
+  {&__pyx_n_s_type, __pyx_k_type, sizeof(__pyx_k_type), 0, 0, 1, 1},
+  {&__pyx_n_b_uniform, __pyx_k_uniform, sizeof(__pyx_k_uniform), 0, 0, 0, 1},
+  {&__pyx_n_s_unique, __pyx_k_unique, sizeof(__pyx_k_unique), 0, 0, 1, 1},
+  {&__pyx_n_s_unknown_isymbol, __pyx_k_unknown_isymbol, sizeof(__pyx_k_unknown_isymbol), 0, 0, 1, 1},
+  {&__pyx_n_s_unknown_osymbol, __pyx_k_unknown_osymbol, sizeof(__pyx_k_unknown_osymbol), 0, 0, 1, 1},
+  {&__pyx_kp_b_unspecified, __pyx_k_unspecified, sizeof(__pyx_k_unspecified), 0, 0, 0, 0},
+  {&__pyx_n_s_utf8, __pyx_k_utf8, sizeof(__pyx_k_utf8), 0, 0, 1, 1},
+  {&__pyx_n_s_value, __pyx_k_value, sizeof(__pyx_k_value), 0, 0, 1, 1},
+  {&__pyx_n_b_vector, __pyx_k_vector, sizeof(__pyx_k_vector), 0, 0, 0, 1},
+  {&__pyx_n_s_verify, __pyx_k_verify, sizeof(__pyx_k_verify), 0, 0, 1, 1},
+  {&__pyx_n_s_vertical, __pyx_k_vertical, sizeof(__pyx_k_vertical), 0, 0, 1, 1},
+  {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
+  {&__pyx_n_s_warning, __pyx_k_warning, sizeof(__pyx_k_warning), 0, 0, 1, 1},
+  {&__pyx_n_s_weight, __pyx_k_weight, sizeof(__pyx_k_weight), 0, 0, 1, 1},
+  {&__pyx_n_s_weight_type, __pyx_k_weight_type, sizeof(__pyx_k_weight_type), 0, 0, 1, 1},
+  {&__pyx_n_s_weighted, __pyx_k_weighted, sizeof(__pyx_k_weighted), 0, 0, 1, 1},
+  {&__pyx_n_s_width, __pyx_k_width, sizeof(__pyx_k_width), 0, 0, 1, 1},
+  {&__pyx_n_s_write, __pyx_k_write, sizeof(__pyx_k_write), 0, 0, 1, 1},
+  {&__pyx_n_s_write_text, __pyx_k_write_text, sizeof(__pyx_k_write_text), 0, 0, 1, 1},
+  {&__pyx_n_b_write_to_string, __pyx_k_write_to_string, sizeof(__pyx_k_write_to_string), 0, 0, 0, 1},
+  {&__pyx_n_s_write_to_string, __pyx_k_write_to_string, sizeof(__pyx_k_write_to_string), 0, 0, 1, 1},
+  {0, 0, 0, 0, 0, 0, 0}
+};
+static int __Pyx_InitCachedBuiltins(void) {
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_builtin_IndexError = __Pyx_GetBuiltinName(__pyx_n_s_IndexError); if (!__pyx_builtin_IndexError) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_builtin_IOError = __Pyx_GetBuiltinName(__pyx_n_s_IOError); if (!__pyx_builtin_IOError) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_builtin_object = __Pyx_GetBuiltinName(__pyx_n_s_object); if (!__pyx_builtin_object) __PYX_ERR(0, 2742, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 2762, __pyx_L1_error)
+  __pyx_builtin_id = __Pyx_GetBuiltinName(__pyx_n_s_id); if (!__pyx_builtin_id) __PYX_ERR(0, 370, __pyx_L1_error)
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_builtin_StopIteration = __Pyx_GetBuiltinName(__pyx_n_s_StopIteration); if (!__pyx_builtin_StopIteration) __PYX_ERR(0, 1145, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 4357, __pyx_L1_error)
+  return 0;
+  __pyx_L1_error:;
+  return -1;
+}
+
+static int __Pyx_InitCachedConstants(void) {
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
+
+  /* "pywrapfst.pyx":388
+ *   cdef void _check_weight(self) except *:
+ *     if self.type() == b"none":
+ *       raise FstArgError("Weight type not found")             # <<<<<<<<<<<<<<
+ *     if self.to_string() == b"BadNumber":
+ *       raise FstBadWeightError("Invalid weight")
+ */
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Weight_type_not_found); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
+
+  /* "pywrapfst.pyx":390
+ *       raise FstArgError("Weight type not found")
+ *     if self.to_string() == b"BadNumber":
+ *       raise FstBadWeightError("Invalid weight")             # <<<<<<<<<<<<<<
+ * 
+ *   cpdef Weight copy(self):
+ */
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Invalid_weight); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 390, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__2);
+  __Pyx_GIVEREF(__pyx_tuple__2);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._weight cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._weight cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_self__weight_cannot_be_converted); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._weight cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._weight cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_self__weight_cannot_be_converted); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
+
+  /* "pywrapfst.pyx":638
+ *       tostring(weight_type))))
+ *   if result._weight.get().Type() == b"none":
+ *     raise FstArgError("Weight type not found")             # <<<<<<<<<<<<<<
+ *   return result
+ * 
+ */
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Weight_type_not_found); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 638, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);

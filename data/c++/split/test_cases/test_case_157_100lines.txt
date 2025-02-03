@@ -1,0 +1,100 @@
+
+namespace script {
+
+FarType GetFarType(const string &str) {
+  if (str == "fst") {
+    return FAR_FST;
+  } else if (str == "stlist") {
+    return FAR_STLIST;
+  } else if (str == "sttable") {
+    return FAR_STTABLE;
+  } else {
+    return FAR_DEFAULT;
+  }
+}
+
+bool GetFarEntryType(const string &str, FarEntryType *entry_type) {
+  if (str == "line") {
+    *entry_type = FET_LINE;
+  } else if (str == "file") {
+    *entry_type = FET_FILE;
+  } else {
+    return false;
+  }
+  return true;
+}
+
+bool GetFarTokenType(const string &str, FarTokenType *token_type) {
+  if (str == "symbol") {
+    *token_type = FTT_SYMBOL;
+  } else if (str == "byte") {
+    *token_type = FTT_BYTE;
+  } else if (str == "utf8") {
+    *token_type = FTT_UTF8;
+  } else {
+    return false;
+  }
+  return true;
+}
+
+void ExpandArgs(int argc, char **argv, int *argcp, char ***argvp) {
+}
+
+}  // namespace script
+
+string GetFarTypeString(FarType type) {
+  switch (type) {
+    case FAR_FST:
+      return "fst";
+    case FAR_STLIST:
+      return "stlist";
+    case FAR_STTABLE:
+      return "sttable";
+    case FAR_DEFAULT:
+      return "default";
+    default:
+      return "<unknown>";
+  }
+}
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Creates a finite-state archive from input FSTs.
+
+#include <string>
+#include <vector>
+
+#include <fst/flags.h>
+#include <fst/extensions/far/farscript.h>
+#include <fst/extensions/far/getters.h>
+#include <fstream>
+
+DEFINE_string(key_prefix, "", "Prefix to append to keys");
+DEFINE_string(key_suffix, "", "Suffix to append to keys");
+DEFINE_int32(generate_keys, 0,
+             "Generate N digit numeric keys (def: use file basenames)");
+DEFINE_string(far_type, "default",
+              "FAR file format type: one of: \"default\", "
+              "\"stlist\", \"sttable\"");
+DEFINE_bool(file_list_input, false,
+            "Each input file contains a list of files to be processed");
+
+int main(int argc, char **argv) {
+  namespace s = fst::script;
+
+  string usage = "Creates a finite-state archive from input FSTs.\n\n Usage:";
+  usage += argv[0];
+  usage += " [in1.fst [[in2.fst ...] out.far]]\n";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  s::ExpandArgs(argc, argv, &argc, &argv);
+
+  std::vector<string> in_fnames;
+  if (FLAGS_file_list_input) {
+    for (int i = 1; i < argc - 1; ++i) {
+      std::ifstream istrm(argv[i]);
+      string str;
+      while (getline(istrm, str)) in_fnames.push_back(str);

@@ -1,0 +1,50 @@
+            includes=' '.join('-I' + i for i in INCLUDES),
+            infile=file,
+            output=output,
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+        return outfile
+
+    pool = Pool(num_parallel)
+    obj_files = list(pool.imap_unordered(build_one, srcs))
+
+    if sys.platform.startswith('darwin'):
+        cmd = '{libtool} -static -o {outfile} {infiles}'.format(
+            libtool=libtool,
+            outfile=out_name,
+            infiles=' '.join(obj_files),
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+    elif sys.platform.startswith('win'):
+        cmd = '"{libexe}" /OUT:"{outfile}" {infiles} /MACHINE:X64 /NOLOGO'.format(
+            libexe=libexe,
+            outfile=out_name,
+            infiles=' '.join(obj_files))
+        cmd = cmd.replace('\\', '/')
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+    else:
+        cmd = '{ar} rcs {outfile} {infiles}'.format(
+            ar=ar,
+            outfile=out_name,
+            infiles=' '.join(obj_files)
+        )
+        print(cmd)
+        subprocess.check_call(shlex.split(cmd))
+
+if __name__ == '__main__':
+    build_common()
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, division, print_function
+
+import os
+import sys
+import json
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import tensorflow as tf
+import tensorflow.compat.v1.logging as tflogging
+tflogging.set_verbosity(tflogging.ERROR)
+import logging

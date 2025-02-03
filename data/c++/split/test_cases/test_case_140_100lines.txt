@@ -1,0 +1,100 @@
+  usage += " in.fst linear.fst [out.fst]\n";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  if (argc < 3 || argc > 4) {
+    ShowUsage();
+    return 1;
+  }
+
+  string in_name = strcmp(argv[1], "-") != 0 ? argv[1] : "";
+  string linear_name = (argc > 2 && (strcmp(argv[2], "-") != 0)) ? argv[2] : "";
+  string out_name = argc > 3 ? argv[3] : "";
+
+  if (in_name.empty() && linear_name.empty()) {
+    LOG(ERROR) << argv[0] << ": Can't take both inputs from standard input.";
+    return 1;
+  }
+
+  fst::StdFst *ifst1 = fst::StdFst::Read(in_name);
+  if (!ifst1) return 1;
+
+  fst::StdFst *ifst2 = fst::StdFst::Read(linear_name);
+  if (!ifst2) return 1;
+
+  fst::StdVectorFst ofst;
+
+  LogLinearApply(*ifst1, *ifst2, &ofst, FLAGS_normalize);
+
+  ofst.Write(out_name);
+
+  return 0;
+}
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+
+#include <fst/extensions/linear/linear-fst.h>
+#include <fst/register.h>
+
+using fst::LinearTaggerFst;
+using fst::StdArc;
+using fst::LogArc;
+
+REGISTER_FST(LinearTaggerFst, StdArc);
+REGISTER_FST(LinearTaggerFst, LogArc);
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Converts an RTN represented by FSTs and non-terminal labels into a PDT.
+
+#include <cstring>
+
+#include <string>
+#include <vector>
+
+#include <fst/flags.h>
+
+#include <fst/extensions/pdt/getters.h>
+#include <fst/extensions/pdt/pdtscript.h>
+#include <fst/util.h>
+#include <fst/vector-fst.h>
+
+DEFINE_string(pdt_parentheses, "", "PDT parenthesis label pairs");
+DEFINE_string(pdt_parser_type, "left",
+              "Construction method, one of: \"left\", \"left_sr\"");
+DEFINE_int64(start_paren_labels, fst::kNoLabel,
+             "Index to use for the first inserted parentheses; if not "
+             "specified, the next available label beyond the highest output "
+             "label is used");
+DEFINE_string(left_paren_prefix, "(_", "Prefix to attach to SymbolTable "
+              "labels for inserted left parentheses");
+DEFINE_string(right_paren_prefix, ")_", "Prefix to attach to SymbolTable "
+              "labels for inserted right parentheses");
+
+void Cleanup(std::vector<fst::script::LabelFstClassPair> *pairs) {
+  for (const auto &pair : *pairs) {
+    delete pair.second;
+  }
+  pairs->clear();
+}
+
+int main(int argc, char **argv) {
+  namespace s = fst::script;
+  using fst::script::FstClass;
+  using fst::script::VectorFstClass;
+  using fst::PdtParserType;
+  using fst::WriteLabelPairs;
+
+  string usage = "Converts an RTN represented by FSTs";
+  usage += " and non-terminal labels into PDT.\n\n  Usage: ";
+  usage += argv[0];
+  usage += " root.fst rootlabel [rule1.fst label1 ...] [out.fst]\n";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  if (argc < 4) {
+    ShowUsage();
+    return 1;
+  }
+
+  const string in_name = argv[1];

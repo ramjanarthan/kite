@@ -1,0 +1,10 @@
+              'Topic :: Multimedia :: Sound/Audio :: Speech',
+              'Topic :: Scientific/Engineering :: Human Machine Interfaces',
+              'Topic :: Scientific/Engineering',
+              'Topic :: Utilities',
+          ])
+
+if __name__ == '__main__':
+    main()
+from setuptools import setup, Extension
+import glob

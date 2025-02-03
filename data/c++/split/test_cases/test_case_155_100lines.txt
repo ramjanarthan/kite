@@ -1,0 +1,100 @@
+    return nullptr;
+  }
+  auto it = filenames.cbegin();
+  const auto arc_type = LoadArcTypeFromFar(*it);
+  if (arc_type.empty()) return nullptr;
+  // FIXME(kbg): Is any of this really necessary? I am doing this purely
+  // to conform to what I did with fst::script::Replace.
+  ++it;
+  for (; it != filenames.cend(); ++it) {
+    const string other_arc_type = LoadArcTypeFromFar(*it);
+    if (other_arc_type.empty()) return nullptr;
+    if (arc_type != other_arc_type) {
+      LOG(ERROR) << "FarReaderClass::Open: Trying to open FARs with "
+                 << "non-matching arc types:\n\t" << arc_type << " and "
+                 << other_arc_type;
+      return nullptr;
+    }
+  }
+  OpenFarReaderClassArgs2 args(filenames);
+  args.retval = nullptr;
+  Apply<Operation<OpenFarReaderClassArgs2>>("OpenFarReaderClass", arc_type,
+                                            &args);
+  return args.retval;
+}
+
+REGISTER_FST_OPERATION(OpenFarReaderClass, StdArc, OpenFarReaderClassArgs1);
+REGISTER_FST_OPERATION(OpenFarReaderClass, LogArc, OpenFarReaderClassArgs1);
+REGISTER_FST_OPERATION(OpenFarReaderClass, Log64Arc, OpenFarReaderClassArgs1);
+
+REGISTER_FST_OPERATION(OpenFarReaderClass, StdArc, OpenFarReaderClassArgs2);
+REGISTER_FST_OPERATION(OpenFarReaderClass, LogArc, OpenFarReaderClassArgs2);
+REGISTER_FST_OPERATION(OpenFarReaderClass, Log64Arc, OpenFarReaderClassArgs2);
+
+// FarWriterClass.
+
+FarWriterClass *FarWriterClass::Create(const string &filename,
+                                       const string &arc_type, FarType type) {
+  CreateFarWriterClassInnerArgs iargs(filename, type);
+  CreateFarWriterClassArgs args(iargs);
+  args.retval = nullptr;
+  Apply<Operation<CreateFarWriterClassArgs>>("CreateFarWriterClass", arc_type,
+                                             &args);
+  return args.retval;
+}
+
+REGISTER_FST_OPERATION(CreateFarWriterClass, StdArc, CreateFarWriterClassArgs);
+REGISTER_FST_OPERATION(CreateFarWriterClass, LogArc, CreateFarWriterClassArgs);
+REGISTER_FST_OPERATION(CreateFarWriterClass, Log64Arc,
+                       CreateFarWriterClassArgs);
+
+}  // namespace script
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Tests if two Far files contains the same (key,fst) pairs.
+
+#include <string>
+
+#include <fst/flags.h>
+#include <fst/extensions/far/farscript.h>
+#include <fst/extensions/far/getters.h>
+
+DEFINE_string(begin_key, "",
+              "First key to extract (def: first key in archive)");
+DEFINE_string(end_key, "", "Last key to extract (def: last key in archive)");
+DEFINE_double(delta, fst::kDelta, "Comparison/quantization delta");
+
+int main(int argc, char **argv) {
+  namespace s = fst::script;
+
+  string usage = "Compares the FSTs in two FST archives for equality.";
+  usage += "\n\n  Usage:";
+  usage += argv[0];
+  usage += " in1.far in2.far";
+
+  std::set_new_handler(FailedNewHandler);
+  SET_FLAGS(usage.c_str(), &argc, &argv, true);
+  s::ExpandArgs(argc, argv, &argc, &argv);
+  if (argc != 3) {
+    ShowUsage();
+    return 1;
+  }
+
+  const auto arc_type = s::LoadArcTypeFromFar(argv[1]);
+  if (arc_type.empty()) return 1;
+
+  bool result = s::FarEqual(argv[1], argv[2], arc_type, FLAGS_delta,
+                            FLAGS_begin_key, FLAGS_end_key);
+
+  if (!result) VLOG(1) << "FARs are not equal.";
+
+  return result ? 0 : 2;
+}
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Compiles a set of stings as FSTs and stores them in a finite-state archive.
+
+#include <string>

@@ -1,0 +1,20 @@
+    def DecodeSingle(self, input):
+        res = super(UTF8Alphabet, self).DecodeSingle(input)
+        return res.decode('utf-8')
+
+    def Decode(self, input):
+        '''Decode a sequence of labels into a string.'''
+        res = super(UTF8Alphabet, self).Decode(input)
+        return res.decode('utf-8')
+
+
+
+def ctc_beam_search_decoder(probs_seq,
+                            alphabet,
+                            beam_size,
+                            cutoff_prob=1.0,
+                            cutoff_top_n=40,
+                            scorer=None,
+                            hot_words=dict(),
+                            num_results=1):
+    """Wrapper for the CTC Beam Search Decoder.

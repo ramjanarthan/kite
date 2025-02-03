@@ -1,0 +1,20 @@
+ *     result._writer.reset(tfar)
+ *     return result             # <<<<<<<<<<<<<<
+ * 
+ *   # NB: Invoking this method may be dangerous: calling any other method on the
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(((PyObject *)__pyx_v_result));
+  __pyx_r = ((PyObject *)__pyx_v_result);
+  goto __pyx_L0;
+
+  /* "pywrapfst.pyx":4388
+ * 
+ *   @classmethod
+ *   def create(cls, filename, arc_type=b"standard", far_type=b"default"):             # <<<<<<<<<<<<<<
+ *     """
+ *     FarWriter.
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;

@@ -21,7 +21,13 @@ validation_files = [
     "data/c++/split/validation"
 ]
 
-processed_files = [
+processed_train_files = [
     "data/python/split/train_processed",
     "data/c++/split/train_processed"
 ]
+
+python_test_files_dir = "data/python/split/test_cases/"
+cpp_test_files_dir = "data/python/split/test_cases/"
+
+python_model_file = "python_model"
+cpp_model_file = "cpp_model"

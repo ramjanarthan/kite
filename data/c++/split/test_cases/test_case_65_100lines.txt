@@ -1,0 +1,100 @@
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._mfst,self._table cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_self__mfst_self__table_cannot_be); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._smart_table,self._table cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._smart_table,self._table cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_self__smart_table_self__table_ca); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._smart_table,self._table cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._smart_table,self._table cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_kp_s_self__smart_table_self__table_ca); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._siter,self._table cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._siter,self._table cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__20 = PyTuple_Pack(1, __pyx_kp_s_self__siter_self__table_cannot_b); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._siter,self._table cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._siter,self._table cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_s_self__siter_self__table_cannot_b); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._encoder cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._encoder cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_s_self__encoder_cannot_be_converte); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._encoder cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._encoder cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__23 = PyTuple_Pack(1, __pyx_kp_s_self__encoder_cannot_be_converte); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+
+  /* "pywrapfst.pyx":1400
+ *     if proc.returncode != 0:  # Just to be explicit.
+ *       raise subprocess.CalledProcessError(proc.returncode, self._DOT_TSVG)
+ *     return sout.decode("utf8")             # <<<<<<<<<<<<<<
+ * 
+ *   def __repr__(self):
+ */
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_utf8); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 1400, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+
+  /* "pywrapfst.pyx":1576
+ *     cdef size_t result = self._fst.get().NumArcs(state)
+ *     if result == SIZE_MAX:
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  __pyx_tuple__26 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 1576, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+
+  /* "pywrapfst.pyx":1598
+ *     cdef size_t result = self._fst.get().NumInputEpsilons(state)
+ *     if result == SIZE_MAX:
+ *       raise FstIndexError("State index out of range")             # <<<<<<<<<<<<<<
+ *     return result
+ * 
+ */
+  __pyx_tuple__27 = PyTuple_Pack(1, __pyx_kp_s_State_index_out_of_range); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 1598, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+
+  /* "pywrapfst.pyx":1620
+ *     cdef size_t result = self._fst.get().NumOutputEpsilons(state)
+ *     if result == SIZE_MAX:

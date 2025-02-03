@@ -1,0 +1,100 @@
+ *   """
+ *   divide(lhs, rhs)
+ */
+  __pyx_tuple__103 = PyTuple_Pack(3, __pyx_n_s_lhs, __pyx_n_s_rhs, __pyx_n_s_result); if (unlikely(!__pyx_tuple__103)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__103);
+  __Pyx_GIVEREF(__pyx_tuple__103);
+  __pyx_codeobj__104 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__103, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_divide, 520, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__104)) __PYX_ERR(0, 520, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":553
+ * 
+ * 
+ * def power(Weight w, size_t n):             # <<<<<<<<<<<<<<
+ *   """
+ *   power(lhs, rhs)
+ */
+  __pyx_tuple__105 = PyTuple_Pack(3, __pyx_n_s_w, __pyx_n_s_n, __pyx_n_s_result); if (unlikely(!__pyx_tuple__105)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__105);
+  __Pyx_GIVEREF(__pyx_tuple__105);
+  __pyx_codeobj__106 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__105, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_power, 553, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__106)) __PYX_ERR(0, 553, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":2742
+ * 
+ * 
+ * class Fst(object):             # <<<<<<<<<<<<<<
+ * 
+ *    """
+ */
+  __pyx_tuple__107 = PyTuple_Pack(1, __pyx_builtin_object); if (unlikely(!__pyx_tuple__107)) __PYX_ERR(0, 2742, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__107);
+  __Pyx_GIVEREF(__pyx_tuple__107);
+
+  /* "pywrapfst.pyx":2759
+ *    """
+ * 
+ *    def __new__(cls, arc_type=b"standard"):             # <<<<<<<<<<<<<<
+ *     return _create_Fst(arc_type)
+ * 
+ */
+  __pyx_tuple__108 = PyTuple_Pack(2, __pyx_n_s_cls, __pyx_n_s_arc_type); if (unlikely(!__pyx_tuple__108)) __PYX_ERR(0, 2759, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__108);
+  __Pyx_GIVEREF(__pyx_tuple__108);
+  __pyx_codeobj__109 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__108, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_new, 2759, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__109)) __PYX_ERR(0, 2759, __pyx_L1_error)
+  __pyx_tuple__110 = PyTuple_Pack(1, ((PyObject*)__pyx_n_b_standard)); if (unlikely(!__pyx_tuple__110)) __PYX_ERR(0, 2759, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__110);
+  __Pyx_GIVEREF(__pyx_tuple__110);
+
+  /* "pywrapfst.pyx":2763
+ * 
+ *    @staticmethod
+ *    def read(filename):             # <<<<<<<<<<<<<<
+ *      """
+ *      read(filename):
+ */
+  __pyx_tuple__111 = PyTuple_Pack(1, __pyx_n_s_filename); if (unlikely(!__pyx_tuple__111)) __PYX_ERR(0, 2763, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__111);
+  __Pyx_GIVEREF(__pyx_tuple__111);
+  __pyx_codeobj__112 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__111, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_read, 2763, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__112)) __PYX_ERR(0, 2763, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":2781
+ * 
+ *    @staticmethod
+ *    def read_from_string(state):             # <<<<<<<<<<<<<<
+ *      """
+ *      read_from_string(string, fst_type=None)
+ */
+  __pyx_tuple__113 = PyTuple_Pack(1, __pyx_n_s_state); if (unlikely(!__pyx_tuple__113)) __PYX_ERR(0, 2781, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__113);
+  __Pyx_GIVEREF(__pyx_tuple__113);
+  __pyx_codeobj__114 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__113, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_read_from_string_2, 2781, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__114)) __PYX_ERR(0, 2781, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":3949
+ * 
+ * 
+ * def shortestdistance(_Fst ifst,             # <<<<<<<<<<<<<<
+ *                      float delta=fst.kShortestDelta,
+ *                      int64 nstate=fst.kNoStateId,
+ */
+  __pyx_tuple__115 = PyTuple_Pack(8, __pyx_n_s_ifst, __pyx_n_s_delta, __pyx_n_s_nstate, __pyx_n_s_queue_type, __pyx_n_s_reverse, __pyx_n_s_distance, __pyx_n_s_weight_type, __pyx_n_s_weight); if (unlikely(!__pyx_tuple__115)) __PYX_ERR(0, 3949, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__115);
+  __Pyx_GIVEREF(__pyx_tuple__115);
+  __pyx_codeobj__116 = (PyObject*)__Pyx_PyCode_New(5, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__115, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_shortestdistance, 3949, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__116)) __PYX_ERR(0, 3949, __pyx_L1_error)
+
+  /* "pywrapfst.pyx":4492
+ * 
+ * @atexit.register
+ * def _reset_fst_error_fatal():             # <<<<<<<<<<<<<<
+ *   fst.FLAGS_fst_error_fatal = _fst_error_fatal_old
+ * 
+ */
+  __pyx_codeobj__117 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pywrapfst_pyx, __pyx_n_s_reset_fst_error_fatal, 4492, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__117)) __PYX_ERR(0, 4492, __pyx_L1_error)
+  __Pyx_RefNannyFinishContext();
+  return 0;
+  __pyx_L1_error:;
+  __Pyx_RefNannyFinishContext();
+  return -1;
+}
+
+static int __Pyx_InitGlobals(void) {
+  if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)

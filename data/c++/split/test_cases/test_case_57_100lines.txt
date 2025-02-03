@@ -1,0 +1,100 @@
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_27__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_9pywrapfst_9FarReader_29__setstate_cython__, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static PySequenceMethods __pyx_tp_as_sequence_FarReader = {
+  0, /*sq_length*/
+  0, /*sq_concat*/
+  0, /*sq_repeat*/
+  __pyx_sq_item_9pywrapfst_FarReader, /*sq_item*/
+  0, /*sq_slice*/
+  0, /*sq_ass_item*/
+  0, /*sq_ass_slice*/
+  0, /*sq_contains*/
+  0, /*sq_inplace_concat*/
+  0, /*sq_inplace_repeat*/
+};
+
+static PyMappingMethods __pyx_tp_as_mapping_FarReader = {
+  0, /*mp_length*/
+  __pyx_pw_9pywrapfst_9FarReader_25__getitem__, /*mp_subscript*/
+  0, /*mp_ass_subscript*/
+};
+
+static PyTypeObject __pyx_type_9pywrapfst_FarReader = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "pywrapfst.FarReader", /*tp_name*/
+  sizeof(struct __pyx_obj_9pywrapfst_FarReader), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_9pywrapfst_FarReader, /*tp_dealloc*/
+  0, /*tp_print*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  __pyx_pw_9pywrapfst_9FarReader_3__repr__, /*tp_repr*/
+  0, /*tp_as_number*/
+  &__pyx_tp_as_sequence_FarReader, /*tp_as_sequence*/
+  &__pyx_tp_as_mapping_FarReader, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  "\n  (No constructor.)\n\n  FAR (\"Fst ARchive\") reader object.\n\n  This class is used to read a FAR from disk. FARs contain one or more FSTs (of\n  the same arc type) indexed by a unique string key. To construct a FarReader\n  object, use the `open` class method.\n\n  Attributes:\n    arc_type: A string indicating the arc type.\n    far_type: A string indicating the FAR type.\n  ", /*tp_doc*/
+  0, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_9pywrapfst_FarReader, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  __pyx_pw_9pywrapfst_9FarReader_1__init__, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_9pywrapfst_FarReader, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+};
+static struct __pyx_vtabstruct_9pywrapfst_FarWriter __pyx_vtable_9pywrapfst_FarWriter;
+
+static PyObject *__pyx_tp_new_9pywrapfst_FarWriter(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_9pywrapfst_FarWriter *p;
+  PyObject *o;
+  if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
+    o = (*t->tp_alloc)(t, 0);
+  } else {
+    o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
+  }
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_9pywrapfst_FarWriter *)o);
+  p->__pyx_vtab = __pyx_vtabptr_9pywrapfst_FarWriter;
+  new((void*)&(p->_writer)) std::unique_ptr<fst::script::FarWriterClass> ();
+  return o;
+}
+
+static void __pyx_tp_dealloc_9pywrapfst_FarWriter(PyObject *o) {
+  struct __pyx_obj_9pywrapfst_FarWriter *p = (struct __pyx_obj_9pywrapfst_FarWriter *)o;

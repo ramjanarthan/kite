@@ -1,0 +1,20 @@
+ *     """
+ *     add(self, key, ifst)
+ */
+
+static PyObject *__pyx_pw_9pywrapfst_9FarWriter_7add(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static void __pyx_f_9pywrapfst_9FarWriter_add(struct __pyx_obj_9pywrapfst_FarWriter *__pyx_v_self, PyObject *__pyx_v_key, struct __pyx_obj_9pywrapfst__Fst *__pyx_v_ifst, int __pyx_skip_dispatch) {
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  std::string __pyx_t_7;
+  int __pyx_t_8;
+  __Pyx_RefNannySetupContext("add", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {

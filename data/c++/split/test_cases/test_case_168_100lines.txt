@@ -1,0 +1,100 @@
+  }
+  string name;
+  ReadType(strm, &name);
+  std::unique_ptr<SymbolTableImpl> impl(new SymbolTableImpl(name));
+  ReadType(strm, &impl->available_key_);
+  int64 size;
+  ReadType(strm, &size);
+  if (strm.fail()) {
+    LOG(ERROR) << "SymbolTable::Read: Read failed";
+    return nullptr;
+  }
+  string symbol;
+  int64 key;
+  impl->check_sum_finalized_ = false;
+  for (int64 i = 0; i < size; ++i) {
+    ReadType(strm, &symbol);
+    ReadType(strm, &key);
+    if (strm.fail()) {
+      LOG(ERROR) << "SymbolTable::Read: Read failed";
+      return nullptr;
+    }
+    impl->AddSymbol(symbol, key);
+  }
+  return impl.release();
+}
+
+bool SymbolTableImpl::Write(std::ostream &strm) const {
+  WriteType(strm, kSymbolTableMagicNumber);
+  WriteType(strm, name_);
+  WriteType(strm, available_key_);
+  int64 size = symbols_.size();
+  WriteType(strm, size);
+  for (int64 i = 0; i < size; ++i) {
+    auto key = (i < dense_key_limit_) ? i : idx_key_[i - dense_key_limit_];
+    WriteType(strm, symbols_.GetSymbol(i));
+    WriteType(strm, key);
+  }
+  strm.flush();
+  if (strm.fail()) {
+    LOG(ERROR) << "SymbolTable::Write: Write failed";
+    return false;
+  }
+  return true;
+}
+
+}  // namespace internal
+
+void SymbolTable::AddTable(const SymbolTable &table) {
+  MutateCheck();
+  for (SymbolTableIterator iter(table); !iter.Done(); iter.Next()) {
+    impl_->AddSymbol(iter.Symbol());
+  }
+}
+
+bool SymbolTable::WriteText(std::ostream &strm,
+                            const SymbolTableTextOptions &opts) const {
+  if (opts.fst_field_separator.empty()) {
+    LOG(ERROR) << "Missing required field separator";
+    return false;
+  }
+  bool once_only = false;
+  for (SymbolTableIterator iter(*this); !iter.Done(); iter.Next()) {
+    std::ostringstream line;
+    if (iter.Value() < 0 && !opts.allow_negative_labels && !once_only) {
+      LOG(WARNING) << "Negative symbol table entry when not allowed";
+      once_only = true;
+    }
+    line << iter.Symbol() << opts.fst_field_separator[0] << iter.Value()
+         << '\n';
+    strm.write(line.str().data(), line.str().length());
+  }
+  return true;
+}
+
+namespace internal {
+
+DenseSymbolMap::DenseSymbolMap()
+    : empty_(-1), buckets_(1 << 4), hash_mask_(buckets_.size() - 1) {
+  std::uninitialized_fill(buckets_.begin(), buckets_.end(), empty_);
+}
+
+DenseSymbolMap::DenseSymbolMap(const DenseSymbolMap &x)
+    : empty_(-1),
+      symbols_(x.symbols_.size()),
+      buckets_(x.buckets_),
+      hash_mask_(x.hash_mask_) {
+  for (size_t i = 0; i < symbols_.size(); ++i) {
+    const auto sz = strlen(x.symbols_[i]) + 1;
+    auto *cpy = new char[sz];
+    memcpy(cpy, x.symbols_[i], sz);
+    symbols_[i] = cpy;
+  }
+}
+
+DenseSymbolMap::~DenseSymbolMap() {
+  for (size_t i = 0; i < symbols_.size(); ++i) {
+    delete[] symbols_[i];
+  }
+}
+

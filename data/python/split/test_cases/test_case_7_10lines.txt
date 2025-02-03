@@ -1,0 +1,10 @@
+#Attempted fix to https://github.com/kpu/kenlm/issues/186 and https://github.com/kpu/kenlm/issues/197
+if platform.system() == 'Darwin':
+    ARGS += ["-stdlib=libc++", "-mmacosx-version-min=10.7"]
+
+if compile_test('zlib.h', 'z'):
+    ARGS.append('-DHAVE_ZLIB')
+    LIBS.append('z')
+
+if compile_test('bzlib.h', 'bz2'):
+    ARGS.append('-DHAVE_BZLIB')

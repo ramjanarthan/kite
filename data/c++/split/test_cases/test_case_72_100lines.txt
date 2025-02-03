@@ -1,0 +1,100 @@
+  #if defined(__PYX_FORCE_INIT_THREADS) && __PYX_FORCE_INIT_THREADS
+  #ifdef WITH_THREAD /* Python build with threading support? */
+  PyEval_InitThreads();
+  #endif
+  #endif
+  /*--- Module creation code ---*/
+  #if CYTHON_PEP489_MULTI_PHASE_INIT
+  __pyx_m = __pyx_pyinit_module;
+  Py_INCREF(__pyx_m);
+  #else
+  #if PY_MAJOR_VERSION < 3
+  __pyx_m = Py_InitModule4("pywrapfst", __pyx_methods, __pyx_k_Python_interface_to_the_FST_scri, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  #else
+  __pyx_m = PyModule_Create(&__pyx_moduledef);
+  #endif
+  if (unlikely(!__pyx_m)) __PYX_ERR(0, 1, __pyx_L1_error)
+  #endif
+  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) __PYX_ERR(0, 1, __pyx_L1_error)
+  Py_INCREF(__pyx_d);
+  __pyx_b = PyImport_AddModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_b)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_cython_runtime = PyImport_AddModule((char *) "cython_runtime"); if (unlikely(!__pyx_cython_runtime)) __PYX_ERR(0, 1, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_PYPY
+  Py_INCREF(__pyx_b);
+  #endif
+  if (PyObject_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  /*--- Initialize various global constants etc. ---*/
+  if (__Pyx_InitGlobals() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
+  if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  #endif
+  if (__pyx_module_is_main_pywrapfst) {
+    if (PyObject_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  }
+  #if PY_MAJOR_VERSION >= 3
+  {
+    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "pywrapfst")) {
+      if (unlikely(PyDict_SetItemString(modules, "pywrapfst", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    }
+  }
+  #endif
+  /*--- Builtin init code ---*/
+  if (__Pyx_InitCachedBuiltins() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  /*--- Constants init code ---*/
+  if (__Pyx_InitCachedConstants() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  /*--- Global init code ---*/
+  /*--- Variable export code ---*/
+  /*--- Function export code ---*/
+  if (__Pyx_ExportFunction("tostring", (void (*)(void))__pyx_f_9pywrapfst_tostring, "std::string (PyObject *, struct __pyx_opt_args_9pywrapfst_tostring *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("weight_tostring", (void (*)(void))__pyx_f_9pywrapfst_weight_tostring, "std::string (PyObject *, struct __pyx_opt_args_9pywrapfst_weight_tostring *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_compose_filter", (void (*)(void))__pyx_f_9pywrapfst__get_compose_filter, "enum fst::ComposeFilter (std::string const &)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_determinize_type", (void (*)(void))__pyx_f_9pywrapfst__get_determinize_type, "enum fst::DeterminizeType (std::string const &)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_queue_type", (void (*)(void))__pyx_f_9pywrapfst__get_queue_type, "enum fst::QueueType (std::string const &)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_rand_arc_selection", (void (*)(void))__pyx_f_9pywrapfst__get_rand_arc_selection, "enum fst::script::RandArcSelection (std::string const &)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_replace_label_type", (void (*)(void))__pyx_f_9pywrapfst__get_replace_label_type, "enum fst::ReplaceLabelType (std::string const &, bool)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_WeightClass_or_One", (void (*)(void))__pyx_f_9pywrapfst__get_WeightClass_or_One, "fst::script::WeightClass (std::string const &, PyObject *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_get_WeightClass_or_Zero", (void (*)(void))__pyx_f_9pywrapfst__get_WeightClass_or_Zero, "fst::script::WeightClass (std::string const &, PyObject *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_Zero", (void (*)(void))__pyx_f_9pywrapfst__Zero, "struct __pyx_obj_9pywrapfst_Weight *(PyObject *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_One", (void (*)(void))__pyx_f_9pywrapfst__One, "struct __pyx_obj_9pywrapfst_Weight *(PyObject *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_NoWeight", (void (*)(void))__pyx_f_9pywrapfst__NoWeight, "struct __pyx_obj_9pywrapfst_Weight *(PyObject *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_plus", (void (*)(void))__pyx_f_9pywrapfst__plus, "struct __pyx_obj_9pywrapfst_Weight *(struct __pyx_obj_9pywrapfst_Weight *, struct __pyx_obj_9pywrapfst_Weight *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_times", (void (*)(void))__pyx_f_9pywrapfst__times, "struct __pyx_obj_9pywrapfst_Weight *(struct __pyx_obj_9pywrapfst_Weight *, struct __pyx_obj_9pywrapfst_Weight *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_divide", (void (*)(void))__pyx_f_9pywrapfst__divide, "struct __pyx_obj_9pywrapfst_Weight *(struct __pyx_obj_9pywrapfst_Weight *, struct __pyx_obj_9pywrapfst_Weight *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_power", (void (*)(void))__pyx_f_9pywrapfst__power, "struct __pyx_obj_9pywrapfst_Weight *(struct __pyx_obj_9pywrapfst_Weight *, size_t)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_EncodeMapperSymbolTable", (void (*)(void))__pyx_f_9pywrapfst__init_EncodeMapperSymbolTable, "struct __pyx_obj_9pywrapfst__EncodeMapperSymbolTable *(fst::SymbolTable *, std::shared_ptr<fst::script::EncodeMapperClass> )") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_FstSymbolTable", (void (*)(void))__pyx_f_9pywrapfst__init_FstSymbolTable, "struct __pyx_obj_9pywrapfst__FstSymbolTable *(fst::SymbolTable *, std::shared_ptr<fst::script::FstClass> )") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_MutableFstSymbolTable", (void (*)(void))__pyx_f_9pywrapfst__init_MutableFstSymbolTable, "struct __pyx_obj_9pywrapfst__MutableFstSymbolTable *(fst::SymbolTable *, std::shared_ptr<fst::script::MutableFstClass> )") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_SymbolTable", (void (*)(void))__pyx_f_9pywrapfst__init_SymbolTable, "struct __pyx_obj_9pywrapfst_SymbolTable *(fst::SymbolTable *)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_Fst", (void (*)(void))__pyx_f_9pywrapfst__init_Fst, "struct __pyx_obj_9pywrapfst__Fst *(__pyx_t_9pywrapfst_FstClass_ptr)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_MutableFst", (void (*)(void))__pyx_f_9pywrapfst__init_MutableFst, "struct __pyx_obj_9pywrapfst__MutableFst *(__pyx_t_9pywrapfst_MutableFstClass_ptr)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_XFst", (void (*)(void))__pyx_f_9pywrapfst__init_XFst, "struct __pyx_obj_9pywrapfst__Fst *(__pyx_t_9pywrapfst_FstClass_ptr)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_create_Fst", (void (*)(void))__pyx_f_9pywrapfst__create_Fst, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_opt_args_9pywrapfst__create_Fst *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_read", (void (*)(void))__pyx_f_9pywrapfst__read, "struct __pyx_obj_9pywrapfst__Fst *(PyObject *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_read_from_string", (void (*)(void))__pyx_f_9pywrapfst__read_from_string, "struct __pyx_obj_9pywrapfst__Fst *(PyObject *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_init_Arc", (void (*)(void))__pyx_f_9pywrapfst__init_Arc, "struct __pyx_obj_9pywrapfst_Arc *(fst::script::ArcClass const &)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_map", (void (*)(void))__pyx_f_9pywrapfst__map, "struct __pyx_obj_9pywrapfst__Fst *(struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_opt_args_9pywrapfst__map *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("arcmap", (void (*)(void))__pyx_f_9pywrapfst_arcmap, "struct __pyx_obj_9pywrapfst__Fst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_arcmap *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("compose", (void (*)(void))__pyx_f_9pywrapfst_compose, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_compose *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("convert", (void (*)(void))__pyx_f_9pywrapfst_convert, "struct __pyx_obj_9pywrapfst__Fst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_convert *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("determinize", (void (*)(void))__pyx_f_9pywrapfst_determinize, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_determinize *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("difference", (void (*)(void))__pyx_f_9pywrapfst_difference, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_difference *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("disambiguate", (void (*)(void))__pyx_f_9pywrapfst_disambiguate, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_disambiguate *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("epsnormalize", (void (*)(void))__pyx_f_9pywrapfst_epsnormalize, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_epsnormalize *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("equal", (void (*)(void))__pyx_f_9pywrapfst_equal, "bool (struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_equal *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("equivalent", (void (*)(void))__pyx_f_9pywrapfst_equivalent, "bool (struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_equivalent *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("intersect", (void (*)(void))__pyx_f_9pywrapfst_intersect, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_intersect *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("isomorphic", (void (*)(void))__pyx_f_9pywrapfst_isomorphic, "bool (struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_isomorphic *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("prune", (void (*)(void))__pyx_f_9pywrapfst_prune, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_prune *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("push", (void (*)(void))__pyx_f_9pywrapfst_push, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_push *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("randequivalent", (void (*)(void))__pyx_f_9pywrapfst_randequivalent, "bool (struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_randequivalent *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("randgen", (void (*)(void))__pyx_f_9pywrapfst_randgen, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_randgen *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("replace", (void (*)(void))__pyx_f_9pywrapfst_replace, "struct __pyx_obj_9pywrapfst__MutableFst *(PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_replace *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("reverse", (void (*)(void))__pyx_f_9pywrapfst_reverse, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_reverse *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("_shortestdistance", (void (*)(void))__pyx_f_9pywrapfst__shortestdistance, "std::vector<fst::script::WeightClass>  *(struct __pyx_obj_9pywrapfst__Fst *, struct __pyx_opt_args_9pywrapfst__shortestdistance *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("shortestpath", (void (*)(void))__pyx_f_9pywrapfst_shortestpath, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch, struct __pyx_opt_args_9pywrapfst_shortestpath *__pyx_optional_args)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("statemap", (void (*)(void))__pyx_f_9pywrapfst_statemap, "struct __pyx_obj_9pywrapfst__Fst *(struct __pyx_obj_9pywrapfst__Fst *, PyObject *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("synchronize", (void (*)(void))__pyx_f_9pywrapfst_synchronize, "struct __pyx_obj_9pywrapfst__MutableFst *(struct __pyx_obj_9pywrapfst__Fst *, int __pyx_skip_dispatch)") < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  /*--- Type init code ---*/
+  __pyx_vtabptr_9pywrapfst_Weight = &__pyx_vtable_9pywrapfst_Weight;
+  __pyx_vtable_9pywrapfst_Weight._check_weight = (void (*)(struct __pyx_obj_9pywrapfst_Weight *))__pyx_f_9pywrapfst_6Weight__check_weight;

@@ -1,0 +1,20 @@
+        PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_key);
+        __Pyx_INCREF(((PyObject *)__pyx_v_ifst));
+        __Pyx_GIVEREF(((PyObject *)__pyx_v_ifst));
+        PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, ((PyObject *)__pyx_v_ifst));
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4423, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "pywrapfst.pyx":4442
+ *     # Failure here results from passing an FST with a different arc type than
+ *     # used by the FAR was initialized to use.
+ *     if not self._writer.get().Add(tostring(key), deref(ifst._fst)):             # <<<<<<<<<<<<<<

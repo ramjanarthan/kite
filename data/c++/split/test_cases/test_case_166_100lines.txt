@@ -1,0 +1,100 @@
+// Registers VectorFst, ConstFst and EditFst for common arcs types.
+REGISTER_FST(VectorFst, StdArc);
+REGISTER_FST(VectorFst, LogArc);
+REGISTER_FST(VectorFst, Log64Arc);
+REGISTER_FST(ConstFst, StdArc);
+REGISTER_FST(ConstFst, LogArc);
+REGISTER_FST(ConstFst, Log64Arc);
+REGISTER_FST(EditFst, StdArc);
+REGISTER_FST(EditFst, LogArc);
+REGISTER_FST(EditFst, Log64Arc);
+
+// Register CompactFst for common arcs with the default (uint32) size type
+REGISTER_FST(CompactStringFst, StdArc);
+REGISTER_FST(CompactStringFst, LogArc);
+REGISTER_FST(CompactWeightedStringFst, StdArc);
+REGISTER_FST(CompactWeightedStringFst, LogArc);
+REGISTER_FST(CompactAcceptorFst, StdArc);
+REGISTER_FST(CompactAcceptorFst, LogArc);
+REGISTER_FST(CompactUnweightedFst, StdArc);
+REGISTER_FST(CompactUnweightedFst, LogArc);
+REGISTER_FST(CompactUnweightedAcceptorFst, StdArc);
+REGISTER_FST(CompactUnweightedAcceptorFst, LogArc);
+
+}  // namespace fst
+// See www.openfst.org for extensive documentation on this weighted
+// finite-state transducer library.
+//
+// Classes to provide symbol-to-integer and integer-to-symbol mappings.
+
+#include <fst/symbol-table.h>
+
+#include <fst/flags.h>
+#include <fst/log.h>
+
+#include <fstream>
+#include <fst/util.h>
+
+DEFINE_bool(fst_compat_symbols, true,
+            "Require symbol tables to match when appropriate");
+DEFINE_string(fst_field_separator, "\t ",
+              "Set of characters used as a separator between printed fields");
+
+namespace fst {
+
+// Maximum line length in textual symbols file.
+static constexpr int kLineLen = 8096;
+
+// Identifies stream data as a symbol table (and its endianity).
+static constexpr int32 kSymbolTableMagicNumber = 2125658996;
+
+SymbolTableTextOptions::SymbolTableTextOptions(bool allow_negative_labels)
+    : allow_negative_labels(allow_negative_labels),
+      fst_field_separator(FLAGS_fst_field_separator) {}
+
+namespace internal {
+
+SymbolTableImpl *SymbolTableImpl::ReadText(std::istream &strm,
+                                           const string &filename,
+                                           const SymbolTableTextOptions &opts) {
+  std::unique_ptr<SymbolTableImpl> impl(new SymbolTableImpl(filename));
+  int64 nline = 0;
+  char line[kLineLen];
+  while (!strm.getline(line, kLineLen).fail()) {
+    ++nline;
+    std::vector<char *> col;
+    auto separator = opts.fst_field_separator + "\n";
+    SplitString(line, separator.c_str(), &col, true);
+    if (col.empty()) continue;  // Empty line.
+    if (col.size() != 2) {
+      LOG(ERROR) << "SymbolTable::ReadText: Bad number of columns ("
+                 << col.size() << "), "
+                 << "file = " << filename << ", line = " << nline << ":<"
+                 << line << ">";
+      return nullptr;
+    }
+    const char *symbol = col[0];
+    const char *value = col[1];
+    char *p;
+    const auto key = strtoll(value, &p, 10);
+    if (p < value + strlen(value) || (!opts.allow_negative_labels && key < 0) ||
+        key == kNoSymbol) {
+      LOG(ERROR) << "SymbolTable::ReadText: Bad non-negative integer \""
+                 << value << "\", "
+                 << "file = " << filename << ", line = " << nline;
+      return nullptr;
+    }
+    impl->AddSymbol(symbol, key);
+  }
+  return impl.release();
+}
+
+void SymbolTableImpl::MaybeRecomputeCheckSum() const {
+  {
+    ReaderMutexLock check_sum_lock(&check_sum_mutex_);
+    if (check_sum_finalized_) return;
+  }
+  // We'll acquire an exclusive lock to recompute the checksums.
+  MutexLock check_sum_lock(&check_sum_mutex_);
+  if (check_sum_finalized_) {  // Another thread (coming in around the same time
+    return;                    // might have done it already). So we recheck.

@@ -1,0 +1,100 @@
+ * NO_EPSILONS = fst.kNoEpsilons
+ * I_EPSILONS = fst.kIEpsilons             # <<<<<<<<<<<<<<
+ * NO_I_EPSILONS = fst.kNoIEpsilons
+ * O_EPSILONS = fst.kOEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kIEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2826, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_I_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2826, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2827
+ * NO_EPSILONS = fst.kNoEpsilons
+ * I_EPSILONS = fst.kIEpsilons
+ * NO_I_EPSILONS = fst.kNoIEpsilons             # <<<<<<<<<<<<<<
+ * O_EPSILONS = fst.kOEpsilons
+ * NO_O_EPSILONS = fst.kNoOEpsilons
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNoIEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2827, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NO_I_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2827, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2828
+ * I_EPSILONS = fst.kIEpsilons
+ * NO_I_EPSILONS = fst.kNoIEpsilons
+ * O_EPSILONS = fst.kOEpsilons             # <<<<<<<<<<<<<<
+ * NO_O_EPSILONS = fst.kNoOEpsilons
+ * I_LABEL_SORTED = fst.kILabelSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kOEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2828, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_O_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2828, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2829
+ * NO_I_EPSILONS = fst.kNoIEpsilons
+ * O_EPSILONS = fst.kOEpsilons
+ * NO_O_EPSILONS = fst.kNoOEpsilons             # <<<<<<<<<<<<<<
+ * I_LABEL_SORTED = fst.kILabelSorted
+ * NOT_I_LABEL_SORTED = fst.kNotILabelSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNoOEpsilons); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2829, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NO_O_EPSILONS, __pyx_t_1) < 0) __PYX_ERR(0, 2829, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2830
+ * O_EPSILONS = fst.kOEpsilons
+ * NO_O_EPSILONS = fst.kNoOEpsilons
+ * I_LABEL_SORTED = fst.kILabelSorted             # <<<<<<<<<<<<<<
+ * NOT_I_LABEL_SORTED = fst.kNotILabelSorted
+ * O_LABEL_SORTED = fst.kOLabelSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kILabelSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2830, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_I_LABEL_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2830, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2831
+ * NO_O_EPSILONS = fst.kNoOEpsilons
+ * I_LABEL_SORTED = fst.kILabelSorted
+ * NOT_I_LABEL_SORTED = fst.kNotILabelSorted             # <<<<<<<<<<<<<<
+ * O_LABEL_SORTED = fst.kOLabelSorted
+ * NOT_O_LABEL_SORTED = fst.kNotOLabelSorted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotILabelSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2831, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_I_LABEL_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2831, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2832
+ * I_LABEL_SORTED = fst.kILabelSorted
+ * NOT_I_LABEL_SORTED = fst.kNotILabelSorted
+ * O_LABEL_SORTED = fst.kOLabelSorted             # <<<<<<<<<<<<<<
+ * NOT_O_LABEL_SORTED = fst.kNotOLabelSorted
+ * WEIGHTED = fst.kWeighted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kOLabelSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2832, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_O_LABEL_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2832, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2833
+ * NOT_I_LABEL_SORTED = fst.kNotILabelSorted
+ * O_LABEL_SORTED = fst.kOLabelSorted
+ * NOT_O_LABEL_SORTED = fst.kNotOLabelSorted             # <<<<<<<<<<<<<<
+ * WEIGHTED = fst.kWeighted
+ * UNWEIGHTED = fst.kUnweighted
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kNotOLabelSorted); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2833, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_NOT_O_LABEL_SORTED, __pyx_t_1) < 0) __PYX_ERR(0, 2833, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2834
+ * O_LABEL_SORTED = fst.kOLabelSorted
+ * NOT_O_LABEL_SORTED = fst.kNotOLabelSorted
+ * WEIGHTED = fst.kWeighted             # <<<<<<<<<<<<<<
+ * UNWEIGHTED = fst.kUnweighted
+ * CYCLIC = fst.kCyclic

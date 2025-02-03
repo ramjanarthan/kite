@@ -1,0 +1,50 @@
+                                                        num_processes=num_processes,
+                                                        scorer=scorer)
+                decoded = list(d[0][1] for d in decoded)
+                transcripts.extend(zip(starts, ends, decoded))
+            transcripts.sort(key=lambda t: t[0])
+            transcripts = [{'start': int(start),
+                            'end': int(end),
+                            'transcript': transcript} for start, end, transcript in transcripts]
+            with open(tlog_path, 'w') as tlog_file:
+                json.dump(transcripts, tlog_file, default=float)
+
+
+def transcribe_many(src_paths,dst_paths):
+    pbar = create_progressbar(prefix='Transcribing files | ', max_value=len(src_paths)).start()
+    for i in range(len(src_paths)):
+        p = Process(target=transcribe_file, args=(src_paths[i], dst_paths[i]))
+        p.start()
+        p.join()
+        log_progress('Transcribed file {} of {} from "{}" to "{}"'.format(i + 1, len(src_paths), src_paths[i], dst_paths[i]))
+        pbar.update(i)
+    pbar.finish()
+
+
+def transcribe_one(src_path, dst_path):
+    transcribe_file(src_path, dst_path)
+    log_info('Transcribed file "{}" to "{}"'.format(src_path, dst_path))
+
+
+def resolve(base_path, spec_path):
+    if spec_path is None:
+        return None
+    if not os.path.isabs(spec_path):
+        spec_path = os.path.join(base_path, spec_path)
+    return spec_path
+
+
+def main(_):
+    if not FLAGS.src or not os.path.exists(FLAGS.src):
+        # path not given or non-existant
+        fail('You have to specify which file or catalog to transcribe via the --src flag.')
+    else:
+        # path given and exists
+        src_path = os.path.abspath(FLAGS.src)
+        if os.path.isfile(src_path):
+            if src_path.endswith('.catalog'):
+                # Transcribe batch of files via ".catalog" file (from DSAlign)
+                if FLAGS.dst:
+                    fail('Parameter --dst not supported if --src points to a catalog')
+                catalog_dir = os.path.dirname(src_path)
+                with open(src_path, 'r') as catalog_file:

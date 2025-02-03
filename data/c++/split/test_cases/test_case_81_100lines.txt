@@ -1,0 +1,100 @@
+ *                        bool connect=True,
+ *                        weight=None,
+ *                        int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                        float delta=fst.kShortestDelta) except *:
+ *     cdef fst.WeightClass wc = _get_WeightClass_or_Zero(self.weight_type(),
+ */
+  __pyx_k__46 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":2453
+ *                        weight=None,
+ *                        int64 nstate=fst.kNoStateId,
+ *                        float delta=fst.kShortestDelta) except *:             # <<<<<<<<<<<<<<
+ *     cdef fst.WeightClass wc = _get_WeightClass_or_Zero(self.weight_type(),
+ *                                                        weight)
+ */
+  __pyx_k__47 = fst::kShortestDelta;
+
+  /* "pywrapfst.pyx":2466
+ *                 bool connect=True,
+ *                 weight=None,
+ *                 int64 nstate=fst.kNoStateId,             # <<<<<<<<<<<<<<
+ *                 float delta=fst.kShortestDelta):
+ *     """
+ */
+  __pyx_k__48 = fst::kNoStateId;
+
+  /* "pywrapfst.pyx":2467
+ *                 weight=None,
+ *                 int64 nstate=fst.kNoStateId,
+ *                 float delta=fst.kShortestDelta):             # <<<<<<<<<<<<<<
+ *     """
+ *     rmepsilon(self, queue_type="auto", connect=True, weight=None,
+ */
+  __pyx_k__49 = fst::kShortestDelta;
+
+  /* "pywrapfst.pyx":2742
+ * 
+ * 
+ * class Fst(object):             # <<<<<<<<<<<<<<
+ * 
+ *    """
+ */
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_tuple__107); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2742, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_tuple__107, __pyx_n_s_Fst, __pyx_n_s_Fst, (PyObject *) NULL, __pyx_n_s_pywrapfst_2, __pyx_kp_s_Fst_arc_type_standard_Construct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2742, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+
+  /* "pywrapfst.pyx":2759
+ *    """
+ * 
+ *    def __new__(cls, arc_type=b"standard"):             # <<<<<<<<<<<<<<
+ *     return _create_Fst(arc_type)
+ * 
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_9pywrapfst_3Fst_1__new__, __Pyx_CYFUNCTION_STATICMETHOD, __pyx_n_s_Fst___new, NULL, __pyx_n_s_pywrapfst_2, __pyx_d, ((PyObject *)__pyx_codeobj__109)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2759, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__110);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_new, __pyx_t_3) < 0) __PYX_ERR(0, 2759, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pywrapfst.pyx":2763
+ * 
+ *    @staticmethod
+ *    def read(filename):             # <<<<<<<<<<<<<<
+ *      """
+ *      read(filename):
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_9pywrapfst_3Fst_3read, __Pyx_CYFUNCTION_STATICMETHOD, __pyx_n_s_Fst_read, NULL, __pyx_n_s_pywrapfst_2, __pyx_d, ((PyObject *)__pyx_codeobj__112)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2763, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "pywrapfst.pyx":2762
+ *     return _create_Fst(arc_type)
+ * 
+ *    @staticmethod             # <<<<<<<<<<<<<<
+ *    def read(filename):
+ *      """
+ */
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2762, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
+  __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2762, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s_read, __pyx_t_3) < 0) __PYX_ERR(0, 2763, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pywrapfst.pyx":2781
+ * 
+ *    @staticmethod
+ *    def read_from_string(state):             # <<<<<<<<<<<<<<
+ *      """
+ *      read_from_string(string, fst_type=None)
+ */
+  __pyx_t_3 = __Pyx_CyFunction_NewEx(&__pyx_mdef_9pywrapfst_3Fst_5read_from_string, __Pyx_CYFUNCTION_STATICMETHOD, __pyx_n_s_Fst_read_from_string, NULL, __pyx_n_s_pywrapfst_2, __pyx_d, ((PyObject *)__pyx_codeobj__114)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 2781, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+
+  /* "pywrapfst.pyx":2780
+ *      return _read(filename)

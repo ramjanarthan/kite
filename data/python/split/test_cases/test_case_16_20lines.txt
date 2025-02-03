@@ -1,0 +1,20 @@
+        return super(UTF8Alphabet, self).CanEncode(input.encode('utf-8'))
+
+    def EncodeSingle(self, input):
+        '''
+        Encode a single character/output class into a label. Character must be in
+        the alphabet, this method will assert that. Use `CanEncodeSingle` to test.
+        '''
+        return super(UTF8Alphabet, self).EncodeSingle(input.encode('utf-8'))
+
+    def Encode(self, input):
+        '''
+        Encode a sequence of character/output classes into a sequence of labels.
+        Characters are assumed to always take a single Unicode codepoint.
+        Characters must be in the alphabet, this method will assert that. Use
+        `CanEncode` and `CanEncodeSingle` to test.
+        '''
+        # Convert SWIG's UnsignedIntVec to a Python list
+        res = super(UTF8Alphabet, self).Encode(input.encode('utf-8'))
+        return [el for el in res]
+

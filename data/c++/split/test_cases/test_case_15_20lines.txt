@@ -1,0 +1,20 @@
+ * 
+ */
+
+static void __pyx_f_9pywrapfst_9FarWriter_close(struct __pyx_obj_9pywrapfst_FarWriter *__pyx_v_self) {
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("close", 0);
+
+  /* "pywrapfst.pyx":4421
+ *   # instance after this is invoked may result in a null dereference.
+ *   cdef void close(self):
+ *     self._writer.reset()             # <<<<<<<<<<<<<<
+ * 
+ *   cpdef void add(self, key, _Fst ifst) except *:
+ */
+  if (unlikely(((PyObject *)__pyx_v_self) == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "_writer");
+    __PYX_ERR(0, 4421, __pyx_L1_error)
+  }
+  __pyx_v_self->_writer.reset();
+

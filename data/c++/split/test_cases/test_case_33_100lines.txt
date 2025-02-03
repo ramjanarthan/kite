@@ -1,0 +1,100 @@
+}
+
+static PyObject *__pyx_pf_9pywrapfst_9FarWriter_18__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9pywrapfst_FarWriter *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("__setstate_cython__", 0);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__98, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __PYX_ERR(1, 4, __pyx_L1_error)
+
+  /* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     raise TypeError("self._writer cannot be converted to a Python object for pickling")
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pywrapfst.FarWriter.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pywrapfst.pyx":4492
+ * 
+ * @atexit.register
+ * def _reset_fst_error_fatal():             # <<<<<<<<<<<<<<
+ *   fst.FLAGS_fst_error_fatal = _fst_error_fatal_old
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_9pywrapfst_59_reset_fst_error_fatal(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyMethodDef __pyx_mdef_9pywrapfst_59_reset_fst_error_fatal = {"_reset_fst_error_fatal", (PyCFunction)__pyx_pw_9pywrapfst_59_reset_fst_error_fatal, METH_NOARGS, 0};
+static PyObject *__pyx_pw_9pywrapfst_59_reset_fst_error_fatal(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_reset_fst_error_fatal (wrapper)", 0);
+  __pyx_r = __pyx_pf_9pywrapfst_58_reset_fst_error_fatal(__pyx_self);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_9pywrapfst_58_reset_fst_error_fatal(CYTHON_UNUSED PyObject *__pyx_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  bool __pyx_t_2;
+  __Pyx_RefNannySetupContext("_reset_fst_error_fatal", 0);
+
+  /* "pywrapfst.pyx":4493
+ * @atexit.register
+ * def _reset_fst_error_fatal():
+ *   fst.FLAGS_fst_error_fatal = _fst_error_fatal_old             # <<<<<<<<<<<<<<
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_fst_error_fatal_old); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4493, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_2 == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 4493, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  FLAGS_fst_error_fatal = __pyx_t_2;
+
+  /* "pywrapfst.pyx":4492
+ * 
+ * @atexit.register
+ * def _reset_fst_error_fatal():             # <<<<<<<<<<<<<<
+ *   fst.FLAGS_fst_error_fatal = _fst_error_fatal_old
+ * 
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pywrapfst._reset_fst_error_fatal", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "string.from_py":13
+ * 

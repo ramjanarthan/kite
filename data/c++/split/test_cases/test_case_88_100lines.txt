@@ -1,0 +1,100 @@
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kDeleteStatesProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2859, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DELETE_STATE_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2859, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2860
+ * SET_ARC_PROPERTIES = fst.kSetArcProperties
+ * DELETE_STATE_PROPERTIES = fst.kDeleteStatesProperties
+ * DELETE_ARC_PROPERTIES = fst.kDeleteArcsProperties             # <<<<<<<<<<<<<<
+ * STATE_SORT_PROPERTIES = fst.kStateSortProperties
+ * ARC_SORT_PROPERTIES = fst.kArcSortProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kDeleteArcsProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2860, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_DELETE_ARC_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2860, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2861
+ * DELETE_STATE_PROPERTIES = fst.kDeleteStatesProperties
+ * DELETE_ARC_PROPERTIES = fst.kDeleteArcsProperties
+ * STATE_SORT_PROPERTIES = fst.kStateSortProperties             # <<<<<<<<<<<<<<
+ * ARC_SORT_PROPERTIES = fst.kArcSortProperties
+ * I_LABEL_INVARIANT_PROPERTIES = fst.kILabelInvariantProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kStateSortProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2861, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_STATE_SORT_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2861, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2862
+ * DELETE_ARC_PROPERTIES = fst.kDeleteArcsProperties
+ * STATE_SORT_PROPERTIES = fst.kStateSortProperties
+ * ARC_SORT_PROPERTIES = fst.kArcSortProperties             # <<<<<<<<<<<<<<
+ * I_LABEL_INVARIANT_PROPERTIES = fst.kILabelInvariantProperties
+ * O_LABEL_INVARIANT_PROPERTIES = fst.kOLabelInvariantProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kArcSortProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2862, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ARC_SORT_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2862, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2863
+ * STATE_SORT_PROPERTIES = fst.kStateSortProperties
+ * ARC_SORT_PROPERTIES = fst.kArcSortProperties
+ * I_LABEL_INVARIANT_PROPERTIES = fst.kILabelInvariantProperties             # <<<<<<<<<<<<<<
+ * O_LABEL_INVARIANT_PROPERTIES = fst.kOLabelInvariantProperties
+ * WEIGHT_INVARIANT_PROPERTIES = fst.kWeightInvariantProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kILabelInvariantProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2863, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_I_LABEL_INVARIANT_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2863, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2864
+ * ARC_SORT_PROPERTIES = fst.kArcSortProperties
+ * I_LABEL_INVARIANT_PROPERTIES = fst.kILabelInvariantProperties
+ * O_LABEL_INVARIANT_PROPERTIES = fst.kOLabelInvariantProperties             # <<<<<<<<<<<<<<
+ * WEIGHT_INVARIANT_PROPERTIES = fst.kWeightInvariantProperties
+ * ADD_SUPERFINAL_PROPERTIES = fst.kAddSuperFinalProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kOLabelInvariantProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2864, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_O_LABEL_INVARIANT_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2864, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2865
+ * I_LABEL_INVARIANT_PROPERTIES = fst.kILabelInvariantProperties
+ * O_LABEL_INVARIANT_PROPERTIES = fst.kOLabelInvariantProperties
+ * WEIGHT_INVARIANT_PROPERTIES = fst.kWeightInvariantProperties             # <<<<<<<<<<<<<<
+ * ADD_SUPERFINAL_PROPERTIES = fst.kAddSuperFinalProperties
+ * RM_SUPERFINAL_PROPERTIES = fst.kRmSuperFinalProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kWeightInvariantProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2865, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_WEIGHT_INVARIANT_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2865, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2866
+ * O_LABEL_INVARIANT_PROPERTIES = fst.kOLabelInvariantProperties
+ * WEIGHT_INVARIANT_PROPERTIES = fst.kWeightInvariantProperties
+ * ADD_SUPERFINAL_PROPERTIES = fst.kAddSuperFinalProperties             # <<<<<<<<<<<<<<
+ * RM_SUPERFINAL_PROPERTIES = fst.kRmSuperFinalProperties
+ * BINARY_PROPERTIES = fst.kBinaryProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kAddSuperFinalProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2866, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ADD_SUPERFINAL_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2866, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pywrapfst.pyx":2867
+ * WEIGHT_INVARIANT_PROPERTIES = fst.kWeightInvariantProperties
+ * ADD_SUPERFINAL_PROPERTIES = fst.kAddSuperFinalProperties
+ * RM_SUPERFINAL_PROPERTIES = fst.kRmSuperFinalProperties             # <<<<<<<<<<<<<<
+ * BINARY_PROPERTIES = fst.kBinaryProperties
+ * TRINARY_PROPERTIES = fst.kTrinaryProperties
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(fst::kRmSuperFinalProperties); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2867, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_RM_SUPERFINAL_PROPERTIES, __pyx_t_1) < 0) __PYX_ERR(0, 2867, __pyx_L1_error)
