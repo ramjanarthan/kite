@@ -20,14 +20,14 @@ def calculate_bigram_counts(filename):
     
     return count_map
 
-# trigram_counts_en = calculate_trigram_counts('processed_training.en')
-# bigram_counts_en = calculate_bigram_counts('processed_training.en')
+# trigram_counts_en = calculate_trigram_counts('data/python/split/train_processed')
+# bigram_counts_en = calculate_bigram_counts('data/python/split/train_processed')
 
-# Testing
-#  c = 0
+# # Testing
+# c = 0
 # for (key, value) in trigram_counts_en.items():
 #     print(f"key: {key} value: {value}")
-#     c += 1
+#     c += 1s
 #     if c > 20: 
 #         break
 

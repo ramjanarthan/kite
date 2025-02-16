@@ -1,6 +1,7 @@
 from counts import *
 from constants import *
 from primitives import *
+from vocabulary import *
 import random
 from generator import sample
 from preprocessor import FilePreprocessor
@@ -24,8 +25,8 @@ class CustomLanugageModel:
         """ For a given filename as input, compute trigram probabilites"""
         bigram_counts = calculate_bigram_counts(filename)
         trigram_counts = calculate_trigram_counts(filename)
-        vocabulary = self.generate_trigram_vocabulary()
-        vocab_size = 30 # An appromixation, close to the average (since ^ and & are not legal in all positions in this model)
+        vocabulary = generate_trigram_vocab()
+        vocab_size = len(generate_base_vocab())
 
         for trigram in vocabulary:
             bigram = trigram.history()
@@ -52,27 +53,26 @@ class CustomLanugageModel:
         with open(model_file, 'rb') as f:
             self.distribution_map = pickle.load(f)
 
+    # def generate_next(self, context): 
+    #     """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
 
-    def generate_next(self, context): 
-        """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
+    #     bigram_dist = self.distribution_map[context]
 
-        bigram_dist = self.distribution_map[context]
-
-        if not bigram_dist:
-            # For example, if context == Bigram('.', "#")
-            return None
+    #     if not bigram_dist:
+    #         # For example, if context == Bigram('.', "#")
+    #         return None
         
-        sampled_trigram = sample(bigram_dist.dist)
-        return sampled_trigram
+    #     sampled_trigram = sample(bigram_dist.dist)
+    #     return sampled_trigram
     
-    def generate_start(self) -> Bigram:
-        """Method to sample from all possible start bigrams"""
+    # def generate_start(self) -> Bigram:
+    #     """Method to sample from all possible start bigrams"""
 
-        possibilites = [Bigram("^", ' '), Bigram("^", '.'), Bigram('^', '0'), Bigram('^', 'a'), Bigram('^', 'b'), Bigram('^', 'c'), Bigram('^', 'd'), Bigram('^', 'e'), Bigram('^', 'f'), Bigram('^', 'g'), Bigram('^', 'h'), Bigram('^', 'i'), Bigram('^', 'j'), Bigram('^', 'k'), Bigram('^', 'l'), Bigram('^', 'm'), Bigram('^', 'n'), Bigram('^', 'o'), Bigram('^', 'p'), Bigram('^', 'q'), Bigram('^', 'r'), Bigram('^', 's'), Bigram('^', 't'), Bigram('^', 'u'), Bigram('^', 'v'), Bigram('^', 'w'), Bigram('^', 'x'), Bigram('^', 'y'), Bigram('^', 'z')]
+    #     possibilites = [Bigram("^", ' '), Bigram("^", '.'), Bigram('^', '0'), Bigram('^', 'a'), Bigram('^', 'b'), Bigram('^', 'c'), Bigram('^', 'd'), Bigram('^', 'e'), Bigram('^', 'f'), Bigram('^', 'g'), Bigram('^', 'h'), Bigram('^', 'i'), Bigram('^', 'j'), Bigram('^', 'k'), Bigram('^', 'l'), Bigram('^', 'm'), Bigram('^', 'n'), Bigram('^', 'o'), Bigram('^', 'p'), Bigram('^', 'q'), Bigram('^', 'r'), Bigram('^', 's'), Bigram('^', 't'), Bigram('^', 'u'), Bigram('^', 'v'), Bigram('^', 'w'), Bigram('^', 'x'), Bigram('^', 'y'), Bigram('^', 'z')]
 
-        bigrams_missing_in_training = [Bigram("^", ' '), Bigram("^", '^'), Bigram("^", 'x'), Bigram("^", 'z'), Bigram("^", '0')]
+    #     bigrams_missing_in_training = [Bigram("^", ' '), Bigram("^", '^'), Bigram("^", 'x'), Bigram("^", 'z'), Bigram("^", '0')]
 
-        return random.choice(list(set(possibilites) - set(bigrams_missing_in_training)))
+    #     return random.choice(list(set(possibilites) - set(bigrams_missing_in_training)))
 
     def validate(self):
         """For a given bigram_distribution, we expect the sum of all trigram probabilites to sum to one"""
@@ -91,26 +91,6 @@ class CustomLanugageModel:
                 if CustomLanugageModel.DEBUG_MODE:
                     print(f"Valid for: {key}")
             
-        return True
-    
-    def generate_trigram_vocabulary(self) -> list[Trigram]:
-        all_chars = set(allowed_characters).union(set([start_of_line_character] + [end_of_line_character] + [number_mask_character]))
-        vocabulary = []
-
-        for first in all_chars:
-            for second in all_chars:
-                for third in all_chars:
-                    trigram = Trigram(first, second, third)
-                    vocabulary += [trigram]
-        
-        # remove illegal trigrams
-        return list(filter(self._helper_filter, vocabulary))
-    
-    def _helper_filter(self, trigram) -> bool :
-        if trigram.start == '$' or trigram.middle == '$':
-            return False
-        elif trigram.middle == '^' or trigram.end == '^':
-            return False
         return True
     
     def compute_perplexity(self, filename):
