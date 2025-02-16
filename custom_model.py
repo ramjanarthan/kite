@@ -9,6 +9,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+import os
 
 class CustomLanguageModel:
     """For a given vocabulary and training input, contains all the trigram distributions over that set of bigrams"""
@@ -131,6 +132,9 @@ class CustomLanguageModel:
 
         # 6. raise base of log to value of step 5, to get perplexity
         perplexity = math.pow(10, scaled_log_sum)
+
+        # 7. delete processed file
+        os.remove(new_filename)
         return perplexity
     
     def generate_output_sequence(self, length) -> str:
