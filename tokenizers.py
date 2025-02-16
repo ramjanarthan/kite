@@ -1,4 +1,3 @@
-from constants import start_of_line_character
 from primitives import Bigram, Trigram
 
 class BigramTokenizer:
@@ -12,8 +11,8 @@ class BigramTokenizer:
 
         if not curr_char:
             return None
-        elif curr_char == start_of_line_character:
-            # We are the start of the line, and minimally can expect one more character to follow
+        elif not self.prev_bigram:
+            # We are the start of the file, and minimally can expect one more character to follow
             next = self.file_descriptor.read(1)
 
             if not next:
@@ -42,7 +41,7 @@ class TrigramTokenizer:
 
         if not curr_char:
             return None
-        elif curr_char == start_of_line_character:
+        elif not self.prev_trigram:
             # We are the start of the line, and minimally can expect one character and the end_of_line to follow
             next = self.file_descriptor.read(1)
             last = self.file_descriptor.read(1)
