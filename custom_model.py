@@ -10,19 +10,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
-class CustomLanugageModel:
+class CustomLanguageModel:
     """For a given vocabulary and training input, contains all the trigram distributions over that set of bigrams"""
     DEBUG_MODE = False
 
-    def __init__(self, filename=None, alpha= 0.63, model_file=None) -> None:
-        self.distribution_map = defaultdict(lambda: {})
+    def __init__(self, filename=None, alpha=0.63, model_file=None) -> None:
+        self.distribution_map = defaultdict(self.default_dict_factory)
         if model_file:
             self.load_model(model_file)
         elif filename:
             self._compute_model(filename, alpha)
 
+    def default_dict_factory(self):
+        return {}
+    
+    def default_dict_empty_count_factory(self):
+        return 0
+
     def _compute_model(self, filename, alpha):
-        """ For a given filename as input, compute trigram probabilites"""
+        """ For a given filename as input, compute trigram probabilities"""
         bigram_counts = calculate_bigram_counts(filename)
         trigram_counts = calculate_trigram_counts(filename)
         vocabulary = generate_trigram_vocab()
@@ -34,11 +40,11 @@ class CustomLanugageModel:
             trigram_count = trigram_counts[trigram]
             
             # Smoothing
-            probability = (trigram_count * 1.0 + alpha)/ (bigram_count + alpha * vocab_size)
+            probability = (trigram_count * 1.0 + alpha) / (bigram_count + alpha * vocab_size)
 
             bigram_distribution = self.distribution_map[bigram]
             if not bigram_distribution:
-                bigram_distribution = BigramDistribution(bigram, defaultdict(lambda: 0))
+                bigram_distribution = BigramDistribution(bigram, defaultdict(self.default_dict_empty_count_factory))
             
             bigram_distribution.dist[trigram] = probability
             self.distribution_map[bigram] = bigram_distribution
@@ -46,12 +52,13 @@ class CustomLanugageModel:
     def save_model(self, model_file):
         """Save the model to a file"""
         with open(model_file, 'wb') as f:
-            pickle.dump(self.distribution_map, f)
+            pickle.dump(self, f)
 
-    def load_model(self, model_file):
+    @staticmethod
+    def load_model(model_file):
         """Load the model from a file"""
         with open(model_file, 'rb') as f:
-            self.distribution_map = pickle.load(f)
+            return pickle.load(f)
 
     def generate_next(self, context): 
         """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
@@ -67,23 +74,24 @@ class CustomLanugageModel:
     
     def generate_start(self) -> Bigram:
         """Method to sample from all possible start bigrams"""
-        return random.choice(list(self.distribution_map.keys()))
+        return Bigram('i', 'f')
+        # return random.choice(list(self.distribution_map.keys()))
 
     def validate(self):
-        """For a given bigram_distribution, we expect the sum of all trigram probabilites to sum to one"""
+        """For a given bigram_distribution, we expect the sum of all trigram probabilities to sum to one"""
         for (key, distribution) in sorted(self.distribution_map.items()):
             sum = 0
             for (trigram, probability) in sorted(distribution.dist.items()):
                 sum += probability
-                if CustomLanugageModel.DEBUG_MODE:
-                    print(f"sum { sum} proabbility: {probability} trigram: {trigram}")
+                if CustomLanguageModel.DEBUG_MODE:
+                    print(f"sum {sum} probability: {probability} trigram: {trigram}")
             
             if abs(1 - sum) > 0.001:
-                if CustomLanugageModel.DEBUG_MODE:
+                if CustomLanguageModel.DEBUG_MODE:
                     print(f"Error with sum: {sum} for key: {key}")
-                raise Exception(f"Validation failed for model. Erronous bigram distribution: {key}")
+                raise Exception(f"Validation failed for model. Erroneous bigram distribution: {key}")
             else:
-                if CustomLanugageModel.DEBUG_MODE:
+                if CustomLanguageModel.DEBUG_MODE:
                     print(f"Valid for: {key}")
             
         return True

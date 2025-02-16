@@ -1,9 +1,10 @@
-from custom_model import CustomLanugageModel
+from custom_model import CustomLanguageModel
 from constants import *
 import os
+import sys
 
-python_model = CustomLanugageModel(processed_train_files[0])
-cpp_model = CustomLanugageModel(processed_train_files[1])
+python_model = CustomLanguageModel.load_model(python_model_file) # CustomLanguageModel(processed_train_files[0])
+cpp_model = CustomLanguageModel.load_model(cpp_model_file) # CustomLanguageModel(processed_train_files[1])
 
 # python_model.save_model(python_model_file)
 # cpp_model.save_model(cpp_model_file)
@@ -15,6 +16,8 @@ print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[0])}")
 print("Performance on c++ validation file")
 print(f"Perplexity of python: {python_model.compute_perplexity(validation_files[1])}")
 print(f"Perplexity of c++: {cpp_model.compute_perplexity(validation_files[1])}")
+
+# sys.exit()
 
 # For each file in 'python_test_files_dir' and 'cpp_test_files_dir', print the perplexity of the file for each model
 python_test_files = os.listdir(python_test_files_dir)
