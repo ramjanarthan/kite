@@ -26,7 +26,7 @@ cpp_test_files.sort()
 count = 0
 print("Testing performance on python test files")
 for file in python_test_files:
-    if count > 20:
+    if count > 5:
         break
 
     count += 1
@@ -35,8 +35,8 @@ for file in python_test_files:
 
 count = 0
 print("Testing performance on c++ test files")
-for file in cpp_test_files_dir:
-    if count > 20:
+for file in cpp_test_files:
+    if count > 5:
         break
 
     count += 1

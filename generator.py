@@ -14,7 +14,7 @@ def sample(dist):
         if y <= max:
             return key
     
-    return dist.keys()[-1]
+    return list(dist.keys())[-1]
 
 test_dist = {
     "a": 0.4,

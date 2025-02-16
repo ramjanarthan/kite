@@ -53,26 +53,21 @@ class CustomLanugageModel:
         with open(model_file, 'rb') as f:
             self.distribution_map = pickle.load(f)
 
-    # def generate_next(self, context): 
-    #     """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
+    def generate_next(self, context): 
+        """Given a bigram 'context', generate a possible 'trigram' that is most likely that this bigram prefixes"""
 
-    #     bigram_dist = self.distribution_map[context]
+        bigram_dist = self.distribution_map[context]
 
-    #     if not bigram_dist:
-    #         # For example, if context == Bigram('.', "#")
-    #         return None
+        if not bigram_dist:
+            # For example, if context == Bigram('.', "#")
+            return None
         
-    #     sampled_trigram = sample(bigram_dist.dist)
-    #     return sampled_trigram
+        sampled_trigram = sample(bigram_dist.dist)
+        return sampled_trigram
     
-    # def generate_start(self) -> Bigram:
-    #     """Method to sample from all possible start bigrams"""
-
-    #     possibilites = [Bigram("^", ' '), Bigram("^", '.'), Bigram('^', '0'), Bigram('^', 'a'), Bigram('^', 'b'), Bigram('^', 'c'), Bigram('^', 'd'), Bigram('^', 'e'), Bigram('^', 'f'), Bigram('^', 'g'), Bigram('^', 'h'), Bigram('^', 'i'), Bigram('^', 'j'), Bigram('^', 'k'), Bigram('^', 'l'), Bigram('^', 'm'), Bigram('^', 'n'), Bigram('^', 'o'), Bigram('^', 'p'), Bigram('^', 'q'), Bigram('^', 'r'), Bigram('^', 's'), Bigram('^', 't'), Bigram('^', 'u'), Bigram('^', 'v'), Bigram('^', 'w'), Bigram('^', 'x'), Bigram('^', 'y'), Bigram('^', 'z')]
-
-    #     bigrams_missing_in_training = [Bigram("^", ' '), Bigram("^", '^'), Bigram("^", 'x'), Bigram("^", 'z'), Bigram("^", '0')]
-
-    #     return random.choice(list(set(possibilites) - set(bigrams_missing_in_training)))
+    def generate_start(self) -> Bigram:
+        """Method to sample from all possible start bigrams"""
+        return random.choice(list(self.distribution_map.keys()))
 
     def validate(self):
         """For a given bigram_distribution, we expect the sum of all trigram probabilites to sum to one"""
@@ -132,18 +127,32 @@ class CustomLanugageModel:
     
     def generate_output_sequence(self, length) -> str:
         start_bigram = self.generate_start()
-        output = start_bigram.end # Ingnore the '^' in the output
+        output = self._sanitise_bigram(start_bigram)
 
         while len(output) <= length:
             next_trigram = self.generate_next(start_bigram)
 
             if not next_trigram:
                 start_bigram = self.generate_start()
-                output += start_bigram.end  # Ingnore the '^' in the output
+                output += self._sanitise_bigram(start_bigram)
                 continue
 
-            if next_trigram.end != "$":
-                output += next_trigram.end
+            output += self._sanitise_character(next_trigram.end)
 
             start_bigram = Bigram(next_trigram.middle, next_trigram.end)
         return output
+    
+    def _sanitise_bigram(self, bigram):
+        return self._sanitise_character(bigram.start) + self._sanitise_character(bigram.end)
+    
+    def _sanitise_character(self, char):
+        if char == space_character:
+            return ' '
+        elif char == tab_character:
+            return '\t'
+        elif char == new_line_character:
+            return '\n'
+        elif char == number_mask_character:
+            return random.choice(numeric_characters)
+        else:
+            return char
