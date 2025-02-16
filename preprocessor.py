@@ -1,4 +1,3 @@
-import os
 from constants import *
 
 class FilePreprocessor:
@@ -7,17 +6,25 @@ class FilePreprocessor:
             for _, line in enumerate(input):
                 processed_line = self._preprocess_line(line)
                 output.write(processed_line)
+            
 
     def _preprocess_line(self, line):
-        line = line.lower()
-        output = start_of_line_character
+        output = ""
         for char in line:
-            if char == "\n":
-                output += end_of_line_character
-            else:
-                output += char
-        return output
+            if char == ' ':
+                output += space_character
+            elif char == '\t':
+                output += tab_character
+            elif char == '\n':
+                output += new_line_character
+            elif char in allowed_characters:
+                if char in numeric_characters:
+                    output += number_mask_character
+                else:
+                    output += char
 
+        return output
+    
 def preprocess_files():
     file_preprocessor = FilePreprocessor()
     for file in train_files:

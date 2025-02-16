@@ -1,8 +1,22 @@
-# Allowed characters based on the ASCII table
+def acceptable_char_set():
+    char_set = set()
+    filepath = "combined_charset.txt"
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line in f:
+                char = line.strip()[0]
+                char_set.add(char)
+        return char_set
+    except Exception as e:
+        print(f"Error reading character set from {filepath}: {str(e)}")
+        return None
+
+allowed_characters = acceptable_char_set()
 numeric_characters = list(map(chr, range(48, 58)))
-allowed_characters = list(map(chr,range(97, 123))) + [" ", "."]
-start_of_line_character = "^"
-end_of_line_character = "$"
+
+space_character = 'அ'
+tab_character = 'ட'
+new_line_character = 'ந'
 number_mask_character = "0"
 
 languages = ["python", "c++"]
