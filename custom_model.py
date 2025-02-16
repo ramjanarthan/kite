@@ -73,10 +73,13 @@ class CustomLanguageModel:
         sampled_trigram = sample(bigram_dist.dist)
         return sampled_trigram
     
-    def generate_start(self) -> Bigram:
+    def generate_start(self, start_symbol = None) -> Bigram:
         """Method to sample from all possible start bigrams"""
-        return Bigram('i', 'f')
-        # return random.choice(list(self.distribution_map.keys()))
+
+        if start_symbol:
+            return start_symbol
+
+        return random.choice(list(self.distribution_map.keys()))
 
     def validate(self):
         """For a given bigram_distribution, we expect the sum of all trigram probabilities to sum to one"""
@@ -137,15 +140,15 @@ class CustomLanguageModel:
         os.remove(new_filename)
         return perplexity
     
-    def generate_output_sequence(self, length) -> str:
-        start_bigram = self.generate_start()
+    def generate_output_sequence(self, length, seed = None) -> str:
+        start_bigram = self.generate_start(seed)
         output = self._sanitise_bigram(start_bigram)
 
         while len(output) <= length:
             next_trigram = self.generate_next(start_bigram)
 
             if not next_trigram:
-                start_bigram = self.generate_start()
+                start_bigram = self.generate_start(seed)
                 output += self._sanitise_bigram(start_bigram)
                 continue
 

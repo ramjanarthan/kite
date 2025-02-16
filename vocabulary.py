@@ -33,10 +33,3 @@ def generate_bigram_vocab():
             vocabulary += [trigram]
     
     return vocabulary
-   
-def _helper_filter(self, trigram) -> bool :
-    if trigram.start == '$' or trigram.middle == '$':
-        return False
-    elif trigram.middle == '^' or trigram.end == '^':
-        return False
-    return True
