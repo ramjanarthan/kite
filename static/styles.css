@@ -1,0 +1,156 @@
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #202124; /* Dark background */
+    color: #e8eaed; /* Light text */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+}
+
+.app-container {
+    background-color: #282c34; /* Slightly lighter container background */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 1200px;
+    border: 1px solid #3a3f4a;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3a3f4a;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+header .title {
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 1.8em;
+    color: #8ab4f8; /* Light blue icon */
+    margin-right: 15px;
+}
+
+header h1 {
+    color: #e8eaed;
+    margin: 0;
+    font-size: 1.6em;
+    font-weight: 500;
+}
+
+.clear-btn {
+    background-color: #5f6368; /* Darker grey button */
+    color: #e8eaed;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.clear-btn:hover {
+    background-color: #70757a;
+}
+
+/* Content Area Layout (2 columns) */
+.content-area {
+    display: flex;
+    gap: 25px; /* Space between columns */
+}
+
+.editor-column {
+    flex: 3; /* Takes up more space */
+    position: relative; /* For placeholder positioning */
+}
+
+.results-column {
+    flex: 2; /* Takes up less space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between prediction and explanation */
+}
+
+/* Editor Styles */
+#editor {
+    border: 1px solid #3a3f4a;
+    border-radius: 8px;
+    /* Height is set inline in HTML or dynamically via JS if needed */
+    overflow: hidden; /* Ensures border-radius clips the editor */
+}
+
+/* Placeholder text for editor (optional, Monaco might have its own) */
+.editor-placeholder {
+    position: absolute;
+    top: 10px;
+    left: 15px; /* Adjust as needed based on Monaco padding */
+    color: #9aa0a6; /* Grey placeholder text */
+    font-style: italic;
+    pointer-events: none; /* Allows clicking through to the editor */
+    z-index: 1;
+    display: none; /* Initially hidden, shown by JS if editor is empty */
+}
+
+/* Card Styles for Results/Explanation */
+.card {
+    background-color: #2d3136; /* Slightly darker card background */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #3a3f4a;
+}
+
+/* Prediction Section Styles */
+.prediction-section h3,
+.explanation-section h3 {
+    color: #8ab4f8; /* Light blue headings */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-bottom: 1px solid #3a3f4a;
+    padding-bottom: 8px;
+}
+
+.result-item {
+    margin-bottom: 12px;
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.result-item .label {
+    color: #bdc1c6; /* Lighter grey label */
+    margin-right: 10px;
+}
+
+.result-item .value {
+    color: #e8eaed; /* White value */
+    font-weight: 600;
+}
+
+/* Explanation Section Styles */
+.explanation-section p {
+    color: #bdc1c6; /* Lighter grey text */
+    line-height: 1.6;
+    font-size: 0.95em;
+    margin-bottom: 0;
+}
+
+/* Error Message */
+.error {
+    color: #f28b82; /* Light red for errors */
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 0.9em;
+}

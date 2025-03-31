@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Gram Language Detector</title>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/editor/editor.main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="title">
+                <i class="fas fa-code header-icon"></i> <h1>N-Gram Language Detector</h1>
+            </div>
+            <button id="clear-button" class="clear-btn">Clear</button>
+        </header>
+
+        <main class="content-area">
+            <div class="editor-column">
+                <div id="editor" style="height: 70vh;"></div>
+                 <p class="editor-placeholder">Type your code here ...</p>
+            </div>
+
+            <div class="results-column">
+                <div class="prediction-section card">
+                    <h3>Prediction</h3>
+                    <div class="result-item">
+                        <span class="label">Language:</span>
+                        <span id="prediction-language" class="value">Neither</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Python:</span>
+                        <span id="score-python-percent" class="value">0.00 %</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">C++:</span>
+                        <span id="score-cpp-percent" class="value">0.00 %</span>
+                    </div>
+                     <p id="error-message" class="error"></p> </div>
+
+                <div class="explanation-section card">
+                    <h3>Explanation</h3>
+                    <p>
+                        The system analyzes your code using n-grams (sequences of characters, e.g., 3 characters) and compares it against pre-trained language models for Python and C++. Lower perplexity scores indicate a better match (less "surprise") for a model. Confidence percentages are derived from these perplexity scores.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
