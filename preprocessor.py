@@ -30,5 +30,3 @@ def preprocess_files():
     for file in train_files:
         new_file = f"{file}_processed"
         file_preprocessor.preprocess_file(file, new_file)
-
-preprocess_files()
