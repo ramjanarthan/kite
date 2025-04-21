@@ -14,5 +14,11 @@
     ],
     "env": {
         "PYTHONPATH": "."
+    },
+    "ignoreCommand": "ls data/",
+    "git": {
+        "deploymentEnabled": {
+            "data/**": false
+        }
     }
 } 
