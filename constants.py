@@ -40,6 +40,20 @@ processed_train_files = [
     "data/c++/split/train_processed"
 ]
 
+training_writing_files = {
+    "chatgpt": "data/writing/raw/chatgpt",
+    "claude": "data/writing/raw/claude",
+    "gemini": "data/writing/raw/gemini",
+    "grok": "data/writing/raw/grok",
+}
+
+processed_writing_files = {
+    "chatgpt": "data/writing/processed/openai/chatgpt",
+    "claude": "data/writing/processed/anthropic/claude",
+    "gemini": "data/writing/processed/google/gemini",
+    "grok": "data/writing/processed/grok/grok",
+}
+
 python_test_files_dir = "data/python/split/test_cases/"
 cpp_test_files_dir = "data/c++/split/test_cases/"
 
