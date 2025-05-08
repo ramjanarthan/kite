@@ -1,0 +1,7 @@
+ChatGPT: 4o
+Gemini: Flash 2.0
+Grok: grok 3.0
+Claude: 3.7 sonnet
+
+Prompt:
+Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can  
