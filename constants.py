@@ -41,17 +41,24 @@ processed_train_files = [
 ]
 
 training_writing_files = {
-    "chatgpt": "data/writing/raw/chatgpt",
-    "claude": "data/writing/raw/claude",
-    "gemini": "data/writing/raw/gemini",
-    "grok": "data/writing/raw/grok",
+    "chatgpt": "data/writing/train/chatgpt",
+    "claude": "data/writing/train/claude",
+    "gemini": "data/writing/train/gemini",
+    "grok": "data/writing/train/grok",
+}
+
+validation_writing_files = {
+    "chatgpt": "data/writing/validation/chatgpt",
+    "claude": "data/writing/validation/claude",
+    "gemini": "data/writing/validation/gemini",
+    "grok": "data/writing/validation/grok",
 }
 
 processed_writing_files = {
-    "chatgpt": "data/writing/processed/openai/chatgpt",
-    "claude": "data/writing/processed/anthropic/claude",
-    "gemini": "data/writing/processed/google/gemini",
-    "grok": "data/writing/processed/grok/grok",
+    "chatgpt": "data/writing/train/chatgpt_processed",
+    "claude": "data/writing/train/claude_processed",
+    "gemini": "data/writing/train/gemini_processed",
+    "grok": "data/writing/train/grok_processed",
 }
 
 python_test_files_dir = "data/python/split/test_cases/"
@@ -59,3 +66,10 @@ cpp_test_files_dir = "data/c++/split/test_cases/"
 
 python_model_file = "python_model"
 cpp_model_file = "cpp_model"
+
+writing_model_files = {
+    "chatgpt": "models/writing/chatgpt",
+    "claude": "models/writing/claude",
+    "gemini": "models/writing/gemini",
+    "grok": "models/writing/grok",
+}
