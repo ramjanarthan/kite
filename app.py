@@ -164,7 +164,7 @@ def analyze_writing():
             elif mean_perplexity > 14:
                 return jsonify({
                     "best_match": None,
-                    "explanation": "Your writing style is unique and not like any of our AI models, nice job! Try again to match our models",
+                    "explanation": "Your writing style is original and unlike any of our AI models, nice job! Try again to match our models",
                     "scores": perplexities
                 })
 

@@ -53,6 +53,12 @@ function initializeWritingStyle() {
                 body: JSON.stringify({ text })
             });
             const data = await response.json();
+
+            // Reset all model cards
+            const modelCards = document.querySelectorAll('.model-card');
+            modelCards.forEach(card => {
+                card.classList.remove('winner');
+            });
             
             if (data.error) {
                 resultsDiv.innerHTML = `
@@ -75,9 +81,7 @@ function initializeWritingStyle() {
 
             // Only highlight a model if we have a best match
             if (data.best_match) {
-                const modelCards = document.querySelectorAll('.model-card');
                 modelCards.forEach(card => {
-                    card.classList.remove('winner');
                     if (card.id === data.best_match) {
                         card.classList.add('winner');
                     }
