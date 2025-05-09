@@ -24,7 +24,7 @@
                 </div>
                 <div class="editor-controls">
                     <div class="char-count">
-                        Characters: <span id="charCount">0</span>/1000
+                        Characters: <span id="charCount">0</span>/150
                     </div>
                     <div class="button-group">
                         <button id="submit-button" class="submit-btn" disabled>
@@ -53,19 +53,19 @@
                         </div>
                     </div>
                     <div class="models-grid">
-                        <div class="model-card">
+                        <div class="model-card" id="chatgpt">
                             <img src="/static/images/chatgpt.png" alt="ChatGPT">
                             <h4>ChatGPT</h4>
                         </div>
-                        <div class="model-card">
+                        <div class="model-card" id="gemini">
                             <img src="/static/images/gemini.png" alt="Gemini">
                             <h4>Gemini</h4>
                         </div>
-                        <div class="model-card">
+                        <div class="model-card" id="grok">
                             <img src="/static/images/grok.png" alt="Grok">
                             <h4>Grok</h4>
                         </div>
-                        <div class="model-card">
+                        <div class="model-card" id="claude">
                             <img src="/static/images/claude.png" alt="Claude">
                             <h4>Claude</h4>
                         </div>
@@ -79,129 +79,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js"></script>
-    <script>
-        // Initialize Monaco Editor
-        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs' }});
-        require(['vs/editor/editor.main'], function() {
-            window.editor = monaco.editor.create(document.getElementById('editor'), {
-                value: '',
-                language: 'markdown',
-                theme: 'vs-dark',
-                minimap: { enabled: false },
-                scrollBeyondLastLine: false,
-                fontSize: 14,
-                lineHeight: 24,
-                padding: { top: 20, bottom: 20 },
-                automaticLayout: true,
-                wordWrap: 'on',
-                wrappingStrategy: 'advanced'
-            });
-
-            const charCount = document.getElementById('charCount');
-            const submitButton = document.getElementById('submit-button');
-            const MIN_CHARS = 150;
-            const MAX_CHARS = 1500;
-
-            // Handle editor content changes
-            editor.onDidChangeModelContent((e) => {
-                const text = editor.getValue();
-                const count = text.length;
-                
-                // Update character count
-                charCount.textContent = count;
-                
-                // Update character count color
-                if (count < MIN_CHARS) {
-                    charCount.classList.add('char-count-error');
-                } else {
-                    charCount.classList.remove('char-count-error');
-                }
-
-                // Enable/disable submit button
-                submitButton.disabled = count < MIN_CHARS;
-
-                // If we've exceeded the limit, revert the last change
-                if (count > MAX_CHARS) {
-                    // Get the previous valid state
-                    const previousText = text.substring(0, MAX_CHARS);
-                    // Only update if the text is different to avoid infinite loops
-                    if (editor.getValue() !== previousText) {
-                        editor.setValue(previousText);
-                        // Move cursor to the end
-                        editor.setPosition({ lineNumber: editor.getModel().getLineCount(), column: editor.getModel().getLineMaxColumn(editor.getModel().getLineCount()) });
-                    }
-                }
-            });
-
-            // Handle submit button click
-            submitButton.addEventListener('click', async () => {
-                const text = editor.getValue();
-                if (text.length < MIN_CHARS) {
-                    return;
-                }
-
-                const resultsDiv = document.getElementById('results');
-                resultsDiv.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Analyzing your writing style...</div>';
-
-                try {
-                    const response = await fetch('/analyze-writing', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ text })
-                    });
-                    const data = await response.json();
-                    
-                    if (data.error) {
-                        resultsDiv.innerHTML = `
-                            <div class="error">
-                                ${data.error}
-                            </div>
-                        `;
-                        return;
-                    }
-
-                    // Create results HTML with just the explanation
-                    let resultsHTML = '<div class="results-content">';
-                    resultsHTML += `
-                        <div class="explanation">
-                            <p>${data.explanation}</p>
-                        </div>
-                    `;
-                    resultsHTML += '</div>';
-                    resultsDiv.innerHTML = resultsHTML;
-
-                    // Highlight the winning model in the existing grid
-                    const modelCards = document.querySelectorAll('.model-card');
-                    modelCards.forEach(card => {
-                        card.classList.remove('winner');
-                        if (card.classList.contains(data.best_match)) {
-                            card.classList.add('winner');
-                        }
-                    });
-
-                } catch (error) {
-                    resultsDiv.innerHTML = '<div class="error">Error analyzing text. Please try again.</div>';
-                }
-            });
-
-            // Handle clear button click
-            document.getElementById('clear-button').addEventListener('click', () => {
-                editor.setValue('');
-                // Reset all model cards
-                const modelCards = document.querySelectorAll('.model-card');
-                modelCards.forEach(card => {
-                    card.classList.remove('winner');
-                });
-                // Reset results
-                document.getElementById('results').innerHTML = `
-                    <div class="initial-state">
-                        <p>
-                            Waiting for you to spin a tale...
-                        </p>
-                    </div>
-                `;
-            });
-        });
-    </script>
+    <script src="/static/writing_script.js"></script>
 </body>
 </html> 

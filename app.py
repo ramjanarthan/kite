@@ -120,6 +120,7 @@ def analyze_writing():
 
     try:
         data = request.get_json()
+        print("here")
         if not data or 'text' not in data:
             return jsonify({"error": "No text provided"}), 400
 
@@ -144,6 +145,8 @@ def analyze_writing():
 
             # Find the model with lowest perplexity (best match)
             valid_scores = {k: v for k, v in perplexities.items() if v is not None}
+            print("here2")
+            print(valid_scores)
 
             # Calculate mean perplexity
             if valid_scores:
@@ -151,15 +154,17 @@ def analyze_writing():
             else:
                 mean_perplexity = float('inf')
 
-            # Define playful messages for high perplexity
-            high_perplexity_messages = [
-                "None of our AI models could recognize your writing style! Try following the prompt more closely and try again"
-            ]
 
-            if mean_perplexity > 14:
+            if mean_perplexity > 20:
                 import random
                 return jsonify({
-                    "error": random.choice(high_perplexity_messages),
+                    "error": "None of our AI models could recognize your writing style! Try following the prompt more closely and try again",
+                    "scores": perplexities
+                })
+            elif mean_perplexity > 14:
+                return jsonify({
+                    "best_match": None,
+                    "explanation": "Your writing style is unique and not like any of our AI models, nice job! Try again to match our models",
                     "scores": perplexities
                 })
 
@@ -167,6 +172,8 @@ def analyze_writing():
                 best_match = min(valid_scores.items(), key=lambda x: x[1])[0]
             else:
                 best_match = None
+
+            print(valid_scores)
 
             # Define unique messages for each LLM
             llm_messages = {

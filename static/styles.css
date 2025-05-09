@@ -146,10 +146,11 @@ header h1 {
 
 /* Explanation Section Styles */
 .explanation-section p {
-    color: #bdc1c6; /* Lighter grey text */
+    color: #bdc1c6;
     line-height: 1.6;
-    font-size: 0.95em;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 400;
 }
 
 /* Error Message */
@@ -494,28 +495,6 @@ h1 {
     text-align: right;
 }
 
-/* Explanation */
-.explanation {
-    background: #282c34;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #3a3f4a;
-}
-
-.explanation h3 {
-    margin: 0 0 1rem 0;
-    color: #8ab4f8;
-}
-
-.explanation p {
-    margin: 0;
-    color: #bdc1c6;
-    line-height: 1.6;
-    font-size: 0.95em;
-    text-align: center;
-    font-weight: 400;
-}
-
 /* Loading State */
 .loading {
     text-align: center;
@@ -587,10 +566,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-.explanation-section {
-    margin-bottom: 20px;
-}
-
 .prediction-section p {
     color: #bdc1c6;
     line-height: 1.6;
@@ -605,23 +580,6 @@ h1 {
     font-size: 0.95em;
     margin: 0;
     font-style: italic;
-    font-weight: 400;
-}
-
-.explanation {
-    background: #282c34;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #3a3f4a;
-    margin-top: 20px;
-}
-
-.explanation p {
-    margin: 0;
-    color: #bdc1c6;
-    line-height: 1.6;
-    font-size: 0.95em;
-    text-align: center;
     font-weight: 400;
 }
 

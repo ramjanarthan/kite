@@ -13,11 +13,11 @@ require(['vs/editor/editor.main'], function() {
         language: 'plaintext', // Start as plaintext
         theme: 'vs-dark',      // Dark theme
         automaticLayout: true, // Adjust editor size on container resize
-        minimap: { enabled: false }, // Optionally disable minimap like screenshot
-        scrollbar: {
-           verticalScrollbarSize: 10,
-           horizontalScrollbarSize: 10
-        }
+        minimap: { enabled: false }, 
+        padding: { top: 5, bottom: 20 },
+        scrollBeyondLastLine: false,
+        wordWrap: 'on',
+        wrappingStrategy: 'advanced',
     });
 
     // Show/Hide placeholder based on content
