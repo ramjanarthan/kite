@@ -76,10 +76,10 @@ header h1 {
 }
 
 .results-column {
-    flex: 2; /* Takes up less space */
+    flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between prediction and explanation */
+    gap: 10px;
 }
 
 /* Editor Styles */
@@ -93,27 +93,27 @@ header h1 {
 /* Placeholder text for editor (optional, Monaco might have its own) */
 .editor-placeholder {
     position: absolute;
-    top: 10px;
-    left: 15px; /* Adjust as needed based on Monaco padding */
-    color: #9aa0a6; /* Grey placeholder text */
+    top: 20px;
+    left: 15px;
+    color: #9aa0a6;
     font-style: italic;
-    pointer-events: none; /* Allows clicking through to the editor */
+    pointer-events: none;
     z-index: 1;
     display: none; /* Initially hidden, shown by JS if editor is empty */
 }
 
 /* Card Styles for Results/Explanation */
 .card {
-    background-color: #2d3136; /* Slightly darker card background */
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     border: 1px solid #3a3f4a;
 }
 
 /* Prediction Section Styles */
 .prediction-section h3,
-.explanation-section h3 {
-    color: #8ab4f8; /* Light blue headings */
+.explanation-section h3,
+.models-section h3 {
+    color: #8ab4f8;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.2em;
@@ -135,7 +135,12 @@ header h1 {
 }
 
 .result-item .value {
-    color: #e8eaed; /* White value */
+    color: #e8eaed;
+    font-weight: 600;
+}
+
+.result-item .winner {
+    color: #21df57;
     font-weight: 600;
 }
 
@@ -148,9 +153,13 @@ header h1 {
 }
 
 /* Error Message */
+.error:empty {
+    display: none;
+}
+
 .error {
-    color: #f28b82; /* Light red for errors */
-    font-weight: bold;
+    color: #f28b82;
+    font-weight: 500;
     margin-top: 10px;
     font-size: 0.9em;
 }
@@ -299,11 +308,18 @@ h1 {
 .char-count {
     color: #bdc1c6;
     font-size: 0.9em;
+    font-weight: 500;
 }
 
 .char-count .error {
     color: #f28b82;
-    font-weight: 500;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    /* display: inline; */
 }
 
 .button-group {
@@ -359,12 +375,6 @@ h1 {
 }
 
 /* Results Column */
-.results-column {
-    background: #2d3136;
-    border-radius: 8px;
-    border: 1px solid #3a3f4a;
-    overflow: hidden;
-}
 
 .results-container {
     padding: 1.5rem;
@@ -504,18 +514,17 @@ h1 {
 
 /* Models Section */
 .models-section {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .models-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 15px;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .model-card {
-    background: #2d3136;
     border: 1px solid #3a3f4a;
     border-radius: 8px;
     padding: 15px;
@@ -550,14 +559,18 @@ h1 {
     margin-bottom: 20px;
 }
 
-.prediction-section h3,
-.explanation-section h3,
-.models-section h3 {
-    color: #8ab4f8;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    font-weight: 500;
-    border-bottom: 1px solid #3a3f4a;
-    padding-bottom: 8px;
+.prediction-section p {
+    color: #bdc1c6;
+    line-height: 1.6;
+    font-size: 0.95em;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.initial-state p {
+    color: #bdc1c6;
+    line-height: 1.6;
+    font-size: 0.95em;
+    margin: 0;
+    font-style: italic;
 }

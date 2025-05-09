@@ -13,13 +13,15 @@
         <header>
             <div class="title">
                 <i class="fas fa-pen-fancy header-icon"></i>
-                <h1>Writing Style Matcher</h1>
+                <h1>Which LLM are you?</h1>
             </div>
         </header>
 
         <main class="content-area">
             <div class="editor-column">
-                <div id="editor" style="height: 70vh;"></div>
+                <div id="editor" style="height: 70vh;">
+                    <p class="editor-placeholder">Type your story here...</p>
+                </div>
                 <div class="editor-controls">
                     <div class="char-count">
                         Characters: <span id="charCount">0</span>/500
@@ -38,16 +40,18 @@
             <div class="results-column">
                 <div class="prediction-section card">
                     <h3>Prompt</h3>
-                    <div id="results">
-                        <div class="initial-state">
-                            <i class="fas fa-pen-fancy"></i>
-                            <p>Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can</p>
-                        </div>
-                    </div>
+                    <p>Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can</p>
                 </div>
                 
                 <div class="models-section card">
                     <h3>Prediction</h3>
+                    <div id="results">
+                        <div class="initial-state">
+                            <p>
+                                Waiting for you to spin a tale...
+                            </p>
+                        </div>
+                    </div>
                     <div class="models-grid">
                         <div class="model-card">
                             <img src="/static/images/chatgpt.png" alt="ChatGPT">
@@ -190,8 +194,9 @@
                 editor.setValue('');
                 document.getElementById('results').innerHTML = `
                     <div class="initial-state">
-                        <i class="fas fa-pen-fancy"></i>
-                        <p>Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can</p>
+                        <p>
+                            Waiting for you to spin a tale...
+                        </p>
                     </div>
                 `;
             });

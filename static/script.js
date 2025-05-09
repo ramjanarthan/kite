@@ -54,9 +54,15 @@ require(['vs/editor/editor.main'], function() {
 
 // --- Function to Reset Results Display ---
 function resetResults() {
+    const pythonPercent = document.getElementById('score-python-percent');
+    const cppPercent = document.getElementById('score-cpp-percent');
+    
+    // Reset text and remove winner classes
     document.getElementById('prediction-language').textContent = 'N/A';
-    document.getElementById('score-python-percent').textContent = '0.00 %';
-    document.getElementById('score-cpp-percent').textContent = '0.00 %';
+    pythonPercent.textContent = '0.00 %';
+    cppPercent.textContent = '0.00 %';
+    pythonPercent.classList.remove('winner');
+    cppPercent.classList.remove('winner');
     document.getElementById('error-message').textContent = '';
 }
 
@@ -117,13 +123,44 @@ function calculatePercentages(pyScore, cppScore, prediction) {
     };
 }
 
+function updatePrediction(pythonScore, cppScore) {
+    const pythonPercent = document.getElementById('score-python-percent');
+    const cppPercent = document.getElementById('score-cpp-percent');
+    const predictionLanguage = document.getElementById('prediction-language');
+    const errorMessage = document.getElementById('error-message');
+
+    // Clear previous winner classes
+    pythonPercent.classList.remove('winner');
+    cppPercent.classList.remove('winner');
+
+    // Calculate percentages
+    const percentages = calculatePercentages(pythonScore, cppScore, pythonScore > cppScore ? 'Python' : 'C++');
+    
+    // Update scores
+    pythonPercent.textContent = percentages.python;
+    cppPercent.textContent = percentages.cpp;
+
+    // Determine winner and update prediction
+    const pyValue = parseFloat(percentages.python);
+    const cppValue = parseFloat(percentages.cpp);
+
+    if (pyValue > cppValue) {
+        predictionLanguage.textContent = 'Python';
+        pythonPercent.classList.add('winner');
+    } else if (cppValue > pyValue) {
+        predictionLanguage.textContent = 'C++';
+        cppPercent.classList.add('winner');
+    } else {
+        predictionLanguage.textContent = 'Neither';
+    }
+
+    // Clear error message if no error
+    errorMessage.textContent = '';
+}
 
 // --- Function to Send Code to Backend ---
 async function predictLanguage() {
     const code = editor.getValue();
-    const predictionElement = document.getElementById('prediction-language');
-    const pythonScoreElement = document.getElementById('score-python-percent');
-    const cppScoreElement = document.getElementById('score-cpp-percent');
     const errorElement = document.getElementById('error-message');
 
     // Clear previous error
@@ -155,24 +192,16 @@ async function predictLanguage() {
             throw new Error(data.error);
         }
 
-        // Update Prediction Language
-        predictionElement.textContent = data.prediction || 'N/A';
-
-        // Calculate and Update Percentages
+        // Update prediction with scores
         if (data.scores && data.scores.python !== null && data.scores.cpp !== null) {
-             const percentages = calculatePercentages(data.scores.python, data.scores.cpp, data.prediction);
-             pythonScoreElement.textContent = percentages.python;
-             cppScoreElement.textContent = percentages.cpp;
+            updatePrediction(data.scores.python, data.scores.cpp);
         } else {
-             pythonScoreElement.textContent = 'N/A';
-             cppScoreElement.textContent = 'N/A';
+            resetResults();
         }
 
     } catch (error) {
         console.error('Error predicting language:', error);
-        predictionElement.textContent = 'Error';
-        pythonScoreElement.textContent = 'Error';
-        cppScoreElement.textContent = 'Error';
         errorElement.textContent = `Prediction failed: ${error.message}`;
+        resetResults();
     }
 }
