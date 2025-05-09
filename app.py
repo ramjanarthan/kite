@@ -145,6 +145,9 @@ def analyze_writing():
             # Find the model with lowest perplexity (best match)
             valid_scores = {k: v for k, v in perplexities.items() if v is not None}
 
+            for item in valid_scores.items():
+                print(item)
+
             if valid_scores:
                 best_match = min(valid_scores.items(), key=lambda x: x[1])[0]
             else:
