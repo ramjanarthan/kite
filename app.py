@@ -8,13 +8,13 @@ import base64
 
 app = Flask(__name__, static_folder='static')
 
-PYTHON_MODEL_PATH = os.path.join(os.path.dirname(__file__), "python_model")
-CPP_MODEL_PATH = os.path.join(os.path.dirname(__file__), "cpp_model")
+PYTHON_MODEL_PATH = os.path.join(os.path.dirname(__file__), "models/python_model")
+CPP_MODEL_PATH = os.path.join(os.path.dirname(__file__), "models/cpp_model")
 WRITING_MODEL_PATHS = {
-    "chatgpt": os.path.join(os.path.dirname(__file__), "writing_models/chatgpt_model"),
-    "gemini": os.path.join(os.path.dirname(__file__), "writing_models/gemini_model"),
-    "grok": os.path.join(os.path.dirname(__file__), "writing_models/grok_model"),
-    "claude": os.path.join(os.path.dirname(__file__), "writing_models/claude_model")
+    "chatgpt": os.path.join(os.path.dirname(__file__), "models/writing/chatgpt"),
+    "gemini": os.path.join(os.path.dirname(__file__), "models/writing/gemini"),
+    "grok": os.path.join(os.path.dirname(__file__), "models/writing/grok"),
+    "claude": os.path.join(os.path.dirname(__file__), "models/writing/claude")
 }
 
 python_model = None
@@ -115,7 +115,7 @@ def writing_style():
 
 @app.route('/analyze-writing', methods=['POST'])
 def analyze_writing():
-    if not all(writing_models.values()):
+    if not writing_models or not all(writing_models.values()):
         return jsonify({"error": "Writing style models not loaded properly"}), 500
 
     try:
@@ -134,7 +134,7 @@ def analyze_writing():
         with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.txt') as tmp_file:
             tmp_file.write(text)
             tmp_filename = tmp_file.name
-
+        
         try:
             # Calculate perplexity for each model
             perplexities = {}
@@ -144,13 +144,23 @@ def analyze_writing():
 
             # Find the model with lowest perplexity (best match)
             valid_scores = {k: v for k, v in perplexities.items() if v is not None}
+
             if valid_scores:
                 best_match = min(valid_scores.items(), key=lambda x: x[1])[0]
             else:
                 best_match = None
 
+            # Define unique messages for each LLM
+            llm_messages = {
+                "chatgpt": "Your writing style closely matches ChatGPT's! You tend to be clear, concise, and well-structured in your prose.",
+                "gemini": "Your writing style aligns with Gemini's! You excel at being informative while maintaining a friendly and approachable tone.",
+                "grok": "Your writing style mirrors Grok's! You have a knack for being direct, witty, and engaging in your communication.",
+                "claude": "Your writing style resembles Claude's! You demonstrate a thoughtful, nuanced approach with careful attention to detail."
+            }
+            
             return jsonify({
                 "best_match": best_match,
+                "explanation": llm_messages.get(best_match, "Your writing style is unique!") if best_match else "Unable to determine a clear match.",
                 "scores": perplexities
             })
 
