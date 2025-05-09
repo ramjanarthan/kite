@@ -158,10 +158,41 @@ header h1 {
 }
 
 .error {
+    text-align: center;
     color: #f28b82;
-    font-weight: 500;
-    margin-top: 10px;
-    font-size: 0.9em;
+    padding: 2rem;
+    background: #2d3136;
+    border-radius: 8px;
+    border: 1px solid #3a3f4a;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 1rem 0;
+    animation: bounceIn 0.5s ease;
+    font-weight: 400;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.error i {
+    font-size: 1.5em;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #8ab4f8;
 }
 
 .header-buttons {
@@ -487,6 +518,9 @@ h1 {
     margin: 0;
     color: #bdc1c6;
     line-height: 1.6;
+    font-size: 0.95em;
+    text-align: center;
+    font-weight: 400;
 }
 
 /* Loading State */
@@ -500,16 +534,6 @@ h1 {
     font-size: 2rem;
     color: #8ab4f8;
     margin-bottom: 1rem;
-}
-
-/* Error State */
-.error {
-    text-align: center;
-    color: #f28b82;
-    padding: 2rem;
-    background: #2d3136;
-    border-radius: 8px;
-    border: 1px solid #3a3f4a;
 }
 
 /* Models Section */
@@ -580,6 +604,7 @@ h1 {
     font-size: 0.95em;
     margin: 0;
     padding: 10px 0;
+    font-weight: 400;
 }
 
 .initial-state p {
@@ -588,6 +613,7 @@ h1 {
     font-size: 0.95em;
     margin: 0;
     font-style: italic;
+    font-weight: 400;
 }
 
 .explanation {
@@ -604,6 +630,7 @@ h1 {
     line-height: 1.6;
     font-size: 0.95em;
     text-align: center;
+    font-weight: 400;
 }
 
 #results {

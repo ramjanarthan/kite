@@ -152,7 +152,11 @@
                     const data = await response.json();
                     
                     if (data.error) {
-                        resultsDiv.innerHTML = `<div class="error">${data.error}</div>`;
+                        resultsDiv.innerHTML = `
+                            <div class="error">
+                                ${data.error}
+                            </div>
+                        `;
                         return;
                     }
 

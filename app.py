@@ -145,8 +145,23 @@ def analyze_writing():
             # Find the model with lowest perplexity (best match)
             valid_scores = {k: v for k, v in perplexities.items() if v is not None}
 
-            for item in valid_scores.items():
-                print(item)
+            # Calculate mean perplexity
+            if valid_scores:
+                mean_perplexity = sum(valid_scores.values()) / len(valid_scores)
+            else:
+                mean_perplexity = float('inf')
+
+            # Define playful messages for high perplexity
+            high_perplexity_messages = [
+                "None of our AI models could recognize your writing style! Try following the prompt more closely and try again"
+            ]
+
+            if mean_perplexity > 14:
+                import random
+                return jsonify({
+                    "error": random.choice(high_perplexity_messages),
+                    "scores": perplexities
+                })
 
             if valid_scores:
                 best_match = min(valid_scores.items(), key=lambda x: x[1])[0]
