@@ -124,9 +124,9 @@ def analyze_writing():
             return jsonify({"error": "No text provided"}), 400
 
         text = data.get('text', '')
-        if len(text.strip()) < 50:
+        if len(text.strip()) < 150:
             return jsonify({
-                "error": "Please provide at least 50 characters of text",
+                "error": "Please provide at least 150 characters of text",
                 "scores": None
             })
 
