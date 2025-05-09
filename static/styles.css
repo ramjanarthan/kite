@@ -339,18 +339,11 @@ h1 {
 .char-count {
     color: #bdc1c6;
     font-size: 0.9em;
-    font-weight: 500;
+    font-weight: 400;
 }
 
-.char-count .error {
+.char-count .char-count-error {
     color: #f28b82;
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    /* display: inline; */
 }
 
 .button-group {
@@ -601,7 +594,6 @@ h1 {
 .prediction-section p {
     color: #bdc1c6;
     line-height: 1.6;
-    font-size: 0.95em;
     margin: 0;
     padding: 10px 0;
     font-weight: 400;
