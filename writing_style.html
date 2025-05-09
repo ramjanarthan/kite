@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Style Matcher</title>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/editor/editor.main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="title">
+                <i class="fas fa-pen-fancy header-icon"></i>
+                <h1>Writing Style Matcher</h1>
+            </div>
+            <button id="clear-button" class="clear-btn">Clear</button>
+        </header>
+
+        <main class="content-area">
+            <div class="editor-column">
+                <div class="prompt-box">
+                    <h2>Write this</h2>
+                    <p id="prompt-text"></p>
+                </div>
+                <div id="editor" style="height: 70vh;"></div>
+            </div>
+
+            <div class="results-column">
+                <div class="prediction-section card">
+                    <h3>Prediction</h3>
+                    <div id="results">
+                        <div class="initial-state">
+                            <i class="fas fa-pen-fancy"></i>
+                            <h2>Your Writing Style Analysis</h2>
+                            <p>Write something in the editor and click "Analyze" to see which AI model's writing style matches yours!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation-section card">
+                    <h3>Explanation</h3>
+                    <p>
+                        The system analyzes your writing style using n-grams (sequences of characters) and compares it against pre-trained models for different AI language models. Lower perplexity scores indicate a better match with a particular model's writing style.
+                    </p>
+                </div>
+
+                <div class="models-section card">
+                    <h3>Available Models</h3>
+                    <div class="models-grid">
+                        <div class="model-card">
+                            <img src="/static/images/chatgpt.png" alt="ChatGPT">
+                            <h4>ChatGPT</h4>
+                        </div>
+                        <div class="model-card">
+                            <img src="/static/images/gemini.png" alt="Gemini">
+                            <h4>Gemini</h4>
+                        </div>
+                        <div class="model-card">
+                            <img src="/static/images/grok.png" alt="Grok">
+                            <h4>Grok</h4>
+                        </div>
+                        <div class="model-card">
+                            <img src="/static/images/claude.png" alt="Claude">
+                            <h4>Claude</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js"></script>
+    <script>
+        // Initialize Monaco Editor
+        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            window.editor = monaco.editor.create(document.getElementById('editor'), {
+                value: '',
+                language: 'markdown',
+                theme: 'vs-dark',
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                fontSize: 14,
+                lineHeight: 24,
+                padding: { top: 20, bottom: 20 },
+                automaticLayout: true
+            });
+
+            // Load prompt from server
+            fetch('/get_writing_prompt')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('prompt-text').textContent = data.prompt;
+                });
+
+            // Handle analyze button click
+            document.getElementById('clear-button').addEventListener('click', async () => {
+                const text = editor.getValue();
+                if (!text.trim()) {
+                    alert('Please write something first!');
+                    return;
+                }
+
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Analyzing your writing style...</div>';
+
+                try {
+                    const response = await fetch('/analyze_writing_style', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ text })
+                    });
+                    const data = await response.json();
+                    
+                    // Create results HTML
+                    let resultsHTML = '<div class="results-content">';
+                    
+                    // Add match results
+                    resultsHTML += '<div class="match-results">';
+                    data.matches.forEach(match => {
+                        resultsHTML += `
+                            <div class="match-card ${match.model.toLowerCase()}">
+                                <div class="model-icon">
+                                    <img src="/static/images/${match.model.toLowerCase()}.png" alt="${match.model}">
+                                </div>
+                                <div class="match-details">
+                                    <h3>${match.model}</h3>
+                                    <div class="match-score">
+                                        <div class="score-bar" style="width: ${match.score}%"></div>
+                                        <span>${match.score}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    resultsHTML += '</div>';
+
+                    // Add explanation
+                    resultsHTML += `
+                        <div class="explanation">
+                            <h3>Analysis</h3>
+                            <p>${data.explanation}</p>
+                        </div>
+                    `;
+                    
+                    resultsHTML += '</div>';
+                    resultsDiv.innerHTML = resultsHTML;
+                } catch (error) {
+                    resultsDiv.innerHTML = '<div class="error">Error analyzing text. Please try again.</div>';
+                }
+            });
+
+            // Handle clear button click
+            document.getElementById('clear-button').addEventListener('click', () => {
+                editor.setValue('');
+                document.getElementById('results').innerHTML = `
+                    <div class="initial-state">
+                        <i class="fas fa-pen-fancy"></i>
+                        <h2>Your Writing Style Analysis</h2>
+                        <p>Write something in the editor and click "Analyze" to see which AI model's writing style matches yours!</p>
+                    </div>
+                `;
+            });
+        });
+    </script>
+</body>
+</html> 
