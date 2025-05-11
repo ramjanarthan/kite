@@ -186,8 +186,23 @@ class CustomLanguageModel:
         safe_model_name_prefix = base_model_name.replace(" ", "_").replace("/", "_").replace("\\", "_")
         
         debug_filename = os.path.join(debug_dir, f"{safe_model_name_prefix}_memory_debug.txt")
+        content_filename = os.path.join(debug_dir, f"{safe_model_name_prefix}_content_dump.txt")
 
         try:
+            # First dump the actual content
+            with open(content_filename, 'w') as f:
+                f.write(f"Content Dump for Model: {model_name}\n")
+                f.write(f"Timestamp: {timestamp_str}\n")
+                f.write("==================================================\n\n")
+                
+                for bigram, distribution in sorted(self.distribution_map.items()):
+                    f.write(f"\nBigram: {bigram}\n")
+                    f.write("-" * 50 + "\n")
+                    for trigram, prob in sorted(distribution.dist.items()):
+                        f.write(f"  {trigram}: {prob}\n")
+                f.write("\n==================================================\n")
+
+            # Then write the memory analysis
             with open(debug_filename, 'w') as f:
                 f.write(f"Memory Debug Report for Model: {model_name}\n")
                 f.write(f"Timestamp: {timestamp_str}\n")
@@ -257,9 +272,9 @@ class CustomLanguageModel:
                 
                 f.write("\n==================================================\n")
                 report_path = os.path.abspath(debug_filename)
+                content_path = os.path.abspath(content_filename)
                 f.write(f"Debug report saved to: {report_path}\n")
-
+                f.write(f"Content dump saved to: {content_path}\n")
 
         except IOError as e:
-            
-            print(f"Error writing memory debug report for model '{model_name}' to file '{debug_filename}': {e}")
+            print(f"Error writing debug reports for model '{model_name}': {e}")
