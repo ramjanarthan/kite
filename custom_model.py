@@ -6,9 +6,11 @@ import random
 from generator import sample
 from preprocessor import FilePreprocessor
 import math
-import numpy as np
 import pickle
 import os
+import sys
+import datetime
+
 
 class CustomLanguageModel:
     """For a given vocabulary and training input, contains all the trigram distributions over that set of bigrams"""
@@ -170,3 +172,94 @@ class CustomLanguageModel:
             return random.choice(numeric_characters)
         else:
             return char
+        
+    def debug_print(self, model_name):
+        timestamp_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Create debug directory with timestamp
+        debug_dir = f"debug_logs_{timestamp_str}"
+        if not os.path.exists(debug_dir):
+            os.makedirs(debug_dir)
+        
+        # Sanitize model_name for use in filename (e.g., handle paths, spaces)
+        base_model_name = os.path.basename(model_name)
+        safe_model_name_prefix = base_model_name.replace(" ", "_").replace("/", "_").replace("\\", "_")
+        
+        debug_filename = os.path.join(debug_dir, f"{safe_model_name_prefix}_memory_debug.txt")
+
+        try:
+            with open(debug_filename, 'w') as f:
+                f.write(f"Memory Debug Report for Model: {model_name}\n")
+                f.write(f"Timestamp: {timestamp_str}\n")
+                f.write("==================================================\n\n")
+
+                # 1. Whole class memory footprint
+                f.write("1. Overall Class Memory Footprint:\n")
+                f.write("----------------------------------------\n")
+                class_size = sys.getsizeof(self)
+                f.write(f"Total size of CustomLanguageModel instance: {class_size} bytes\n")
+                f.write(f"Size of distribution_map attribute: {sys.getsizeof(self.distribution_map)} bytes\n")
+                f.write("\n")
+
+                # 2. Sample BigramDistribution analysis
+                f.write("2. Sample BigramDistribution Analysis:\n")
+                f.write("----------------------------------------\n")
+                if self.distribution_map:
+                    # Get a sample bigram distribution
+                    sample_bigram = next(iter(self.distribution_map.values()))
+                    sample_size = sys.getsizeof(sample_bigram)
+                    f.write(f"Size of one BigramDistribution object: {sample_size} bytes\n")
+                    f.write(f"Size of BigramDistribution's dist dictionary: {sys.getsizeof(sample_bigram.dist)} bytes\n")
+                    f.write("\n")
+
+                    # 3. Sample entry analysis
+                    f.write("3. Sample Entry Analysis:\n")
+                    f.write("----------------------------------------\n")
+                    if sample_bigram.dist:
+                        sample_entry = next(iter(sample_bigram.dist.items()))
+                        entry_size = sys.getsizeof(sample_entry[0]) + sys.getsizeof(sample_entry[1])
+                        f.write(f"Size of one entry (trigram + probability): {entry_size} bytes\n")
+                        f.write(f"Size of trigram key: {sys.getsizeof(sample_entry[0])} bytes\n")
+                        f.write(f"Size of probability value: {sys.getsizeof(sample_entry[1])} bytes\n")
+                        f.write("\n")
+
+                # 4. Distribution counts
+                f.write("4. Distribution Statistics:\n")
+                f.write("----------------------------------------\n")
+                num_bigrams = len(self.distribution_map)
+                f.write(f"Total number of bigram distributions: {num_bigrams}\n")
+                
+                # 5. Entry counts per distribution
+                if self.distribution_map:
+                    entry_counts = [len(dist.dist) for dist in self.distribution_map.values()]
+                    avg_entries = sum(entry_counts) / len(entry_counts) if entry_counts else 0
+                    max_entries = max(entry_counts) if entry_counts else 0
+                    min_entries = min(entry_counts) if entry_counts else 0
+                    f.write(f"Average entries per distribution: {avg_entries:.2f}\n")
+                    f.write(f"Maximum entries in a distribution: {max_entries}\n")
+                    f.write(f"Minimum entries in a distribution: {min_entries}\n")
+                    f.write("\n")
+
+                # Memory estimation
+                f.write("5. Total Memory Estimation:\n")
+                f.write("----------------------------------------\n")
+                if self.distribution_map:
+                    total_entries = sum(len(dist.dist) for dist in self.distribution_map.values())
+                    estimated_memory = (
+                        class_size +  # Base class size
+                        sys.getsizeof(self.distribution_map) +  # Distribution map overhead
+                        (sample_size * num_bigrams) +  # All BigramDistribution objects
+                        (entry_size * total_entries)  # All entries
+                    )
+                    f.write(f"Estimated total memory footprint: {estimated_memory} bytes\n")
+                    f.write(f"Number of total trigram entries: {total_entries}\n")
+                    f.write(f"Average memory per entry: {estimated_memory/total_entries:.2f} bytes\n")
+                
+                f.write("\n==================================================\n")
+                report_path = os.path.abspath(debug_filename)
+                f.write(f"Debug report saved to: {report_path}\n")
+
+
+        except IOError as e:
+            
+            print(f"Error writing memory debug report for model '{model_name}' to file '{debug_filename}': {e}")
