@@ -7,6 +7,7 @@ from custom_model import CustomLanguageModel
 import base64
 import logging
 
+DEBUG = True
 # Configure logging
 IS_LOGGING_ENABLED = True
 if IS_LOGGING_ENABLED:
@@ -84,17 +85,6 @@ def index():
         if IS_LOGGING_ENABLED:
             logger.error(f"Failed to serve index page: {str(e)}", exc_info=True)
         return jsonify({"error": "Failed to serve index page"}), 500
-
-@app.route('/static/<path:path>')
-def send_static(path):
-    try:
-        if IS_LOGGING_ENABLED:
-            logger.info(f"Serving static file: {path}")
-        return send_from_directory('static', path)
-    except Exception as e:
-        if IS_LOGGING_ENABLED:
-            logger.error(f"Failed to serve static file {path}: {str(e)}", exc_info=True)
-        return jsonify({"error": "Failed to serve static file"}), 500
 
 @app.route('/predict', methods=['POST'])
 def predict_language():
@@ -278,4 +268,4 @@ def analyze_writing():
 if __name__ == '__main__':
     if not os.path.exists('static'):
         os.makedirs('static')
-    app.run(debug=True)
+    app.run(debug=DEBUG)
