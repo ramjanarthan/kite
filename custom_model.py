@@ -193,6 +193,15 @@ class CustomLanguageModel:
                 f.write(f"Timestamp: {timestamp_str}\n")
                 f.write("==================================================\n\n")
 
+                # Print lengths of keys
+                f.write("Key Lengths:\n")
+                f.write("----------------------------------------\n")
+                if self.distribution_map:
+                    sample_bigram = next(iter(self.distribution_map.values()))
+                    f.write(f"Length of distribution_map keys: {len(self.distribution_map)}\n")
+                    f.write(f"Length of BigramDistribution keys: {len(sample_bigram.dist)}\n")
+                f.write("\n")
+
                 # 1. Whole class memory footprint
                 f.write("1. Overall Class Memory Footprint:\n")
                 f.write("----------------------------------------\n")
@@ -259,7 +268,5 @@ class CustomLanguageModel:
                 report_path = os.path.abspath(debug_filename)
                 f.write(f"Debug report saved to: {report_path}\n")
 
-
         except IOError as e:
-            
             print(f"Error writing memory debug report for model '{model_name}' to file '{debug_filename}': {e}")

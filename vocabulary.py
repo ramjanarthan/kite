@@ -3,12 +3,11 @@ from primitives import Trigram, Bigram
 
 def generate_base_vocab():
     base = allowed_characters
-    base.union({space_character, tab_character, new_line_character})
+    base = base.union({space_character, tab_character, new_line_character})
     for number in numeric_characters:
         if number in base:
             base.remove(number)
     base.add(number_mask_character)
-
     return base
 
 def generate_trigram_vocab():
@@ -33,3 +32,6 @@ def generate_bigram_vocab():
             vocabulary += [trigram]
     
     return vocabulary
+
+# if __name__ == "__main__":
+#     print(f"length: {len(generate_base_vocab())}, All characters: {generate_base_vocab()}, ")
