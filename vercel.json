@@ -17,8 +17,5 @@
     ],
     "env": {
         "PYTHONPATH": "."
-    },
-    "ignore": [
-        "memory_investigation/**"
-    ]
+    }
 } 
