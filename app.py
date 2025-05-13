@@ -7,7 +7,7 @@ from custom_model import CustomLanguageModel
 import base64
 import logging
 
-DEBUG = True
+DEBUG = False
 # Configure logging
 IS_LOGGING_ENABLED = True
 if IS_LOGGING_ENABLED:
@@ -67,16 +67,11 @@ def load_models():
                 if IS_LOGGING_ENABLED:
                     logger.warning(f"Writing model path does not exist: {path}")
 
-        print("C++ model:")
-        cpp_model.debug_print("C++ model")
+        # cpp_model.debug_print("C++ model")
+        # python_model.debug_print("Python model")
 
-        print("Python model:")
-        python_model.debug_print("Python model")
-
-        print("Writing models:")
-        for name, model in writing_models.items():
-            print(f"{name}:")
-            model.debug_print(name)
+        # for name, model in writing_models.items():
+        #     model.debug_print(name)
 
     except Exception as e:
         if IS_LOGGING_ENABLED:
