@@ -1,5 +1,9 @@
+import numpy as np
+
 class Unigram:
     """Class to represent a Unigram in one part: start"""
+    __slots__ = ('start',)
+
     def __init__(self, start) -> None:
         self.start = start
 
@@ -17,6 +21,8 @@ class Unigram:
 
 class Bigram:
     """Class to represent a bigram in two parts: start and end"""
+    __slots__ = ('start', 'end')
+
     def __init__(self, start, end) -> None:
         self.start = start
         self.end = end
@@ -42,6 +48,8 @@ class Bigram:
 
 class Trigram:
     """Class to represent a trigram in three parts: start, middle and end"""
+    __slots__ = ('start', 'middle', 'end')
+
     def __init__(self, start, middle, end) -> None:
         self.start = start
         self.middle = middle
@@ -68,7 +76,14 @@ class Trigram:
         return Bigram(start=self.start, end=self.middle)
     
 class BigramDistribution:
-    """For a given bigram, this class contains the distribution over all possible trigrams that it prefixes. For example, for the bigram "in", the distribution would contain the probabilites for all possible trigrams beginning with it like "ina", "inb", "inc" etc. The distribution will be a key value pair, mapping each trigrams to their probabilities"""
-    def __init__(self, bigram, dist) -> None:
+    """For a given bigram, this class contains the distribution over all possible trigrams that it prefixes.
+    For example, for the bigram "in", the distribution would contain the probabilities for all possible trigrams
+    beginning with it like "ina", "inb", "inc" etc."""
+    __slots__ = ('bigram', 'dist')
+
+    def __init__(self, bigram, dist=None) -> None:
         self.bigram = bigram
-        self.dist = dist
+        self.dist = dist if dist is not None else {}
+
+    def __str__(self) -> str:
+        return f"BigramDistribution for {self.bigram} with {len(self.dist)} trigrams"

@@ -6,14 +6,15 @@ import random
 from generator import sample
 from preprocessor import FilePreprocessor
 import math
-import pickle
 import os
 import sys
 import datetime
-
+import numpy as np
+from collections import defaultdict
 
 class CustomLanguageModel:
     """For a given vocabulary and training input, contains all the trigram distributions over that set of bigrams"""
+    __slots__ = ('distribution_map',)
     DEBUG_MODE = False
 
     def __init__(self, filename=None, alpha=0.63, model_file=None) -> None:
