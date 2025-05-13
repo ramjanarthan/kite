@@ -81,16 +81,16 @@ def load_models():
 # Load models at startup
 load_models()
 
-@app.route('/')
-def index():
-    try:
-        if IS_LOGGING_ENABLED:
-            logger.info("Serving index page")
-        return send_from_directory('.', 'index.html')
-    except Exception as e:
-        if IS_LOGGING_ENABLED:
-            logger.error(f"Failed to serve index page: {str(e)}", exc_info=True)
-        return jsonify({"error": "Failed to serve index page"}), 500
+# @app.route('/')
+# def index():
+#     try:
+#         if IS_LOGGING_ENABLED:
+#             logger.info("Serving index page")
+#         return send_from_directory('.', 'index.html')
+#     except Exception as e:
+#         if IS_LOGGING_ENABLED:
+#             logger.error(f"Failed to serve index page: {str(e)}", exc_info=True)
+#         return jsonify({"error": "Failed to serve index page"}), 500
 
 @app.route('/predict', methods=['POST'])
 def predict_language():
@@ -145,7 +145,7 @@ def predict_language():
     except Exception as e:
         return jsonify({"error": f"{str(e)}"}), 500
 
-@app.route('/writing-style')
+@app.route('/')
 def writing_style():
     try:
         return send_from_directory('.', 'writing_style.html')
