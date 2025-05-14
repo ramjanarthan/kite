@@ -237,17 +237,17 @@ def analyze_writing():
                 if IS_LOGGING_ENABLED:
                     logger.warning("No best match found")
 
-            # Define unique messages for each LLM
+                        # Define neutral messages for each LLM match
             llm_messages = {
-                "chatgpt": "Your writing style closely matches ChatGPT's! You tend to be clear, concise, and well-structured in your prose.",
-                "gemini": "Your writing style aligns with Gemini's! You excel at being informative while maintaining a friendly and approachable tone.",
-                "grok": "Your writing style mirrors Grok's! You have a knack for being direct, witty, and engaging in your communication.",
-                "claude": "Your writing style resembles Claude's! You demonstrate a thoughtful, nuanced approach with careful attention to detail."
+                "chatgpt": "Your text most closely matches ChatGPT's style!",
+                "gemini": "Your text most closely matches Gemini's style!",
+                "grok": "Your text most closely matches Grok's style!",
+                "claude": "Your text most closely matches Claude's style!"
             }
             
             response = {
                 "best_match": best_match,
-                "explanation": llm_messages.get(best_match, "Your writing style is unique!") if best_match else "Unable to determine a clear match.",
+                "explanation": llm_messages.get(best_match, "Unable to determine a clear match.") if best_match else "Unable to determine a clear match.",
                 "scores": perplexities
             }
             if IS_LOGGING_ENABLED:

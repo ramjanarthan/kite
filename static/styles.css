@@ -27,8 +27,6 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #3a3f4a;
-    /* padding-bottom: 15px; */
-    /* margin-bottom: 20px; */
     margin-bottom: 1rem;
     border-bottom: 1px solid #3a3f4a;
     padding-bottom: 15px;
@@ -105,7 +103,8 @@ header h1 {
 /* Prediction Section Styles */
 .prediction-section h3,
 .explanation-section h3,
-.models-section h3 {
+.models-section h3,
+.faq-section h3 {
     color: #8ab4f8;
     margin-top: 0;
     margin-bottom: 15px;
