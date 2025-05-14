@@ -24,7 +24,7 @@ CPP_MODEL_PATH = os.path.join(os.path.dirname(__file__), "models/cpp_model")
 WRITING_MODEL_PATHS = {
     "chatgpt": os.path.join(os.path.dirname(__file__), "models/writing/chatgpt"),
     "gemini": os.path.join(os.path.dirname(__file__), "models/writing/gemini"),
-    "grok": os.path.join(os.path.dirname(__file__), "models/writing/grok"),
+    # "grok": os.path.join(os.path.dirname(__file__), "models/writing/grok"),
     "claude": os.path.join(os.path.dirname(__file__), "models/writing/claude")
 }
 
@@ -49,23 +49,23 @@ def load_models():
         #     if IS_LOGGING_ENABLED:
         #         logger.warning(f"Python model path does not exist: {PYTHON_MODEL_PATH}")
 
-        if os.path.exists(CPP_MODEL_PATH):
-            cpp_model = CustomLanguageModel.load_model(CPP_MODEL_PATH)
-            if IS_LOGGING_ENABLED:
-                logger.info("C++ model loaded successfully")
-        else:
-            if IS_LOGGING_ENABLED:
-                logger.warning(f"C++ model path does not exist: {CPP_MODEL_PATH}")
+        # if os.path.exists(CPP_MODEL_PATH):
+        #     cpp_model = CustomLanguageModel.load_model(CPP_MODEL_PATH)
+        #     if IS_LOGGING_ENABLED:
+        #         logger.info("C++ model loaded successfully")
+        # else:
+        #     if IS_LOGGING_ENABLED:
+        #         logger.warning(f"C++ model path does not exist: {CPP_MODEL_PATH}")
         
-        # # Load writing style models
-        # for name, path in WRITING_MODEL_PATHS.items():
-        #     if os.path.exists(path):
-        #         writing_models[name] = CustomLanguageModel.load_model(path)
-        #         if IS_LOGGING_ENABLED:
-        #             logger.info(f"Writing model {name} loaded successfully")
-        #     else:
-        #         if IS_LOGGING_ENABLED:
-        #             logger.warning(f"Writing model path does not exist: {path}")
+        # Load writing style models
+        for name, path in WRITING_MODEL_PATHS.items():
+            if os.path.exists(path):
+                writing_models[name] = CustomLanguageModel.load_model(path)
+                if IS_LOGGING_ENABLED:
+                    logger.info(f"Writing model {name} loaded successfully")
+            else:
+                if IS_LOGGING_ENABLED:
+                    logger.warning(f"Writing model path does not exist: {path}")
 
         # cpp_model.debug_print("C++ model")
         # python_model.debug_print("Python model")
