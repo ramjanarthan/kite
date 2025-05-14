@@ -173,3 +173,6 @@ data/raw/DeepSpeech-master/*
 
 # Ignore debug_logs_
 debug_logs_*/*
+
+# Ignore node_modules/
+node_modules/*
