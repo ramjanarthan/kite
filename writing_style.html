@@ -17,7 +17,14 @@
             </div>
         </header>
 
+        <div class="task-description">
+            <p>Have you wondered which LLM matches your style of writing? To find out, write a story in the textbox below and hit submit, following this prompt:</p>
+
+            <p><em>Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can.</em></p>
+        </div>
+
         <main class="content-area">
+            
             <div class="editor-column">
                 <div id="editor" style="height: 70vh;">
                     <p class="editor-placeholder">Type your story here...</p>
@@ -38,11 +45,6 @@
             </div>
 
             <div class="results-column">
-                <div class="prediction-section card">
-                    <h3>Prompt</h3>
-                    <p>Write a paragraph about a boy with a red ball and a puppy in a vivid, narrative style, using descriptive language and varied sentence structures. Include a surprising event and write as long as you can</p>
-                </div>
-                
                 <div class="models-section card">
                     <h3>Prediction</h3>
                     <div id="results">
@@ -61,19 +63,26 @@
                             <img src="/static/images/gemini.png" alt="Gemini">
                             <h4>Gemini</h4>
                         </div>
-                        <!-- <div class="model-card" id="grok">
-                            <img src="/static/images/grok.png" alt="Grok">
-                            <h4>Grok</h4>
-                        </div> -->
                         <div class="model-card" id="claude">
                             <img src="/static/images/claude.png" alt="Claude">
                             <h4>Claude</h4>
                         </div>
                     </div>
                 </div>
-                <!-- <a href="/" class="try-button">
-                    Try: Code Detection <i class="fas fa-arrow-right"></i>
-                </a> -->
+                
+                <div class="faq-section card">
+                    <h3>Interesting Questions</h3>
+                    <ol>
+                        <li>Can you modify your answers to try and target a specific LLM? What are some strategies to do it?</li>
+                        <li>What happens when you paste actual responses from LLMs for this prompt? Does it match your expectations?</li>
+                    </ol>
+                </div>
+                
+                <div class="about-section">
+                    <a href="https://ramjanarthan.com" target="_blank" class="about-link">
+                        <i class="fas fa-external-link-alt"></i> Read more about how this works
+                    </a>
+                </div>
             </div>
         </main>
     </div>
@@ -86,4 +95,4 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
-</html> 
+</html>
